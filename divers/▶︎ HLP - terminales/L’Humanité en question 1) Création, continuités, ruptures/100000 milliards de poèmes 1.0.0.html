@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Cent mille milliards de poèmes - Queneau</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #e0e5ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .sonnet {
+            background: #e0e5ec;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 9px 9px 16px #a3b1c6, -9px -9px 16px #ffffff;
+            max-width: 600px;
+            width: 100%;
+        }
+        .verse-block {
+            background: #e0e5ec;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: inset 3px 3px 6px #a3b1c6, inset -3px -3px 6px #ffffff;
+            cursor: pointer;
+        }
+        .verse {
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        .verse:last-child {
+            margin-bottom: 0;
+        }
+        button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            background: #e0e5ec;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="sonnet">
+        <div id="poem"></div>
+        <button onclick="generatePoem()">Nouveau poème</button>
+    </div>
+
+    <script src="queneau.js"></script>
+    <script>
+        function generatePoem() {
+            let poem = "";
+            
+            // Premier quatrain
+            poem += '<div class="verse-block" onclick="changeVerseBlock(0, 4)">';
+            for (let i = 0; i < 4; i++) {
+                poem += `<div class="verse">${verses[i][Math.floor(Math.random() * verses[i].length)]}</div>`;
+            }
+            poem += '</div>';
+
+            // Deuxième quatrain
+            poem += '<div class="verse-block" onclick="changeVerseBlock(4, 8)">';
+            for (let i = 4; i < 8; i++) {
+                poem += `<div class="verse">${verses[i][Math.floor(Math.random() * verses[i].length)]}</div>`;
+            }
+            poem += '</div>';
+
+            // Premier tercet
+            poem += '<div class="verse-block" onclick="changeVerseBlock(8, 11)">';
+            for (let i = 8; i < 11; i++) {
+                poem += `<div class="verse">${verses[i][Math.floor(Math.random() * verses[i].length)]}</div>`;
+            }
+            poem += '</div>';
+
+            // Deuxième tercet
+            poem += '<div class="verse-block" onclick="changeVerseBlock(11, 14)">';
+            for (let i = 11; i < 14; i++) {
+                poem += `<div class="verse">${verses[i][Math.floor(Math.random() * verses[i].length)]}</div>`;
+            }
+            poem += '</div>';
+
+            document.getElementById("poem").innerHTML = poem;
+        }
+
+        function changeVerseBlock(start, end) {
+            const blocks = document.getElementsByClassName("verse-block");
+            const blockIndex = Array.from(blocks).findIndex(block => 
+                Array.from(block.children).some(verse => 
+                    verses[start].includes(verse.innerText)
+                )
+            );
+
+            const verseElements = blocks[blockIndex].children;
+            
+            for (let i = start; i < end; i++) {
+                const currentVerse = verseElements[i - start].innerText;
+                const verseOptions = verses[i];
+                let newVerse = currentVerse;
+                while (newVerse === currentVerse) {
+                    newVerse = verseOptions[Math.floor(Math.random() * verseOptions.length)];
+                }
+                verseElements[i - start].innerText = newVerse;
+            }
+        }
+
+        generatePoem();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+il faudrait pouvoir sauvegarder les schémas eux-mêmes, sans être en "image", pour les travailler d'un cours à l'autre

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qui veut gagner des millions ?</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #000033;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-right: 20px;
+        }
+        button {
+            display: block;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #game-container {
+            width: 660px; /* Augmenter la largeur du bloc de gauche de 40px */
+            height: auto;
+            min-height: 460px; /* Assurez-vous que la hauteur minimum soit toujours définie */
+            max-height: 90vh;
+            background-image: radial-gradient(circle, #000066 0%, #000033 100%);
+            border: 2px solid #4444ff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #4444ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden; /* Ne pas afficher la barre de défilement */
+        }
+        #logo {
+            display: block;
+            margin: 0 auto 10px;
+            max-width: 150px;
+            max-height: 75px;
+        }
+        h1 {
+            text-align: center;
+            color: #ff9900;
+            font-size: 20px;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        #question-container {
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: transparent;
+            border-radius: 10px;
+        }
+        #answers-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .answer-btn {
+            background-color: #000088; /* couleur de fond par défaut */
+            border: none;
+            padding: 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 25px;
+            min-width: 150px;
+            margin: 0 5px; /* Marge pour espacement */
+            flex: 1; /* Pour que tous les boutons prennent la même largeur */
+            color: white; /* Couleur du texte par défaut */
+            height: 50px; /* Hauteur fixe pour les boutons */
+        }
+        .answer-btn .answer-text {
+            color: orange; /* couleur du texte avant (A, B, C, D) */
+        }
+        .answer-btn .answer-response {
+            color: white; /* couleur du texte de réponse */
+        }
+        .answer-btn.correct-answer {
+            background-color: #28a745; /* couleur de fond du bouton quand la réponse est bonne */
+        }
+        #next-question-btn {
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+        #jokers-container {
+            display: none; /* Masqué par défaut */
+            justify-content: center;
+            margin-top: 15px;
+        }
+        .joker-btn {
+            background-color: transparent;
+            border: none;
+            width: 100px;
+            height: 100px;
+            margin: 0 15px;
+            cursor: pointer;
+        }
+        .joker-btn img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+        .frame {
+            display: flex;
+            width: 210px; /* Diminuer la largeur du bloc de droite de 20px */
+            justify-content: space-between; /* Disposition des colonnes */
+            border: 2px solid #4444ff; /* Encadrement */
+            border-radius: 15px; /* Coins arrondis pour le bloc total */
+            padding: 20px; /* Espacement intérieur */
+            background-color: #000033; /* Fond */
+            margin-left: 20px; /* Ajouter une marge de 20px à gauche par rapport au bloc de gauche */
+            height: 460px; /* Assurer que la hauteur du bloc de droite soit égale à celle du bloc de gauche */
+        }
+        .paliers {
+            margin-right: 10px; /* Réduire la marge à droite */
+        }
+        .paliers, .scores {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            flex-basis: auto;
+            width: 50%; /* Occupant chacun 50% de la largeur */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #ff9900;
+        }
+        .paliers div, .scores div {
+            text-align: right;
+            color: #ff9900;
+            width: auto;
+        }
+        .paliers div.special, .scores div.special {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <audio id="audioPlayer" preload="auto">
+        <source src="audio/generique.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="fiftyFiftyAudio" preload="auto">
+        <source src="audio/joker-50-50.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="phoneAFriendAudio" preload="auto">
+        <source src="audio/joker-appel.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="publicHelpAudio" preload="auto">
+        <source src="audio/joker-public.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="easyQuestionsAudio" preload="auto">
+        <source src="audio/questionstrèsfaciles.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="button-container">
+        <button onclick="playAudio()">générique</button>
+        <button onclick="startGame()">lancer jeu</button>
+    </div>
+    
+    <div id="game-container">
+        <img id="logo" src="img/logo.png" alt="Logo Qui veut gagner des millions">
+        <h1>Qui veut gagner des millions ?</h1>
+        <div id="question-container"></div>
+        <div id="answers-container"></div>
+        <div id="jokers-container">
+            <button class="joker-btn" onclick="useFiftyFifty()"><img src="img/50-50.png" alt="50/50"></button>
+            <button class="joker-btn" onclick="usePhoneAFriend()"><img src="img/appel.png" alt="Appel"></button>
+            <button class="joker-btn" onclick="usePublicHelp()"><img src="img/public.png" alt="Public"></button>
+        </div>
+        <button id="next-question-btn" onclick="nextQuestion()" style="display:none;">Question suivante</button>
+    </div>
+    
+    <div class="frame">
+        <div class="paliers">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div class='special'>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div class='special'>10</div>
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+            <div>14</div>
+            <div class='special'>15</div>
+        </div>
+        <div class="scores">
+            <div>200 €</div>
+            <div>300 €</div>
+            <div>500 €</div>
+            <div>800 €</div>
+            <div class='special'>1500 €</div>
+            <div>3000 €</div>
+            <div>6000 €</div>
+            <div>12000 €</div>
+            <div>24000 €</div>
+            <div class='special'>48000 €</div>
+            <div>72000 €</div>
+            <div>100000 €</div>
+            <div>150000 €</div>
+            <div>300000 €</div>
+            <div class='special'>1000000 €</div>
+        </div>
+    </div>
+    
+    <script src="questions.js"></script>
+
+    <!-- Logique du jeu -->
+    <script>
+        let currentQuestionIndex = 0;
+        let previousQuestionIndex = -1;
+        let incorrectAnswers = [];
+        let currentAudio = null;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        const questionsFiles = {
+            1: 'questions/questionstrèsfaciles.js',
+            2: 'questions/questionstrèsfaciles.js',
+            3: 'questions/questionsfaciles.js',
+            4: 'questions/questionsfaciles.js',
+            5: 'questions/questionsmoyennes.js',
+            6: 'questions/questionsmoyennes.js',
+            7: 'questions/questionsmoyennes.js',
+            8: 'questions/questionsmoyennes.js',
+            9: 'questions/questionsmoyennes.js',
+            10: 'questions/questionsdifficiles.js',
+            11: 'questions/questionsdifficiles.js',
+            12: 'questions/questionsdifficiles.js',
+            13: 'questions/questionsdifficiles.js',
+            14: 'questions/questionsdifficiles.js',
+            15: 'questions/questionsdifficiles.js'
+        };
+
+        const musicFiles = {
+            1: 'audio/questionstrèsfaciles.mp3',
+            2: 'audio/questionstrèsfaciles.mp3',
+            3: 'audio/questionsfaciles.mp3',
+            4: 'audio/questionsfaciles.mp3',
+            5: 'audio/questionsmoyennes.mp3',
+            6: 'audio/questionsmoyennes.mp3',
+            7: 'audio/questionsmoyennes.mp3',
+            8: 'audio/questionsmoyennes.mp3',
+            9: 'audio/questionsmoyennes.mp3',
+            10: 'audio/questionsdifficiles.mp3',
+            11: 'audio/questionsdifficiles.mp3',
+            12: 'audio/questionsdifficiles.mp3',
+            13: 'audio/questionsdifficiles.mp3',
+            14: 'audio/questionsdifficiles.mp3',
+            15: 'audio/questionsdifficiles.mp3'
+        };
+
+        function loadContent() {
+            const palierIndex = currentQuestionIndex + 1;
+
+            let questionsFile = questionsFiles[palierIndex];
+            const script = document.createElement('script');
+            script.src = questionsFile;
+
+            script.onload = () => {
+                shuffle(questions); // Mélanger les questions après leur chargement  
+                displayQuestion();
+            };
+
+            document.body.appendChild(script);
+            stopAllAudio();
+        }
+
+        function playAudio() {
+            var audio = document.getElementById('audioPlayer');
+            audio.play();
+        }
+
+        function startGame() {
+            initializeGame();
+            loadContent(); // Charger les questions sans jouer de musique  
+            document.getElementById('jokers-container').style.display = 'flex'; // Afficher les jokers au démarrage  
+        }
+
+        function initializeGame() {
+            currentQuestionIndex = 0;
+            previousQuestionIndex = -1; 
+            incorrectAnswers = []; 
+            document.getElementById('answers-container').innerHTML = '';
+            document.getElementById('next-question-btn').style.display = 'none';
+        }
+
+        function displayQuestion() {
+            stopAllAudio(); // Arrêter toute musique en cours
+
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question-container').innerText = question.question;
+
+            const answerButtons = question.answers.map((answer, index) => `
+                <button class='answer-btn' id="answer-${index}" onclick='checkAnswer(${index})' disabled>
+                    <span class="answer-text" style="display: none;">⬪ ${String.fromCharCode(65 + index)} :</span>
+                    <span class="answer-response" style="display: none;">${answer}</span>
+                </button>
+            `);
+
+            const linesHtml = `
+                <div style="display: flex; flex-direction: column; width: calc(100% - 40px); margin-left: 20px; margin-right: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        ${answerButtons[0]} 
+                        ${answerButtons[1]} 
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        ${answerButtons[2]} 
+                        ${answerButtons[3]} 
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('answers-container').innerHTML = linesHtml;
+
+            // Afficher le contenu des boutons ensemble 
+            let delay = 0; // Délai initial  
+            const totalButtons = document.querySelectorAll('.answer-btn');
+
+            totalButtons.forEach((button, index) => {
+                const textSpan = button.querySelector('.answer-text');
+                const responseSpan = button.querySelector('.answer-response');
+
+                setTimeout(() => {
+                    textSpan.style.display = 'inline'; // Afficher le texte du bouton  
+                    responseSpan.style.display = 'inline'; // Afficher la réponse du bouton 
+                    // Réactiver les boutons après le dernier affichage 
+                    if (index === totalButtons.length - 1) {
+                        totalButtons.forEach((btn) => {
+                            btn.disabled = false; // Réactiver les boutons après que tout soit affiché  
+                        });
+                    }
+                }, delay); // Afficher le texte et la réponse ensemble
+                
+                delay += 2000; // Incrémenter le délai de 2 secondes  
+            });
+
+            // Jouer la musique pour la question actuelle  
+            let palierIndex = currentQuestionIndex + 1;
+            let musicFile = musicFiles[palierIndex];
+            currentAudio = new Audio(musicFile);
+            currentAudio.play();
+        }
+
+        function checkAnswer(selectedIndex) {
+            const question = questions[currentQuestionIndex];
+            const buttons = document.querySelectorAll('.answer-btn');
+
+            buttons.forEach(button => {
+                button.classList.remove('correct-answer');
+            });
+
+            if (previousQuestionIndex !== -1) {
+                const previousPalierDiv = document.querySelectorAll('.paliers div')[previousQuestionIndex];
+                const previousScoreDiv = document.querySelectorAll('.scores div')[previousQuestionIndex];
+
+                if (!previousPalierDiv.classList.contains('special')) {
+                    previousPalierDiv.style.color = '#ff9900';
+                } else {
+                    previousPalierDiv.style.color = 'white'; 
+                }
+                previousPalierDiv.style.backgroundColor = 'transparent'; 
+
+                if (!previousScoreDiv.classList.contains('special')) {
+                    previousScoreDiv.style.color = '#ff9900'; 
+                } else {
+                    previousScoreDiv.style.color = 'white'; 
+                }
+                previousScoreDiv.style.backgroundColor = 'transparent'; 
+            }
+
+            if (selectedIndex === question.correctAnswer) {
+                buttons[selectedIndex].classList.add('correct-answer');
+
+                var audio = new Audio('audio/bonnereponsefacile.mp3');
+                audio.play().catch(function(error) {
+                    console.error("Erreur de lecture audio : ", error);
+                });
+
+                const palierDiv = document.querySelectorAll('.paliers div')[currentQuestionIndex];
+                const scoreDiv = document.querySelectorAll('.scores div')[currentQuestionIndex];
+
+                if ([0, 4, 9, 14].includes(currentQuestionIndex)) { 
+                    palierDiv.style.color = 'black'; 
+                    scoreDiv.style.color = 'black'; 
+                } else {
+                    palierDiv.style.color = 'black'; 
+                    scoreDiv.style.color = 'black'; 
+                }
+
+                palierDiv.style.backgroundColor = 'orange'; 
+                scoreDiv.style.backgroundColor = 'orange'; 
+
+                previousQuestionIndex = currentQuestionIndex;
+
+                setTimeout(() => {
+                    if ([4, 9, 14].includes(currentQuestionIndex)) { 
+                        palierDiv.style.color = 'white'; 
+                        scoreDiv.style.color = 'white'; 
+                    }
+                    nextQuestion(); 
+                }, 1000); 
+            } else {
+                alert(`Mauvaise réponse ! La bonne réponse était : ${question.answers[question.correctAnswer]}`); 
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex >= questions.length) {
+                alert("Fin du jeu !");
+                initializeGame(); 
+            } else {
+                loadContent(); 
+                displayQuestion();
+            }
+        }
+
+        function highlightScore(isCorrect) {
+            const palierDiv = document.querySelectorAll('.paliers div')[currentQuestionIndex];
+            const scoreDiv = document.querySelectorAll('.scores div')[currentQuestionIndex];
+
+            if (isCorrect) {
+                palierDiv.style.color = 'black'; 
+                scoreDiv.style.color = 'black'; 
+                setTimeout(() => {
+                    palierDiv.style.color = '#ff9900'; 
+                    scoreDiv.style.color = 'white';
+                }, 1000); 
+            }
+        }
+
+        function useFiftyFifty() {
+            var audio = document.getElementById('fiftyFiftyAudio');
+            audio.play();
+
+            const question = questions[currentQuestionIndex];
+            const answerButtons = document.querySelectorAll('.answer-btn');
+
+            answerButtons.forEach(button => {
+                button.style.display = 'inline-block';
+            });
+
+            incorrectAnswers = []; 
+
+            while (incorrectAnswers.length < 2) {
+                const randomIndex = Math.floor(Math.random() * question.answers.length);
+
+                if (randomIndex !== question.correctAnswer && !incorrectAnswers.includes(randomIndex)) {
+                    incorrectAnswers.push(randomIndex);
+                }
+            }
+
+            answerButtons.forEach((button, index) => {
+                if (incorrectAnswers.includes(index)) {
+                    button.style.display = 'none'; 
+                }
+            });
+        }
+
+        function usePhoneAFriend() {
+            stopAllAudio(); 
+            var audio = document.getElementById('phoneAFriendAudio');
+
+            audio.play().then(() => {
+                audio.addEventListener('ended', () => {
+                    const randomIndex = Math.floor(Math.random() * 4);
+                    const letter = String.fromCharCode(65 + randomIndex); // 65 est le code ASCII pour 'A'
+                    
+                    alert("Votre ami pense que la réponse est " + letter + ".");
+                    
+                    // Masquer le bouton "appel" après l'utilisation  
+                    document.querySelector('.joker-btn img[alt="Appel"]').parentElement.style.display = 'none'; 
+                });
+            }).catch(function(error) {
+                console.error("Erreur de lecture audio : ", error);
+            });
+        }
+
+        function stopAllAudio() {
+            const audioElements = document.querySelectorAll('audio');
+            audioElements.forEach(audio => {
+                audio.pause(); 
+                audio.currentTime = 0; 
+            });
+        }
+
+        function usePublicHelp() {
+            stopAllAudio();  
+            var audio = document.getElementById('publicHelpAudio');
+            
+            audio.play().then(() => {
+                audio.addEventListener('ended', () => {
+                    // Tirage aléatoire de deux lettres A, B, C, D  
+                    const randomIndex1 = Math.floor(Math.random() * 4);
+                    const randomIndex2 = Math.floor(Math.random() * 4);
+                    const letter1 = String.fromCharCode(65 + randomIndex1); // 65 est le code ASCII pour 'A'
+                    const letter2 = String.fromCharCode(65 + randomIndex2); // 65 est le code ASCII pour 'A'
+                    
+                    alert("Le public pense que la réponse correcte est " + letter1 + " ou " + letter2 + ".");
+                    
+                    // Masquer le bouton "public" après l'utilisation  
+                    document.querySelector('.joker-btn img[alt="Public"]').parentElement.style.display = 'none'; 
+                });
+            }).catch(function(error) {
+                console.error("Erreur de lecture audio : ", error);
+            });
+        }
+
+        window.onload = function() {
+            var audio = document.getElementById('audioPlayer');
+            audio.play().catch(function(error) {
+                console.log("Lecture automatique bloquée : " + error);
+            });
+        };
+    </script>
+</body>
+</html>

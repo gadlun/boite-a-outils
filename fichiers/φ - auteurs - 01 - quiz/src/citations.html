@@ -1,0 +1,513 @@
+<!DOCTYPE html><html lang="fr">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3.0">
+	<link rel="icon" type="image/svg+xml" href="src/favicon.ico" />
+	<title>quiz φ</title>
+	<link rel="stylesheet" href="src/css.css">
+</head>
+
+<body>	
+	<br><br>
+
+	<main id="content" class="content--v2" role="main" data-template-id="quiz">
+		<!-------------------------------- barre de titre ----------------------------------------------------->
+		<div class="wrapper--with-menu content--v2--header">
+			<div class="wrapper--grid-playlist">
+				<div class="grid-area--player grid-area--player-relative">		
+					<div id="quiz" class="container--quiz" data-slug="quiz-l-art">
+						<div id="quizStart">
+							<div class="container--quiz-start">
+								<div class="quiz-start__img">
+									<img class="lazy" alt="" src="citations.png" data-src="" data-srcset="" />
+									<div class="quiz-start__opacity"></div>
+									<div class="quiz-start__button">
+										<button id="quizStartBtn" class="quiz-btn quiz-btn--large quiz-btn--fill" type="button" tabindex="0" aria-label="Commencer le quiz L'art en Philo">Commencer le quiz </button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div id="quizQuestions" class="hidden" data-reviewing="false">
+							<div class="progress-bar">
+								<div class="progress-bar__info">
+									<div class="progress-bar__title">
+									<img src="src/phi.png" alt="philosophie">
+									<h1 id="quizTitle" aria-label="Aristote 1/10 , cochez le bouton radio choisi pour valider votre réponse.">La pensée des grands philosophes</h1>
+									</div>
+									<div class="progress-bar__count" aria-hidden="true">
+									<span id="currentQuestion">1</span> /  
+									<span id="totalQuestions" data-value="10">10</span>
+									</div>
+								</div>
+								<div class="progress-bar__cursor">
+									<span class="progress-bar__cursor--dynamic"></span>
+								</div>
+							</div>
+
+						<!--------------------------------------- question n°01 ----------------------------------------------------->
+							<div class="container--question " data-question="1" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Pour Rousseau, « l’amour de soi », c’est :</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">l’amour-propre</span>
+												</div>
+											</li>											
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">l'instinct de conservation</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">l'orgueil</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Chez Rousseau, l’amour de soi est un sentiment naturel et bon, forme humaine de l’instinct de conservation. A ne pas confondre avec l’amour-propre ou l’orgueil, tous deux fondés sur le paraître des conventions sociales.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°01 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°02 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="2" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Le « surhomme » chez Nietzsche désigne :</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">un appel au dépassement de l’humain par la création de nouvelles valeurs</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">un être biologiquement modifié pour accroître ses capacités</span>
+												</div>
+											</li>				
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">un titan</span>
+												</div>
+											</li>	
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>C’est par la création d’une nouvelle morale par-delà le bien et le mal que Nietzsche appelle l’humanité à se dépasser elle-même. Elle libérera alors une puissance créatrice jusqu’ici insoupçonnée.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°02 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°03 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="3" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Qui a écrit : « Un homme libre ne doit rien apprendre en esclave » ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Platon</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Montesquieu</span>
+												</div>
+											</li>				
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Hegel</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>« Les leçons qu’on fait entrer de force dans l’âme n’y demeurent point », écrit Platon. Il ne faut donc pas user de violence dans l’éducation des jeunes, mais les éveiller.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°03 ----------------------------------------------------->	
+
+						<!--------------------------------------- question n°04 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="4" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Pour le stoïcien Epictète, la liberté de l’homme est illusoire.</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Vrai</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Faux</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Pour Epictète, nous possédons une part de liberté. Ce sont nos jugements qui dépendent entièrement de nous. Le reste, qui ne dépend pas entièrement de nous, la limite.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°04 ----------------------------------------------------->			
+							
+						<!--------------------------------------- question n°05 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="5" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Qui est le père du syllogisme ?</p></legend>
+										<ul>				
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Aristote</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Socrate</span>
+												</div>
+											</li>	
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Sénèque</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Un syllogisme est un raisonnement logique visant à établir une conséquence. On doit sa formalisation à Aristote. Voici un exemple de syllogisme : « Tous les hommes sont mortels. Or Socrate est un homme. Donc Socrate est mortel. »</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°05 ----------------------------------------------------->					
+
+						<!--------------------------------------- question n°06 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="6" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Chez Machiavel, la « raison d’État », c’est :</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">la légitimité de l’État</span>
+												</div>
+											</li>					
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">la nécessité du maintien de l'État</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">la raison supérieure</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Selon Machiavel, l’homme d’État doit savoir « au besoin entrer dans la voie du mal » pour maintenir l’unité de l’État. Il arrive que la fin justifie les moyens.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°06 ----------------------------------------------------->					
+
+						<!--------------------------------------- question n°07 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="7" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Pour Hannah Arendt, la république est l’opposé de :</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">la dictature</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">le totalitarisme</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">les deux</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Selon Arendt, la république désigne un régime politique où les libertés publiques sont garanties. C'est la démocratie. La dictature les supprime et enferme la liberté des hommes dans la sphère privée. Un pouvoir totalitaire va jusqu’à surveiller et contrôler cette sphère privée.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°07 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°08 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="8" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Quel est le point commun entre le désir et un coucher de soleil ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">le beau qui est en nous (Kant)</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">le manque (Platon)</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">le désir de comprendre (Arendt)</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>En latin, <i>desideratum</i> signifie le désir de revoir le soleil. Sa disparition à l’horizon crée un manque. De même, chez Platon, l’homme désire revoir la sagesse que son âme a connue dans le monde intelligible.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°08 ----------------------------------------------------->
+						
+						<!--------------------------------------- question n°09 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="9" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Qui a écrit : « Par l’espace, l’univers me comprend et m’engloutit comme un point, par la pensée je le comprends » ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Hegel</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Einstein</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Pascal</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>En jouant sur le double sens du mot « comprendre », Pascal évoque la condition de l’homme. Minuscule corps perdu dans un univers matériel infini, l’homme donne un sens à l’univers par la pensée. « Penser fait la grandeur de l’homme », écrit-il encore.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°09 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°10 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="10" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Qui a défini la vie comme « l’ensemble des fonctions qui résistent à la mort » ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Bichat</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Bergson</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Alain</span>
+												</div>
+											</li>
+
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Pour le physiologiste Bichat, les différents organes concourent à la conservation de l’ensemble de l’organisme. Ils sont capables de se reproduire, de se réguler et se réparer eux-mêmes.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°10 ----------------------------------------------------->
+						
+							<div id="quizBtnControls" class="container--quiz-btn hidden">
+								<button id="nextQuestion" class="quiz-btn quiz-btn--default quiz-btn--fill" type="button" tabindex="0" aria-label="passer à la question suivante">Suivant</button>
+							</div>
+						</div>
+						
+						<div id="quizEnd" class="hidden">
+							<div class="container--quiz-end" data-result="loose">
+								<div class="container--quiz-results">
+									<div class="container--quiz-message"><p class="quiz-end__results">
+										<span class="quiz-end__message-failure">Votre score :</span>
+										<br><br>
+										<span class="quiz-end__score">0</span> bonne(s) réponse(s) sur 10.</p>
+										<br>
+									</div>
+									<br><br>
+									<div class="container--quiz-btn">
+										<button id="quizReview" class="quiz-btn quiz-btn--default quiz-review-btn" type="button" aria-label="Voir la correction">
+											<span class="quiz-review-answers">Réponses</span>
+											<span class="quiz-review-correction">Correction</span>
+										</button>
+										<button class="quiz-btn quiz-btn--default quiz-btn--fill quiz-btn-retry" type="button" tabindex="0" aria-label="Rejouer">Réessayer</button>
+										<button id="quizNext" class="quiz-btn quiz-btn--default quiz-btn--fill quiz-btn-next" type="button" tabindex="1" aria-label="Suivant">Suivant</button>
+									</div>
+									<a href="#playlistQuiz" title="" class="quiz-end__link"></a>
+								</div>
+							</div>
+						</div>						
+						<button class="fullscreen-quiz"></button>
+					</div>	
+				</div>
+				
+				<!-- conteneur vide à droite sur la plage -->
+				<div class="grid-area--playlist" id="playlistQuiz"></div>	
+			</div>
+		</div>
+	</main>
+		<script src="src/java.js"></script>
+	</body>
+</html>

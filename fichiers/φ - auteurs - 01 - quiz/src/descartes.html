@@ -1,0 +1,538 @@
+<!DOCTYPE html><html lang="fr">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3.0">
+	<link rel="icon" type="image/svg+xml" href="src/favicon.ico" />
+	<title>quiz φ</title>
+	<link rel="stylesheet" href="src/css.css">
+</head>
+
+<body>	
+	<br><br>
+
+	<main id="content" class="content--v2" role="main" data-template-id="quiz">
+		<!-------------------------------- barre de titre ----------------------------------------------------->
+		<div class="wrapper--with-menu content--v2--header">
+			<div class="wrapper--grid-playlist">
+				<div class="grid-area--player grid-area--player-relative">		
+					<div id="quiz" class="container--quiz" data-slug="quiz-l-art">
+						<div id="quizStart">
+							<div class="container--quiz-start">
+								<div class="quiz-start__img">
+									<img class="lazy" alt="" src="descartes.png" data-src="" data-srcset="" />
+									<div class="quiz-start__opacity"></div>
+									<div class="quiz-start__button">
+										<button id="quizStartBtn" class="quiz-btn quiz-btn--large quiz-btn--fill" type="button" tabindex="0" aria-label="Commencer le quiz L'art en Philo">Commencer le quiz </button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div id="quizQuestions" class="hidden" data-reviewing="false">
+							<div class="progress-bar">
+								<div class="progress-bar__info">
+									<div class="progress-bar__title">
+									<img src="src/phi.png" alt="philosophie">
+									<h1 id="quizTitle" aria-label="Descartes 1/11 , cochez le bouton radio choisi pour valider votre réponse.">Descartes : philosophe et mathématicien</h1>
+									</div>
+									<div class="progress-bar__count" aria-hidden="true">
+									<span id="currentQuestion">1</span> /  
+									<span id="totalQuestions" data-value="11">11</span>
+									</div>
+								</div>
+								<div class="progress-bar__cursor">
+									<span class="progress-bar__cursor--dynamic"></span>
+								</div>
+							</div>
+
+						<!--------------------------------------- question n°01 ----------------------------------------------------->
+							<div class="container--question " data-question="1" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Chez Descartes, le doute est définitif.</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Vrai</span>
+												</div>
+											</li>	
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Faux</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Descartes fait du doute une méthode provisoire pour parvenir à une vérité certaine. Pour y parvenir, il élimine progressivement les obstacles à la vérité : les préjugés, les illusions, les erreurs.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°01 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°02 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="2" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Lorsque Descartes affirme : &nbsp;«&nbsp; Je pense, donc je suis », cela signifie :</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Je me conforme à ce que mes pensées me conseillent.</span>
+												</div>
+											</li>					
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Mon existence de sujet pensant est certaine.</span>
+												</div>
+											</li>	
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Exprimer mes opinions me permet d'affirmer ma personnalité.</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Lorsque je me saisis comme sujet pensant, je suis certain d'exister. Essayer de mettre en doute cette affirmation revient à la confirmer. Pourquoi ? Parce que si je doute, alors je pense.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°02 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°03 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="3" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Descartes situait l’union de l’âme et du corps dans la glande pinéale, au niveau du cerveau.</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Oui</span>
+												</div>
+											</li>				
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Non</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>C’est tout le problème du dualisme cartésien. Où trouver un point de jonction entre l’âme et le corps, substances totalement différentes et séparées ?</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°03 ----------------------------------------------------->	
+
+						<!--------------------------------------- question n°04 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="4" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Pour Descartes, l’âme n’est rien d’autre que la pensée en acte. </p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Vrai</span>
+												</div>
+											</li>					
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Faux</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>C’est le « je pense » qui fait l’unité et la permanence du Moi. C’est une conception très spiritualiste de l’âme. </p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°04 ----------------------------------------------------->			
+							
+						<!--------------------------------------- question n°05 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="5" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Au 17e siècle, quel adjectif servait à Descartes pour qualifier l'univers ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">fini</span>
+												</div>
+											</li>					
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">indéfini</span>
+												</div>
+											</li>	
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">infini</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Pour Descartes, l'homme possède une idée de l'infini et aspire naturellement vers lui. Mais seul Dieu peut être qualifié d'infini. Le monde physique et des mathématiques, lui, est « indéfini ». On ne peut prouver ses bornes ni son infinité.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°05 ----------------------------------------------------->					
+
+						<!--------------------------------------- question n°06 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="6" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Comment Descartes nomme-t-il une donnée inconnue ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">X</span>
+												</div>
+											</li>					
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Y</span>
+												</div>
+											</li>	
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Z</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Descartes a cette idée de « X » en simplifiant le mot latin « xay » qui signifie « la chose inconnue ». Il décide de nommer les données connues a, b, c, etc. Le X est utilisé par les mathématiciens pour désigner des quantités numériques.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°06 ----------------------------------------------------->					
+
+						<!--------------------------------------- question n°07 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="7" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Comment la donnée inconnue va-t-elle permettre à Descartes de résoudre des problèmes ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">En la mettant en relation avec des données connues.</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">En faisant des opérations.</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Cela n'aide pas : X ou inconnu, c'est toujours inconnu.</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Lorsqu'on connaît le prix de 2 kg de pommes de terre (4 euros, par exemple), on peut calculer le prix d'1kg en la nommant « X » dans une opération.<br>► Si 2X = 4, alors X = 4 divisé par 2, soit 2 euros le kg ici. Nommer l'inconnue X permet de résoudre un problème.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°07 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°08 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="8" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Descartes est l'auteur des <i>Pensées</i>.</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Vrai</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Faux</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Descartes est l'auteur notamment du <i>Discours de la méthode</i>, sous-titré « pour bien conduire sa raison et chercher la vérité dans les sciences », paru en 1637. Écrit en français, chose nouvelle pour l'époque, il sert d'introduction à trois traités scientifiques. Pascal est l'auteur des <i>Pensées</i>.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°08 ----------------------------------------------------->
+						
+						<!--------------------------------------- question n°09 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="9" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Selon Descartes, un voyageur égaré dans la forêt doit :</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">s’arrêter et attendre les secours.</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">essayer plusieurs chemin.</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">choisir un chemin et s’y tenir.</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>C’est la métaphore choisie par Descartes pour illustrer la constance de la volonté. Dans les situations toujours complexes de la vie, il faut se tenir à notre décision, même si elle n’est peut-être pas la meilleure.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°09 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°10 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="10" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Laquelle de ces citations est de Descartes ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">« Le bon sens est la chose du monde la mieux partagée ».</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">« Le bon sens échappe au doute ».</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">« Le bon sens habite près de chez vous ».</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Descartes est ironique lorsqu’il commence par cette phrase son <i>Discours de la méthode</i> (1637). Le bon sens nous est commun et, en même temps, nombreux sont ceux qui en font mauvais usage.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°10 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°11 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="11" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>À quelle époque les théories de Newton et de Descartes s'opposent-elles à propos de la forme de la Terre ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">au 16e siècle</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">au 17e siècle</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">au 18e siècle</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Dans les années 1730, un violent débat oppose les membres de l'Académie des Sciences de Paris au sujet de la forme de la Terre : parfaitement sphérique ou ellipsoïdale ?</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°11 ----------------------------------------------------->
+
+						
+							<div id="quizBtnControls" class="container--quiz-btn hidden">
+								<button id="nextQuestion" class="quiz-btn quiz-btn--default quiz-btn--fill" type="button" tabindex="0" aria-label="passer à la question suivante">Suivant</button>
+							</div>
+						</div>
+						
+						<div id="quizEnd" class="hidden">
+							<div class="container--quiz-end" data-result="loose">
+								<div class="container--quiz-results">
+									<div class="container--quiz-message"><p class="quiz-end__results">
+										<span class="quiz-end__message-failure">Votre score :</span>
+										<br><br>
+										<span class="quiz-end__score">0</span> bonne(s) réponse(s) sur 11.</p>
+										<br>
+									</div>
+									<br><br>
+									<div class="container--quiz-btn">
+										<button id="quizReview" class="quiz-btn quiz-btn--default quiz-review-btn" type="button" aria-label="Voir la correction">
+											<span class="quiz-review-answers">Réponses</span>
+											<span class="quiz-review-correction">Correction</span>
+										</button>
+										<button class="quiz-btn quiz-btn--default quiz-btn--fill quiz-btn-retry" type="button" tabindex="0" aria-label="Rejouer">Réessayer</button>
+										<button id="quizNext" class="quiz-btn quiz-btn--default quiz-btn--fill quiz-btn-next" type="button" tabindex="1" aria-label="Suivant">Suivant</button>
+									</div>
+									<a href="#playlistQuiz" title="" class="quiz-end__link"></a>
+								</div>
+							</div>
+						</div>						
+						<button class="fullscreen-quiz"></button>
+					</div>	
+				</div>
+				
+				<!-- conteneur vide à droite sur la plage -->
+				<div class="grid-area--playlist" id="playlistQuiz"></div>	
+			</div>
+		</div>
+	</main>
+		<script src="src/java.js"></script>
+	</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!--------------------------- Daniel Boulagnon -------------------------->
+<!-------------------- daniel.boulagnon@ac-lille.fr ---------------------->
+<!----------------------------- version 2024 ----------------------------->
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" href="../../src/favicon.ico">
+	
+    <title>textes à trous</title>
+    <p style="margin: 15px; line-height: 48px; text-align: center; color:red; font-size:40px; font-weight: bold; font-family: 'Muli', sans-serif">texte à trous</p>
+    <p style="margin: 0px; line-height: 1px; text-align: center; color:black; font-size:20px">réviser le cours</p>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #ff0000;
+            text-align: center;
+            margin-top: 0px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        #text-container {
+            background-color: #f4f7fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            line-height: 2.5;
+            box-shadow: 5px 5px 15px rgba(163,177,198,0.6), -5px -5px 15px rgba(255,255,255, 0.5);
+            flex-grow: 0;
+            height: auto;
+            min-height: 0;
+            overflow-y: auto;
+        }
+        .dropzone {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 30px;
+            border: none;
+            background-color: #f4f7fa;
+            margin: 0 5px;
+            border-radius: 5px;
+            vertical-align: middle;
+            box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff;
+        }
+        #words-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .draggable-word {
+            padding: 5px 10px;
+            margin: 5px;
+            background-color: #f4f7fa;
+            border: none;
+            cursor: move;
+            user-select: none;
+            border-radius: 5px;
+            box-shadow: 5px 5px 10px #babecc, -5px -5px 10px #ffffff;
+            transition: all 0.2s ease-in-out;
+        }
+        .draggable-word:hover {
+            box-shadow: 2px 2px 5px #babecc, -2px -2px 5px #ffffff;
+        }
+        #action-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 50px;
+            margin: 20px auto;
+            padding: 0;
+            background-color: #f4f7fa;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 5px 5px 10px #babecc, -5px -5px 10px #ffffff;
+            transition: all 0.2s ease-in-out;
+            font-size: 16px;
+        }
+        #action-button:hover {
+            box-shadow: 2px 2px 5px #babecc, -2px -2px 5px #ffffff;
+        }
+        #action-button:active {
+            box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #ffffff;
+        }
+        .reload-symbol {
+            color: red;
+            font-size: 48px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <div id="text-container"></div>
+    <div id="words-container"></div>
+    <button id="action-button">Vérifier</button>
+    <script src="textes.js"></script>
+    <script>
+        let currentTextIndex = 0;
+        let currentState = "verify";
+        const textContainer = document.getElementById("text-container");
+        const wordsContainer = document.getElementById("words-container");
+        const actionButton = document.getElementById("action-button");
+
+        function getRandomIndex(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function displayText(index) {
+            const text = texts[index];
+            const regex = /\[([^\]]+)\]/g;
+            let matches = [];
+            
+            const modifiedText = text.replace(regex, (match, p1) => {
+                matches.push(p1);
+                return `<span class="dropzone" data-answer="${p1}"></span>`;
+            });
+
+            textContainer.innerHTML = modifiedText;
+
+            wordsContainer.innerHTML = matches
+                .sort(() => Math.random() - 0.5)
+                .map(word => `<span class="draggable-word" draggable="true">${word}</span>`)
+                .join("");
+
+            addDragAndDropListeners();
+        }
+
+        function addDragAndDropListeners() {
+            document.querySelectorAll('.draggable-word').forEach(word => {
+                word.addEventListener('dragstart', dragStart);
+            });
+            document.querySelectorAll('.dropzone').forEach(zone => {
+                zone.addEventListener('dragover', dragOver);
+                zone.addEventListener('drop', drop);
+            });
+        }
+
+        function dragStart(e) {
+            if (e.target.classList.contains('draggable-word')) {
+                e.dataTransfer.setData('text/plain', e.target.innerText);
+            }
+        }
+
+        function dragOver(e) {
+            if (e.target.classList.contains('dropzone')) {
+                e.preventDefault();
+            }
+        }
+
+        function drop(e) {
+            if (e.target.classList.contains('dropzone')) {
+                e.preventDefault();
+                const newWord = e.dataTransfer.getData('text/plain');
+                const oldWord = e.target.textContent;
+
+                if (oldWord) {
+                    const oldWordElement = document.createElement('span');
+                    oldWordElement.className = 'draggable-word';
+                    oldWordElement.draggable = true;
+                    oldWordElement.textContent = oldWord;
+                    wordsContainer.appendChild(oldWordElement);
+                }
+
+                e.target.textContent = newWord;
+
+                const draggedWord = Array.from(document.querySelectorAll('.draggable-word'))
+                    .find(el => el.textContent === newWord);
+                if (draggedWord) {
+                    draggedWord.remove();
+                }
+
+                addDragAndDropListeners();
+            }
+        }
+
+        function verifyAnswers() {
+            const dropzones = textContainer.querySelectorAll(".dropzone");
+            let allCorrect = true;
+
+            dropzones.forEach(zone => {
+                if (zone.textContent.toLowerCase() === zone.dataset.answer.toLowerCase()) {
+                    zone.style.backgroundColor = "#90EE90";
+                } else {
+                    zone.style.backgroundColor = "#FFB6C1";
+                    allCorrect = false;
+                }
+            });
+
+            return allCorrect;
+        }
+
+        function showCorrections() {
+            const dropzones = textContainer.querySelectorAll(".dropzone");
+            const words = document.querySelectorAll(".draggable-word");
+
+            dropzones.forEach((zone) => {
+                const correctWord = zone.dataset.answer;
+                const currentWord = zone.textContent;
+
+                if (currentWord.toLowerCase() !== correctWord.toLowerCase()) {
+                    zone.textContent = correctWord;
+                    zone.style.backgroundColor = "#90EE90";
+                }
+            });
+
+            setTimeout(() => {
+                words.forEach(word => word.remove());
+            }, 500);
+        }
+
+        function resetDropzones() {
+            const dropzones = textContainer.querySelectorAll(".dropzone");
+            dropzones.forEach(zone => {
+                zone.textContent = "";
+                zone.style.backgroundColor = "#f9f9f9";
+            });
+        }
+
+        actionButton.addEventListener("click", () => {
+            switch (currentState) {
+                case "verify":
+                    if (verifyAnswers()) {
+                        actionButton.innerHTML = "<span class='reload-symbol'>&#8635;</span>";
+                        currentState = "change";
+                    } else {
+                        actionButton.textContent = "Correction";
+                        currentState = "correct";
+                    }
+                    break;
+                case "correct":
+                    showCorrections();
+                    actionButton.innerHTML = "<span class='reload-symbol'>&#8635;</span>";
+                    currentState = "change";
+                    break;
+                case "change":
+                    currentTextIndex = getRandomIndex(texts.length);
+                    displayText(currentTextIndex);
+                    resetDropzones();
+                    actionButton.textContent = "Vérifier";
+                    currentState = "verify";
+                    break;
+            }
+        });
+
+        currentTextIndex = getRandomIndex(texts.length);
+        displayText(currentTextIndex);
+    </script>
+</body>
+</html>

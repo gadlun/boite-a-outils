@@ -1,0 +1,26 @@
+{ "class": "go.GraphLinksModel",
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [ 
+{"text":"Est-il toujours nécessaire de démontrer pour convaincre ?", "key":1, "loc":"151.00000000000006 -242.99999999999994", "category":"intitule"},
+{"text":"choix", "key":2, "loc":"150.99999999999997 -144.00000000000003", "figure":"Diamond"},
+{"text":"La démonstration est le chemin obligé pour accéder à la conviction", "key":3, "loc":"-167.00000000000006 -144", "category":"Etape1"},
+{"text":"On peut accéder à la conviction sans passer par la démonstration", "key":4, "loc":"462.99999999999983 -144", "category":"Etape1"},
+{"text":"La preuve rationnelle (plutôt que la justification factuelle) permet l'adhésion rationnelle", "key":5, "loc":"-167.00000000000009 -21.999999999999915", "category":"Etape2"},
+{"text":"On peut adhérer à une proposition parce qu'elle est évidente", "key":6, "loc":"463.0000000000001 73.00000000000009", "category":"Etape2"},
+{"text":"problème : soit la démonstration est nécessaire et suffisante pour convaincre parce que tout est a priori démontrable, soit ce n'est pas le cas puisque la démonstration elle-même repose sur des principes indémontrables", "key":7, "loc":"145.3333282470703 7", "category":"Etape3"},
+{"category":"Etape2", "text":"Ce qui n'est pas démontré ne peut être tenu pour vrai", "key":-2, "loc":"-166.6666717529297 88"},
+{"category":"Etape2", "text":"La démonstration est une déduction à partir de principes indémontrables", "key":-9, "loc":"463 -33"}
+ ],
+  "linkDataArray": [ 
+{"from":3, "to":5, "fromPort":"B", "toPort":"T", "points":[-167.00000000000006,-101.66749925613405,-167.00000000000006,-91.66749925613405,-167.00000000000006,-82.99999999999997,-167.0000000000001,-82.99999999999997,-167.0000000000001,-74.33250074386588,-167.0000000000001,-64.33250074386588]},
+{"from":2, "to":4, "fromPort":"R", "toPort":"L", "points":[214.82500076293945,-144,224.82500076293945,-144,262.1187534332274,-144,262.1187534332274,-144,299.41250610351545,-144,309.41250610351545,-144]},
+{"from":2, "to":3, "fromPort":"L", "toPort":"R", "points":[87.17499923706055,-144,77.17499923706055,-144,37.25624656677243,-144,37.25624656677243,-144,-2.662506103515682,-144,-12.662506103515682,-144]},
+{"from":6, "to":-3, "fromPort":"B", "toPort":"R", "points":[]},
+{"from":1, "to":2, "fromPort":"B", "toPort":"T", "points":[151.00000000000006,-211.94499950408928,151.00000000000006,-201.94499950408928,151.00000000000006,-197.49999999999994,151,-197.49999999999994,151,-193.05500049591063,151,-183.05500049591063]},
+{"from":5, "to":-2, "fromPort":"B", "toPort":"T", "points":[-167.0000000000001,20.33250074386605,-167.0000000000001,30.33250074386605,-167.0000000000001,38.6387501239777,-166.6666717529297,38.6387501239777,-166.6666717529297,46.94499950408935,-166.6666717529297,56.94499950408935]},
+{"from":-2, "to":7, "fromPort":"B", "toPort":"B", "points":[-166.6666717529297,119.05500049591063,-166.6666717529297,129.05500049591063,145.3333282470703,129.05500049591063,145.3333282470703,122.38750123977661,145.3333282470703,115.72000198364258,145.3333282470703,105.72000198364258]},
+{"from":4, "to":-9, "fromPort":"B", "toPort":"T", "points":[462.99999999999983,-101.66749925613405,462.99999999999983,-91.66749925613405,462.99999999999983,-88.5,463,-88.5,463,-85.33250074386596,463,-75.33250074386596]},
+{"from":-9, "to":6, "fromPort":"B", "toPort":"T", "points":[463,9.332500743865964,463,19.332500743865964,463,20.000000000000043,463.0000000000001,20.000000000000043,463.0000000000001,20.66749925613412,463.0000000000001,30.66749925613412]},
+{"from":6, "to":7, "fromPort":"B", "toPort":"B", "points":[463.0000000000001,115.33250074386605,463.0000000000001,125.33250074386605,463.0000000000001,129,145.3333282470703,129,145.3333282470703,115.72000198364258,145.3333282470703,105.72000198364258]}
+ ]}

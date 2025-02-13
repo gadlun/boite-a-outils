@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation de Boids Neumorphique</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #e0e5ec;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            display: block;
+            width: 100vw; /* Prend toute la largeur de la fenêtre */
+            height: calc(100vh - 120px); /* Ajuste la hauteur pour laisser de l'espace pour les contrôles */
+            background-color: #f0f4f8;
+            border-radius: 20px;
+            box-shadow: 8px 8px 16px #b8bec5, -8px -8px 16px #ffffff;
+            margin-bottom: 20px; /* Espace entre le canvas et les contrôles */
+        }
+        #controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background-color: #e0e5ec;
+            border-radius: 15px;
+            box-shadow: inset 8px 8px 16px #b8bec5, inset -8px -8px 16px #ffffff;
+        }
+        .control {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            color: #333;
+        }
+        input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            background: #e0e5ec;
+            outline: none;
+            border-radius: 15px;
+            box-shadow: inset 2px 2px 5px #b8bec5, inset -2px -2px 5px #ffffff;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #4CAF50;
+            border-radius: 50%;
+            box-shadow: 2px 2px 5px #b8bec5, -2px -2px 5px #ffffff;
+        }
+        button {
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: none;
+            background-color: #e0e5ec;
+            color: #333;
+            box-shadow: 5px 5px 10px #b8bec5, -5px -5px 10px #ffffff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d1d9df; /* Couleur au survol */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="boidCanvas"></canvas>
+    <div id="controls">
+        <div class="control">
+            <label for="numBoids">Nombre de boids:</label>
+            <input type="range" id="numBoids" min="10" max="200" value="50">
+        </div>
+        <div class="control">
+            <label for="separation">Séparation:</label>
+            <input type="range" id="separation" min="0.0" max="2.0" step="0.1" value="1.0">
+        </div>
+        <div class="control">
+            <label for="alignment">Alignement:</label>
+            <input type="range" id="alignment" min="0.0" max="2.0" step="0.1" value="1.0">
+        </div>
+        <div class="control">
+            <label for="cohesion">Cohésion:</label>
+            <input type="range" id="cohesion" min="0.0" max="2.0" step="0.1" value="1.0">
+        </div>
+        <div class="control">
+            <label for="speed">Vitesse:</label>
+            <input type="range" id="speed" min="1" max="10" value="5">
+        </div>
+        <button id="walls">Murs</button>
+        <button id="collisions">Collisions</button>
+        <button id="followCursor">Suivre curseur</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('boidCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let wallsEnabled = false; // État des murs
+        let collisionsEnabled = false; // État des collisions
+        let followCursorEnabled = false; // État du suivi du curseur
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth; // Prendre toute la largeur de la fenêtre
+            canvas.height = window.innerHeight * 0.8; // Prendre une hauteur ajustée
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let boids = [];
+        
+        class Boid {
+            constructor() {
+                this.position = { x: Math.random() * canvas.width, y: Math.random() * canvas.height };
+                this.velocity = { x: Math.random() * 2 - 1, y: Math.random() * 2 - 1 };
+                this.color = 'hsl(' + Math.floor(Math.random() * 360) + ', 100%, 50%)';
+                this.size = Math.random() * (10 - 6) + 6; // Taille augmentée pour visibilité
+                this.maxSpeed = parseFloat(document.getElementById('speed').value);
+                
+                // Initialisation des paramètres de vitesse
+                this.velocity.x *= this.maxSpeed; 
+                this.velocity.y *= this.maxSpeed; 
+              }
+
+              update(boids) {
+                  const separationFactor = parseFloat(document.getElementById('separation').value);
+                  const alignmentFactor = parseFloat(document.getElementById('alignment').value);
+                  const cohesionFactor = parseFloat(document.getElementById('cohesion').value);
+
+                  let separation = { x: 0, y: 0 };
+                  let alignment = { x: 0, y: 0 };
+                  let cohesion = { x: 0, y: 0 };
+                  let totalNearbyBoids = 0;
+
+                  boids.forEach(other => {
+                      if (other !== this) {
+                          const distance = Math.sqrt((this.position.x - other.position.x) ** 2 + (this.position.y - other.position.y) ** 2);
+                          if (distance < this.size * 3) { // Zone d'influence
+                              totalNearbyBoids++;
+
+                              // Séparation
+                              separation.x += (this.position.x - other.position.x);
+                              separation.y += (this.position.y - other.position.y);
+
+                              // Alignement
+                              alignment.x += other.velocity.x;
+                              alignment.y += other.velocity.y;
+
+                              // Cohésion
+                              cohesion.x += other.position.x;
+                              cohesion.y += other.position.y;
+
+                          }
+                      }
+                  });
+
+                  if (totalNearbyBoids > 0) {
+                      separation.x /= totalNearbyBoids; 
+                      separation.y /= totalNearbyBoids; 
+                      alignment.x /= totalNearbyBoids; 
+                      alignment.y /= totalNearbyBoids; 
+                      cohesion.x /= totalNearbyBoids; 
+                      cohesion.y /= totalNearbyBoids;
+
+                      // Application des forces
+                      this.velocity.x += separation.x * separationFactor * 0.05; 
+                      this.velocity.y += separation.y * separationFactor * 0.05;
+
+                      this.velocity.x += alignment.x * alignmentFactor * 0.05; 
+                      this.velocity.y += alignment.y * alignmentFactor * 0.05;
+
+                      cohesion.x -= this.position.x; 
+                      cohesion.y -= this.position.y;
+
+                      this.velocity.x += cohesion.x * cohesionFactor * 0.01; 
+                      this.velocity.y += cohesion.y * cohesionFactor * 0.01;
+
+                  }
+
+                  // Normaliser et appliquer la vitesse
+                  const length = Math.sqrt(this.velocity.x ** 2 + this.velocity.y ** 2);
+                  if (length > this.maxSpeed) {
+                      this.velocity.x *= (this.maxSpeed / length);
+                      this.velocity.y *= (this.maxSpeed / length);
+                  }
+
+                  // Mettre à jour la position
+                  this.position.x += this.velocity.x; 
+                  this.position.y += this.velocity.y;
+
+                  // Gestion des murs si activé
+                  if (wallsEnabled) {
+                      if (this.position.x > canvas.width) { 
+                          this.position.x -= canvas.width; 
+                      } else if (this.position.x < 0) { 
+                          this.position.x += canvas.width; 
+                      }
+                      
+                      if (this.position.y > canvas.height) { 
+                          this.position.y -= canvas.height; 
+                      } else if (this.position.y < 0) { 
+                          this.position.y += canvas.height; 
+                      }
+                  } else { // Si les murs ne sont pas activés
+                      if (this.position.x > canvas.width) { 
+                          this.velocity.x *= -1; 
+                      } else if (this.position.x < 0) { 
+                          this.velocity.x *= -1; 
+                      }
+                      
+                      if (this.position.y > canvas.height) { 
+                          this.velocity.y *= -1; 
+                      } else if (this.position.y < 0) { 
+                          this.velocity.y *= -1; 
+                      }
+                  }
+              }
+
+              draw() {
+                  ctx.fillStyle = this.color;  
+                  ctx.beginPath();
+                  
+                  // Dessiner un triangle isocèle pour représenter le boid comme un oiseau avec une hauteur augmentée
+                  ctx.moveTo(this.position.x, this.position.y); // Point inférieur
+                  ctx.lineTo(this.position.x + (this.size / Math.sqrt(3)), this.position.y + (this.size * Math.sqrt(3))); // Point supérieur droit
+                  ctx.lineTo(this.position.x - (this.size / Math.sqrt(3)), this.position.y + (this.size * Math.sqrt(3))); // Point supérieur gauche
+                  ctx.closePath();
+                  
+                  ctx.fill();
+              }
+
+          }
+
+          function initBoids() {
+              const numBoidsInputValue = document.getElementById('numBoids').value;
+
+              boids.length=0;
+
+              for(let i=0;i<numBoidsInputValue;i++) {
+                  boids.push(new Boid());
+              }
+          }
+
+          function animate() {
+              ctx.clearRect(0,0,canvas.width,canvas.height);
+
+              for(let i=0;i<boids.length;i++) {
+                  boids[i].update(boids);
+                  boids[i].draw();
+              }
+
+              requestAnimationFrame(animate);
+          }
+
+          initBoids();
+          animate();
+
+          document.getElementById('numBoids').addEventListener('input', initBoids);
+
+          // Fonctionnalité des boutons
+          document.getElementById('walls').addEventListener('click', () => {
+              wallsEnabled = !wallsEnabled;
+              document.getElementById('walls').textContent = wallsEnabled ? 'Pas de Murs' : 'Murs';
+          });
+
+          document.getElementById('collisions').addEventListener('click', () => {
+              collisionsEnabled = !collisionsEnabled;
+              document.getElementById('collisions').textContent = collisionsEnabled ? 'Pas de Collisions' : 'Collisions';
+          });
+
+          document.getElementById('followCursor').addEventListener('click', () => {
+              followCursorEnabled = !followCursorEnabled;
+              document.getElementById('followCursor').textContent = followCursorEnabled ? 'Ne pas Suivre' : 'Suivre curseur';
+          });
+
+      </script>
+
+</body>
+</html>

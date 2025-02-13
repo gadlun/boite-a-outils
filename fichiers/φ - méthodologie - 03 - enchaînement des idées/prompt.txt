@@ -1,0 +1,30 @@
+Pour la partie JS :
+Je veux créer un fichier JavaScript qui contient un tableau d'objets représentant des citations philosophiques. Chaque objet doit avoir les propriétés suivantes :
+
+    auteur : le nom de l'auteur de la citation.
+    titre : le titre de l'œuvre d'où la citation est tirée.
+    texte : la citation elle-même, qui doit comporter trois phrases.
+    ref : la référence bibliographique complète.
+
+De plus, chaque citation doit inclure au moins un connecteur logique parmi ceux-ci : "d'abord", "ensuite", "en conséquence", "de plus", "non seulement... mais encore", "par ailleurs", etc.
+
+Pour chaque entrée dans le tableau, je souhaite que tu insères un commentaire juste après l'accolade d'ouverture { indiquant "citation n°X", où X est le numéro de la citation (par exemple, "citation n°1", "citation n°2", etc.).
+
+Assure-toi que les citations proviennent d'œuvres philosophiques célèbres et que les références soient formatées selon les normes bibliographiques. Le format final doit ressembler à ce qui suit :
+
+const textes = [
+    { // citation n°1  
+        auteur: "Nom de l'auteur", 
+        titre: "Titre de l'œuvre", 
+        texte: "Citation ici.", 
+        ref: "Paris : Éditeur, année, p. numéro." 
+    },
+    // ...
+];
+
+Produis-moi un fichier JavaScript contenant 33 de ces citations.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Pour la partie HTML :
+

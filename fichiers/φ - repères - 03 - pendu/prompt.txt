@@ -1,0 +1,8 @@
+Créez un fichier JavaScript contenant un tableau détaillé de repères philosophiques. Pour chaque repère, incluez :
+
+    Une définition générale
+    Deux concepts opposés ou complémentaires
+    Une définition précise pour chaque concept
+    Des exemples concrets illustrant chaque concept
+
+Le fichier doit être structuré de manière à pouvoir être directement utilisé dans un jeu éducatif ou un outil pédagogique sur les concepts philosophiques.

@@ -1,0 +1,580 @@
+<!DOCTYPE html><html lang="fr">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3.0">
+	<link rel="icon" type="image/svg+xml" href="src/favicon.ico" />
+	<title>quiz φ</title>
+	<link rel="stylesheet" href="src/css.css">
+</head>
+
+<body>	
+	<br><br>
+
+	<main id="content" class="content--v2" role="main" data-template-id="quiz">
+		<!-------------------------------- barre de titre ----------------------------------------------------->
+		<div class="wrapper--with-menu content--v2--header">
+			<div class="wrapper--grid-playlist">
+				<div class="grid-area--player grid-area--player-relative">		
+					<div id="quiz" class="container--quiz" data-slug="quiz-l-art">
+						<div id="quizStart">
+							<div class="container--quiz-start">
+								<div class="quiz-start__img">
+									<img class="lazy" alt="" src="tocqueville.png" data-src="" data-srcset="" />
+									<div class="quiz-start__opacity"></div>
+									<div class="quiz-start__button">
+										<button id="quizStartBtn" class="quiz-btn quiz-btn--large quiz-btn--fill" type="button" tabindex="0" aria-label="Commencer le quiz L'art en Philo">Commencer le quiz </button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div id="quizQuestions" class="hidden" data-reviewing="false">
+							<div class="progress-bar">
+								<div class="progress-bar__info">
+									<div class="progress-bar__title">
+									<img src="src/phi.png" alt="philosophie">
+									<h1 id="quizTitle" aria-label="Aristote 1/12, cochez le bouton radio choisi pour valider votre réponse.">Tocqueville : un des pères du libéralisme</h1>
+									</div>
+									<div class="progress-bar__count" aria-hidden="true">
+									<span id="currentQuestion">1</span> /  
+									<span id="totalQuestions" data-value="12">12</span>
+									</div>
+								</div>
+								<div class="progress-bar__cursor">
+									<span class="progress-bar__cursor--dynamic"></span>
+								</div>
+							</div>
+
+						<!--------------------------------------- question n°01 ----------------------------------------------------->
+							<div class="container--question " data-question="1" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Comment concilier démocratie et liberté pour Tocqueville ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">En créant des institutions qui protègent la liberté.</span>
+												</div>
+											</li>	
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">En favorisant l'individualisme.</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">En laissant les citoyens s'exprimer à l'envi.</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Tocqueville craint les façons désordonnées de s'exprimer et n'approuve pas l'individualisme. Mais il préconise des institutions préservant l'équilibre entre égalité et liberté : séparation des pouvoirs, juges indépendants, associations.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°01 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°02 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="2" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Quel est le but de la démocratie selon Tocqueville ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">la révision du système pénitentiaire</span>
+												</div>
+											</li>						
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">l'amélioration des relations internationales</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">l'égalité des conditions</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Il constate que l'égalité des conditions est une nécessité historique. Il lie démocratie et égalité, ce qui n'était pas une évidence à son époque. Égalité des conditions signifie égalisation des droits politiques et des ressources.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°02 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°03 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="3" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Tocqueville dit être démocrate par instinct.</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Vrai</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Faux</span>
+												</div>
+											</li>				
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Il est démocrate par raison et explique qu'il a pour la démocratie « un goût de tête ». Il s'intéresse à l'évolution de la société et prend conscience, tôt au 19e siècle, que l'avenir est à la démocratie, régime dans lequel le peuple est souverain.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°03 ----------------------------------------------------->	
+
+						<!--------------------------------------- question n°04 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="4" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Tocqueville a écrit <i>De la démocratie en Amérique</i> après un voyage.</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Vrai</span>
+												</div>
+											</li>			
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Faux</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Après ses études de droit, Alexis de Tocqueville est nommé juge auditeur et envoyé en Amérique de mai 1831 à février 1832 pour analyser le système pénitentiaire américain. Mais il en profite pour observer le système politique sur lequel il écrira un livre, publié en 1835.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°04 ----------------------------------------------------->			
+							
+						<!--------------------------------------- question n°05 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="5" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Quelle question inquiète Tocqueville aux États-Unis et en France ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">l'agriculture</span>
+												</div>
+											</li>					
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">la libre circulation des personnes</span>
+												</div>
+											</li>	
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">l'esclavage</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>En 1839, Tocqueville défend au Parlement français ses positions anti-esclavagistes. Mais pendant son voyage aux États-Unis, il a  constaté que le racisme est plus fort dans les pays qui ont aboli l'esclavage, ce qui l'inquiète.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°05 ----------------------------------------------------->					
+
+						<!--------------------------------------- question n°06 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="6" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Quel est le modèle politique qui émerveille Tocqueville aux États-Unis ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">la démocratie</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">la monarchie</span>
+												</div>
+											</li>	
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">l'empire</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Au moment où Tocqueville écrit ce livre, la France a déjà vécu le renversement de la monarchie avec la Révolution française, mais elle oscille entre plusieurs régimes. Les États-Unis représentent pour lui un régime nouveau fondé sur la souveraineté du peuple : un modèle de démocratie. </p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°06 ----------------------------------------------------->					
+
+						<!--------------------------------------- question n°07 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="7" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Comment maintenir du lien social et politique en démocratie, selon Tocqueville ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">par l'instauration de fêtes nationales</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">par la participation et l'association</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">par le suffrage universel</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Tocqueville défend une décentralisation des pouvoirs qui permet une participation à la vie de la cité. Il pense aussi que les sociétés démocratiques doivent trouver des formes d'union dans la vie civile. Il promeut les associations, pour leur rôle de recomposition du tissu social.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°07 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°08 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="8" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Dans un régime démocratique, quelle attitude doit retrouver le peuple pour Tocqueville ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">la passion</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">la civilité</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">la curiosité</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>« Je hais (...) l'action désordonnée des masses, leur intervention violente et mal éclairée dans les affaires, les passions envieuses des basses classes », écrivait-il. Pour lui, l'égalité en démocratie doit conduire les hommes à adoucir leurs moeurs.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°08 ----------------------------------------------------->
+						
+						<!--------------------------------------- question n°09 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="9" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Que génèrent les sociétés démocratiques, selon le constat de Tocqueville ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">du conformisme</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">du progrès technique</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">de la violence</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>En voyageant aux États-Unis en 1831 et 1832, il observe qu'à cause de l'égalité, les hommes se ressemblent de plus en plus. Tocqueville appelle ce conformisme la « tyrannie de la majorité » : les points de vue minoritaires n'ont plus leur place.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°09 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°10 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="10" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>D'après Tocqueville, par quoi la liberté est-elle menacée en démocratie ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">l'apparition de nouvelles inégalités</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">la pression des pays limitrophes</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">la baisse des revenus de l'État</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>« La liberté est la première de mes passions » a dit Tocqueville. Dans son livre <i>De la démocratie en Amérique</i>, il cherche à avertir sur les dangers qui guettent la démocratie : dictature de l'opinion de la majorité, et paupérisation des ouvriers. </p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°10 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°11 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="11" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p><i>De la démocratie en Amérique</i> n'est pas un essai de science politique.</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Vrai</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Faux</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>En publiant ce livre, Tocqueville s'est donné pour mission d'être un éducateur politique. Il y expose les institutions et les lois aux États-Unis, et montre comment le peuple exerce sa souveraineté.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°11 ----------------------------------------------------->
+						
+						<!--------------------------------------- question n°12 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="12" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Tocqueville regrette l'individualisme qui se développe dans les sociétés démocratiques.</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Vrai</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Faux</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Pour lui, à mesure que les conditions s'égalisent, se développe un nouvel état d'esprit : les citoyens s'isolent de leurs semblables et se consacrent à la sphère privée. Il voit ce repli sur les intérêts propres et le désintérêt pour les affaires publiques comme un danger.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°12 ----------------------------------------------------->
+						
+							<div id="quizBtnControls" class="container--quiz-btn hidden">
+								<button id="nextQuestion" class="quiz-btn quiz-btn--default quiz-btn--fill" type="button" tabindex="0" aria-label="passer à la question suivante">Suivant</button>
+							</div>
+						</div>
+						
+						<div id="quizEnd" class="hidden">
+							<div class="container--quiz-end" data-result="loose">
+								<div class="container--quiz-results">
+									<div class="container--quiz-message"><p class="quiz-end__results">
+										<span class="quiz-end__message-failure">Votre score :</span>
+										<br><br>
+										<span class="quiz-end__score">0</span> bonne(s) réponse(s) sur 12.</p>
+										<br>
+									</div>
+									<br><br>
+									<div class="container--quiz-btn">
+										<button id="quizReview" class="quiz-btn quiz-btn--default quiz-review-btn" type="button" aria-label="Voir la correction">
+											<span class="quiz-review-answers">Réponses</span>
+											<span class="quiz-review-correction">Correction</span>
+										</button>
+										<button class="quiz-btn quiz-btn--default quiz-btn--fill quiz-btn-retry" type="button" tabindex="0" aria-label="Rejouer">Réessayer</button>
+										<button id="quizNext" class="quiz-btn quiz-btn--default quiz-btn--fill quiz-btn-next" type="button" tabindex="1" aria-label="Suivant">Suivant</button>
+									</div>
+									<a href="#playlistQuiz" title="" class="quiz-end__link"></a>
+								</div>
+							</div>
+						</div>						
+						<button class="fullscreen-quiz"></button>
+					</div>	
+				</div>
+				
+				<!-- conteneur vide à droite sur la plage -->
+				<div class="grid-area--playlist" id="playlistQuiz"></div>	
+			</div>
+		</div>
+	</main>
+		<script src="src/java.js"></script>
+	</body>
+</html>

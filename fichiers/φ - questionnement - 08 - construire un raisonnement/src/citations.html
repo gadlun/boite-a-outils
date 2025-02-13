@@ -1,0 +1,520 @@
+<!DOCTYPE html><html lang="fr">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3.0">
+	<link rel="icon" type="image/svg+xml" href="src/favicon.ico" />
+	<title>quiz φ</title>
+	<link rel="stylesheet" href="src/css.css">
+</head>
+
+<body>	
+	<br><br>
+
+	<main id="content" class="content--v2" role="main" data-template-id="quiz">
+		<!-------------------------------- barre de titre ----------------------------------------------------->
+		<div class="wrapper--with-menu content--v2--header">
+			<div class="wrapper--grid-playlist">
+				<div class="grid-area--player grid-area--player-relative">		
+					<div id="quiz" class="container--quiz" data-slug="quiz-l-art">
+						<div id="quizStart">
+							<div class="container--quiz-start">
+								<div class="quiz-start__img">
+									<img class="lazy" alt="" src="citations.png" data-src="" data-srcset="" />
+									<div class="quiz-start__opacity"></div>
+									<div class="quiz-start__button">
+										<button id="quizStartBtn" class="quiz-btn quiz-btn--large quiz-btn--fill" type="button" tabindex="0" aria-label="Commencer le quiz L'art en Philo">Commencer le quiz </button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div id="quizQuestions" class="hidden" data-reviewing="false">
+							<div class="progress-bar">
+								<div class="progress-bar__info">
+									<div class="progress-bar__title">
+									<img src="src/phi.png" alt="philosophie">
+									<h1 id="quizTitle" aria-label="L'art 1/10 , cochez le bouton radio choisi pour valider votre réponse.">Philosophes : qui a dit et pourquoi ?</h1>
+									</div>
+									<div class="progress-bar__count" aria-hidden="true">
+									<span id="currentQuestion">1</span> /  
+									<span id="totalQuestions" data-value="10">10</span>
+									</div>
+								</div>
+								<div class="progress-bar__cursor">
+									<span class="progress-bar__cursor--dynamic"></span>
+								</div>
+							</div>
+
+						<!--------------------------------------- question n°01 ----------------------------------------------------->
+							<div class="container--question " data-question="1" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Qui a écrit : « On ne se baigne jamais deux fois dans le même fleuve » ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Montaigne</span>
+												</div>
+											</li>	
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Gandhi</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Héraclite</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Par cette métaphore, le philosophe grec Héraclite évoque le temps qui passe irrémédiablement. Aucune situation vécue ne se répète donc à l’identique.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°01 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°02 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="2" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Lorsque Descartes énonce « je pense, donc je suis », cela signifie :</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Je me conforme à ce que mes pensées me conseillent.</span>
+												</div>
+											</li>						
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Exprimer mes opinions me permet d'affirmer ma personnalité.</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Mon existence de sujet pensant est certaine.</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Lorsque je me saisis comme sujet pensant, je suis certain d'exister. Essayer de mettre en doute cette affirmation revient à la confirmer. Pourquoi ? Parce que si je doute, alors je pense.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°02 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°03 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="3" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Qui a écrit : « Le Moi n’est pas maître dans sa propre maison » ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Cicéron</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Freud</span>
+												</div>
+											</li>				
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Machiavel</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Le fondateur de la psychanalyse, Freud, a théorisé l’existence d’un psychisme inconscient. Ses processus influencent le Moi conscient sans qu’il le sache. Cette métaphore remet en question l’idée que le Moi (le conscient), maîtrise tout ce qui se passe dans « sa propre maison » (son psychisme).</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°03 ----------------------------------------------------->	
+
+						<!--------------------------------------- question n°04 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="4" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Lorsque Hegel énonce : « L’homme, parce qu’il est esprit, a une double existence », cela signifie :</p></legend>
+										<ul>					
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">L’homme vit un peu trop dans ses rêves.</span>
+												</div>
+											</li>	
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">L’esprit survivra au corps après la mort.</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">La conscience de soi est spécifique à l’homme.</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>L’homme, en tant qu’être vivant, existe de manière immédiate. Mais, en tant que conscience de soi, il existe aussi de manière réfléchie : il se pense, se contemple et se représente à lui-même. Il existe en soi et pour soi.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°04 ----------------------------------------------------->			
+							
+						<!--------------------------------------- question n°05 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="5" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Qui a écrit : « Malheur à qui n’a plus rien à désirer ! Il perd pour ainsi dire tout ce qu’il possède. »</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Rousseau</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Epictète</span>
+												</div>
+											</li>					
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Spinoza</span>
+												</div>
+											</li>	
+
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Rousseau voit dans le désir une dynamique positive accompagnée de plaisir. Il affirme qu’il y a plus de satisfaction à désirer qu’à satisfaire son désir. Il s’oppose notamment au stoïcien Epictète qui, lui, conçoit le désir comme un manque perpétuel et, donc, comme une source d’insatisfactions.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°05 ----------------------------------------------------->					
+
+						<!--------------------------------------- question n°06 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="6" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>La phrase de Merleau-Ponty : « Le Japonais en colère sourit, l’Occidental rougit et frappe du pied » signifie que :</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Il est difficile chez l’homme de distinguer l’inné de l’acquis.</span>
+												</div>
+											</li>					
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">La diversité culturelle conditionne l’expression de nos sentiments.</span>
+												</div>
+											</li>	
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Les Japonais sont plus introvertis que les Occidentaux.</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Même les conduites qui nous semblent les plus spontanées et naturelles sont façonnées par la culture à laquelle on appartient. On peut ainsi, comme Edgar Morin, définir l’homme comme un être « bio-culturel ».</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°06 ----------------------------------------------------->					
+
+						<!--------------------------------------- question n°07 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="7" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Qui a écrit : « Ce qui distingue le plus mauvais architecte de l’abeille la plus experte, c’est qu’il a construit la cellule dans sa tête avant de la construire dans la ruche » ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Le Corbusier</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Lorenz</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Marx</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Pour Marx, la spécificité du travail humain est qu’il est conscient et réfléchi et non pas instinctif. Le résultat final du travail est conçu avant d’être réalisé.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°07 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°08 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="8" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Qui a dit : « On façonne les plantes par la culture, les hommes par l’éducation » ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Alain</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Rousseau</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Kant</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Pour Rousseau, auteur de <i>Emile ou de l’éducation</i>, le salut de l’homme passe par son éducation à condition que celle-ci échappe aux influences corruptrices de la société.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°08 ----------------------------------------------------->
+						
+						<!--------------------------------------- question n°09 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="9" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Chez Kant, les « illusions transcendantales » désignent :</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">l’imagination s’alliant à l’intuition</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">la raison qui s’égare hors de l’expérience</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">les rêves mystiques pendant le sommeil</span>
+												</div>
+											</li>
+
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Pour Kant, la raison humaine se fait des illusions lorsqu’elle pense pouvoir connaître, au-delà des limites de l’expérience, Dieu et les objets supra-sensibles.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°09 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°10 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="10" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Qui a écrit : «&nbspCe qui est incompréhensible, c’est que l’univers nous soit compréhensible&nbsp»&nbsp?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Hegel</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Einstein</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Pascal</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Le physicien Einstein formule ainsi l’énigme de la connaissance : comment se fait-il que le petit cerveau humain puisse comprendre et formuler les lois de l’univers infini ?</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°10 ----------------------------------------------------->
+						
+							<div id="quizBtnControls" class="container--quiz-btn hidden">
+								<button id="nextQuestion" class="quiz-btn quiz-btn--default quiz-btn--fill" type="button" tabindex="0" aria-label="passer à la question suivante">Suivant</button>
+							</div>
+						</div>
+						
+						<div id="quizEnd" class="hidden">
+							<div class="container--quiz-end" data-result="loose">
+								<div class="container--quiz-results">
+									<div class="container--quiz-message"><p class="quiz-end__results">
+										<span class="quiz-end__message-failure">Votre score :</span>
+										<br><br>
+										<span class="quiz-end__score">0</span> bonne(s) réponse(s) sur 10.</p>
+										<br>
+									</div>
+									<br><br>
+									<div class="container--quiz-btn">
+										<button id="quizReview" class="quiz-btn quiz-btn--default quiz-review-btn" type="button" aria-label="Voir la correction">
+											<span class="quiz-review-answers">Réponses</span>
+											<span class="quiz-review-correction">Correction</span>
+										</button>
+										<button class="quiz-btn quiz-btn--default quiz-btn--fill quiz-btn-retry" type="button" tabindex="0" aria-label="Rejouer">Réessayer</button>
+										<button id="quizNext" class="quiz-btn quiz-btn--default quiz-btn--fill quiz-btn-next" type="button" tabindex="1" aria-label="Suivant">Suivant</button>
+									</div>
+									<a href="#playlistQuiz" title="" class="quiz-end__link"></a>
+								</div>
+							</div>
+						</div>						
+						<button class="fullscreen-quiz"></button>
+					</div>	
+				</div>
+				
+				<!-- conteneur vide à droite sur la plage -->
+				<div class="grid-area--playlist" id="playlistQuiz"></div>	
+			</div>
+		</div>
+	</main>
+		<script src="src/java.js"></script>
+	</body>
+</html>

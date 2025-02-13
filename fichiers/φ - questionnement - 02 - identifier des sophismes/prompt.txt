@@ -1,0 +1,1 @@
+Peux-tu mettre dans un seul fichier 150 exemples de sophisme et leur identification ? Précision par rapport à la présentation de cette liste : Il faudra que cette liste se présente comme suit : { name: "X",definition :"Y."}, La variable X représentant le type exact de sophisme et la variable Y représentant l'exemple du sophisme.

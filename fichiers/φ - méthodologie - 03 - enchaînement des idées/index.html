@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'enchaînement des idées</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f3f6;
+            padding: 20px;
+        }
+
+        h1 {
+            color: red;
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .column {
+            width: 45%;
+            background-color: #f0f3f6;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 9px 9px 16px rgb(190,200,210,0.6), -9px -9px 16px rgba(255,255,255, 0.5);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card {
+            background-color: #f0f3f6;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+            cursor: move;
+            box-shadow: inset 2px 2px 5px #c0c8d0, inset -5px -5px 10px #ffffff73;
+            min-height: 20px;
+            display: flex;
+            align-items: center;
+            transition: transform 1s ease, background-color 0.3s ease;
+        }
+
+        .reference {
+            margin-top: auto;
+            padding-top: 10px;
+            font-size: 0.9em;
+            text-align: right;
+            line-height: 1.2;
+        }
+
+        .reference i {
+            font-style: italic;
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .timer-container {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        #progress-bar {
+            height: 10px;
+            width: 100%;
+            background: linear-gradient(to left, green, yellow, red);
+            transition: width 1s linear;
+        }
+
+        #timer {
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .score-container {
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        #action-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f0f3f6;
+            box-shadow: 5px 5px 10px #c0c8d0, -5px -5px 10px #ffffff73;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #action-btn:hover {
+            box-shadow: inset 2px 2px 5px #c0c8d0, inset -5px -5px 10px #ffffff73; 
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .column {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>L'enchaînement des idées</h1>
+    <h2>Travailler les enchaînements logiques</h2>
+    
+    <div class="container">
+        <div class="column" id="left-column">
+            <div class="card" draggable="true"></div>
+            <div class="card" draggable="true"></div>
+            <div class="card" draggable="true"></div>
+            <div class="card" draggable="true"></div>
+        </div>
+        <div class="column" id="right-column">
+            <div class="card" draggable="true"></div>
+            <div class="card" draggable="true"></div>
+            <div class="card" draggable="true"></div>
+            <div class="card" draggable="true"></div>
+            <div class="reference" id="reference"></div>
+        </div>
+    </div>
+
+    <div class="game-controls">
+        <div class="timer-container">
+            <div id="timer">1:00</div>
+            <div id="progress-bar"></div>
+        </div>
+        <div class="score-container">
+            <span>Score : </span>
+            <span id="score">0</span>
+        </div>
+        <button id="action-btn">vérifier</button>
+    </div>
+
+    <script src="textes.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const leftColumn = document.getElementById('left-column');
+            const rightColumn = document.getElementById('right-column');
+            const actionBtn = document.getElementById('action-btn');
+            const referenceDiv = document.getElementById('reference');
+
+            let currentText;
+            let currentParts;
+            let score = 0;
+            let timeLeft = 60;
+            let timerInterval;
+
+            function loadRandomText() {
+                currentText = textes[Math.floor(Math.random() * textes.length)];
+                currentParts = splitTextIntoParts(currentText.texte);
+                
+                const shuffledParts = [...currentParts];
+                shuffleArray(shuffledParts);
+
+                const leftCards = leftColumn.querySelectorAll('.card');
+                leftCards.forEach((card, index) => {
+                    card.textContent = shuffledParts[index] || '';
+                    card.style.display = 'flex';
+                    card.id = `left-card-${index}`;
+                    card.style.backgroundColor = '#f0f3f6';
+                });
+
+                const rightCards = rightColumn.querySelectorAll('.card');
+                rightCards.forEach((card, index) => {
+                    card.textContent = '';
+                    card.id = `right-card-${index}`;
+                    card.style.backgroundColor = '#f0f3f6';
+                    card.style.transform = '';
+                    card.style.display = 'flex';
+                });
+
+                referenceDiv.innerHTML = `${currentText.auteur}, <i>${currentText.titre}</i><br>${currentText.ref}`;
+
+                createCards();
+                actionBtn.textContent = 'vérifier';
+            }
+
+            function splitTextIntoParts(text) {
+                const connectors = ['d\'abord', 'tout d\'abord', 'premièrement', 'en premier lieu', 'ensuite', 'deuxièmement', 'en second lieu', 'puis', 'de plus', 'en outre', 'enfin', 'finalement', 'en dernier lieu'];
+                let parts = [];
+                let currentPart = '';
+                
+                text.split(' ').forEach(word => {
+                    currentPart += word + ' ';
+                    if (connectors.some(connector => word.toLowerCase().includes(connector)) && parts.length < 3) {
+                        parts.push(currentPart.trim());
+                        currentPart = '';
+                    }
+                });
+                
+                parts.push(currentPart.trim());
+                
+                while (parts.length < 4) {
+                    let lastPart = parts.pop();
+                    let middleIndex = Math.floor(lastPart.length / 2);
+                    let splitIndex = lastPart.indexOf(' ', middleIndex);
+                    if (splitIndex === -1) splitIndex = middleIndex;
+                    parts.push(lastPart.slice(0, splitIndex).trim());
+                    parts.push(lastPart.slice(splitIndex).trim());
+                }
+                
+                return parts;
+            }
+
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+
+            function dragStart(e) {
+                e.dataTransfer.setData('text/plain', e.target.id);
+            }
+
+            function dragOver(e) {
+                e.preventDefault();
+            }
+
+            function drop(e) {
+                e.preventDefault();
+                const data = e.dataTransfer.getData('text');
+                const draggedElement = document.getElementById(data);
+                const dropZone = e.target.closest('.card');
+                
+                if (dropZone && draggedElement !== dropZone) {
+                    const tempContent = dropZone.textContent;
+                    dropZone.textContent = draggedElement.textContent;
+                    draggedElement.textContent = tempContent;
+                    dropZone.style.backgroundColor = '#f0f3f6';
+                    draggedElement.style.backgroundColor = '#f0f3f6';
+                }
+            }
+
+            function createCards() {
+                const cards = document.querySelectorAll('.card');
+                cards.forEach((card) => {
+                    card.draggable = true;
+                    card.addEventListener('dragstart', dragStart);
+                    card.addEventListener('dragover', dragOver);
+                    card.addEventListener('drop', drop);
+                });
+            }
+
+            function animateCard(card, delay) {
+                setTimeout(() => {
+                    card.style.transition = 'transform 2s ease-in-out';
+                    card.style.transform = `
+                        translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)
+                        rotate(${Math.random() * 360}deg)
+                    `;
+                    setTimeout(() => {
+                        card.style.transition = 'transform 1s ease-in-out';
+                        card.style.transform = 'translate(0, 0) rotate(0deg)';
+                    }, 1000);
+                }, delay);
+            }
+
+            function startTimer() {
+                const timerDisplay = document.getElementById('timer');
+                const progressBar = document.getElementById('progress-bar');
+
+                timerInterval = setInterval(() => {
+                    timeLeft--;
+                    timerDisplay.textContent = `0:${timeLeft < 10 ? '0' : ''}${timeLeft}`;
+                    progressBar.style.width = `${(timeLeft / 60) * 100}%`;
+
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        // Logique de fin de jeu
+                    }
+                }, 1000);
+            }
+
+            function updateScore(points) {
+                score += points;
+                document.getElementById('score').textContent = score;
+            }
+
+            actionBtn.addEventListener('click', () => {
+                const rightCards = rightColumn.querySelectorAll('.card');
+                
+                if (actionBtn.textContent === 'vérifier') {
+                    let isEntirelyCorrect = true;
+                    rightCards.forEach((card, index) => {
+                        if (card.textContent === currentParts[index]) {
+                            card.style.backgroundColor = 'lightgreen';
+                        } else {
+                            card.style.backgroundColor = 'lightcoral';
+                            isEntirelyCorrect = false;
+                        }
+                    });
+
+                    if (isEntirelyCorrect) {
+                        updateScore(10); // Points bonus si correct du premier coup
+                    }
+
+                    actionBtn.textContent = isEntirelyCorrect ? 'recommencer' : 'corriger';
+                } else if (actionBtn.textContent === 'corriger') {
+                    // Vider la colonne de gauche
+                    const leftCards = leftColumn.querySelectorAll('.card');
+                    leftCards.forEach(card => {
+                        card.textContent = '';
+                    });
+
+                    rightCards.forEach((card, index) => {
+                        if (card.textContent !== currentParts[index]) {
+                            animateCard(card, index * 200);
+                            setTimeout(() => {
+                                card.textContent = currentParts[index];
+                                card.style.backgroundColor = 'lightgreen';
+                            }, 2000 + index * 200);
+                        }
+                    });
+                    actionBtn.textContent = 'recommencer';
+                } else if (actionBtn.textContent === 'recommencer') {
+                    loadRandomText();
+                    clearInterval(timerInterval);
+                    timeLeft = 60;
+                    startTimer();
+                }
+            });
+
+            loadRandomText();
+            startTimer();
+        });
+    </script>
+</body>
+</html>

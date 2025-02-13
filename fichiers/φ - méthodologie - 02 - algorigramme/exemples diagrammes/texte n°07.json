@@ -1,0 +1,23 @@
+{ "class": "go.GraphLinksModel",
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [ 
+{"text":"[1-5] situation du prisonnier \nemprisonné", "key":3, "loc":"-246.0000000000001 -289", "category":"Etape1"},
+{"text":"[6-11] le prisonnier\nvoit que les ombres \nsont la réalité", "key":5, "loc":"68.99999999999997 -288.66667175292986", "category":"Etape2"},
+{"text":"Texte n°7", "key":-10, "loc":"-307 -423.0000000000001", "category":"intitule"},
+{"text":"[16] le prisonnier \nlibéré accède à la lumière technique", "key":-11, "loc":"-248.00000000000028 -141", "category":"Etape1"},
+{"text":"[12-15] le prisonnier\nvoit que les ombres \nparlent", "key":-8, "loc":"395.9999999999999 -288.66667175292986", "category":"Etape2"},
+{"category":"Etape2", "text":"[17-21] il comprend \nque pour qu'il y \nait des ombres, \nil faut des objets", "key":-12, "loc":"67.99999999999997 -141.00000000000006"},
+{"category":"Etape2", "text":"[22-24] il comprend \nque pour qu'il y \nait des ombres, \nil faut de la lumière", "key":-13, "loc":"399.00000000000006 -141.00000000000006"},
+{"text":"[25] le prisonnier \nlibéré accède à la lumière naturelle", "key":-14, "loc":"-244.99999999999977 22.999999999999957", "category":"Etape1"},
+{"category":"Etape2", "text":"[26-27] il est \naveuglé\npar un excès \nde lumière", "key":-15, "loc":"48.333328247070334 22.99999999999997"},
+{"category":"Etape2", "text":"[28-35] \nprogressivement\nil s'habituera à \ntout voir", "key":-16, "loc":"401.33332824707014 22.99999999999997"}
+ ],
+  "linkDataArray": [ 
+{"from":3, "to":5, "fromPort":"R", "toPort":"L", "points":[-124.8874969482423,-289,-114.8874969482423,-289,-96.39374542236337,-289,-96.39374542236337,-288.6666717529297,-77.89999389648443,-288.6666717529297,-67.89999389648443,-288.6666717529297]},
+{"from":5, "to":-8, "fromPort":"R", "toPort":"L", "points":[205.89999389648432,-288.6666717529297,215.89999389648432,-288.6666717529297,231.64374542236322,-288.6666717529297,231.64374542236322,-288.6666717529297,247.38749694824213,-288.6666717529297,257.38749694824213,-288.6666717529297]},
+{"from":-11, "to":-12, "fromPort":"R", "toPort":"L", "points":[-121.93750000000011,-141.00000000000003,-111.93750000000011,-141.00000000000003,-93.4562492370606,-141.00000000000003,-93.4562492370606,-141,-74.9749984741211,-141,-64.9749984741211,-141]},
+{"from":-12, "to":-13, "fromPort":"R", "toPort":"L", "points":[200.9749984741211,-141,210.9749984741211,-141,230.91875076293945,-141,230.91875076293945,-141,250.8625030517578,-141,260.8625030517578,-141]},
+{"from":-14, "to":-15, "fromPort":"R", "toPort":"L", "points":[-123.3874969482423,22.99999999999997,-113.3874969482423,22.99999999999997,-82.91458511352545,22.99999999999997,-82.91458511352545,23,-52.441673278808594,23,-42.441673278808594,23]},
+{"from":-15, "to":-16, "fromPort":"R", "toPort":"L", "points":[139.10832977294922,23,149.10832977294922,23,212.05833053588867,23,212.05833053588867,23,275.0083312988281,23,285.0083312988281,23]}
+ ]}

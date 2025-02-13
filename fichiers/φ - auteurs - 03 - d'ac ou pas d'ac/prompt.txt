@@ -1,0 +1,131 @@
+Objectif :
+Créer un fichier HTML interactif pour un jeu éducatif intitulé "d'ac ou pas d'ac ?". Le jeu consiste à classer des propositions philosophiques dans deux colonnes : "d'accord" ou "pas d'accord", en fonction des thèses d'un philosophe choisi aléatoirement.
+Fonctionnalités principales :
+
+    Deux colonnes :
+
+        Une colonne de gauche pour les propositions à classer.
+
+        Une colonne de droite divisée en deux sections : "d'accord" et "pas d'accord".
+
+    Drag and Drop :
+
+        Les utilisateurs peuvent glisser-déposer les propositions dans les colonnes appropriées.
+
+        Les propositions correctement classées sont marquées en vert, les incorrectes en rouge.
+
+    Justifications :
+
+        Lorsqu'une proposition est déplacée dans la colonne de droite, un symbole ℹ️ apparaît.
+
+        En cliquant sur ℹ️, la justification de la proposition s'affiche directement sous l'étiquette.
+
+    Bouton "Recommencer" :
+
+        Un bouton permet de réinitialiser le jeu en rechargeant la page.
+
+    Style Neumorphic :
+
+        Utiliser un design neumorphic avec des ombres douces pour un effet 3D moderne.
+
+        Les couleurs principales sont des nuances de gris et de blanc, avec des accents en rouge pour le titre.
+
+Structure HTML :
+
+    En-tête :
+
+        Titre : "d'ac ou pas d'ac ?" en rouge.
+
+        Sous-titre : "réviser les auteurs".
+
+        Description : "Classez les thèses suivantes, selon qu'elles sont justes ou erronées."
+
+    Colonne de gauche :
+
+        Titre : "Propositions à classer".
+
+        Liste des propositions à glisser-déposer.
+
+    Colonne de droite :
+
+        Titre dynamique : "[Nom du philosophe] pense que..." et "[Nom du philosophe] ne pense pas que...".
+
+        Deux zones pour les propositions "d'accord" et "pas d'accord".
+
+    Bouton "Recommencer" :
+
+        Centré sous les colonnes.
+
+Style CSS :
+
+    Design Neumorphic :
+
+        Utiliser des ombres extérieures et intérieures pour créer un effet 3D.
+
+        Bordures arrondies pour tous les éléments.
+
+    Couleurs :
+
+        Fond : #e0e5ec (gris clair).
+
+        Titre : rouge.
+
+        Texte : nuances de gris (#333, #555, #777).
+
+    Interactivité :
+
+        Les propositions correctes ont une bordure verte, les incorrectes une bordure rouge.
+
+        Le symbole ℹ️ est aligné à droite dans les étiquettes de la colonne de droite.
+
+JavaScript :
+
+    Fonctionnalités :
+
+        Sélection aléatoire d'un philosophe et de ses propositions.
+
+        Gestion du drag and drop avec jQuery UI.
+
+        Affichage des justifications au clic sur ℹ️.
+
+        Réinitialisation du jeu avec le bouton "Recommencer".
+
+    Dépendances :
+
+        Inclure jQuery et jQuery UI pour le drag and drop.
+
+Exemple de données :
+
+    Philosophes et propositions :
+
+        Chaque philosophe a un ensemble de propositions avec :
+
+            Un texte.
+
+            Un type (daccord ou pasdaccord).
+
+            Une justification.
+
+    Exemple de données :
+    javascript
+    Copy
+
+    const philosophes = [
+        {
+            nom: "Rousseau",
+            propositions: [
+                { 
+                    texte: "L'être humain est naturellement bon.", 
+                    type: "daccord", 
+                    justification: "Rousseau défend l'idée que l'homme naît bon mais est corrompu par la société." 
+                },
+                { 
+                    texte: "La société corrompt l'homme.", 
+                    type: "daccord", 
+                    justification: "Pour Rousseau, la propriété privée et les inégalités sociales dénaturent l'homme." 
+                },
+                // Ajouter d'autres propositions...
+            ]
+        },
+        // Ajouter d'autres philosophes...
+    ];

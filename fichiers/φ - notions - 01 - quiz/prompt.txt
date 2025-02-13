@@ -1,0 +1,18 @@
+Je veux obtenir un fichier HTML qui inclut :
+
+    Un slider horizontal contenant 18 vignettes de quiz. Chaque vignette doit inclure :
+        Le mot "QUIZ" en noir sur fond blanc, sans arrondi aux coins (en haut à gauche, en haut à droite, et en bas à gauche) 
+	et avec un arrondi uniquement en bas à droite.
+        Une image correspondant à chaque notion, cliquable, qui mène à un fichier HTML dans le dossier "src" portant le même 
+	nom que la notion.
+        Le titre de la notion (par exemple "bonheur", "conscience", etc.) aligné à gauche, en gras, avec une taille 
+	supérieure.
+        En dessous du titre, une ligne d'information indiquant le nombre de questions, avec des métadonnées écrites en plus 
+	petit et en couleur grisâtre.
+
+    En dessous du slider, il doit y avoir un menu déroulant qui dit 'choisissez une notion :'.
+        Ce menu doit contenir toutes les notions en minuscules (sauf pour le mot "État"). Lorsqu'une notion est sélectionnée, 
+	elle doit rediriger vers le fichier HTML correspondant dans le dossier "src".
+
+    Le code doit être propre, bien structuré et sans arrondi pour le mot "QUIZ" en haut à gauche et à droite."
+

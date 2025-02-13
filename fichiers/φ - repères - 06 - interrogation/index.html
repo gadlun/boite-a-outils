@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!--------------------------- Daniel Boulagnon -------------------------->
+<!-------------------- daniel.boulagnon@ac-lille.fr -------------------->
+<!----------------------------- version 2025 -------------------------->
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" href="../../src/favicon.ico" />
+    <title>interrogation</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --color-1: #fefefe; /* fond occupé par les cartes */
+            --color-2: white; /* fond des cartes elles-mêmes */
+            --color-3: #C02739;
+            --color-4: red; /* couleur de la flèche sur la face de la carte */
+        }
+        body {
+            width: 100%;
+            height: 100vh;
+            /* distance des cartes par rapport au "top" */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--color-1);
+        }
+        main {
+            margin: 2.0rem auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .card-wrapper {
+            position: relative;
+            min-height: 350px; /* longueur de chaque vignette */
+            min-width: 230px;
+            width: 15rem;
+            height: 5rem;
+            margin-left: 0.5rem;
+            margin-top: 0.5rem;
+            perspective: 700px;
+            perspective-origin: bottom;
+        }
+        .card-wrapper:hover .card {
+            transform: rotateY(180deg);
+        }
+        .card {
+            position: relative;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: 0.8s cubic-bezier(0.62, 0, 0.55, 1);
+        }
+        /*habillage de la carte elle-même*/
+        .card-front, .card-back {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            padding: 30px;
+            border-radius: 8px;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            background: white;
+            border: 1px solid #ddd;
+        }
+        .card-front {
+            background: var(--color-2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .card-back {
+            background: var(--color-2);
+            transform: rotateY(180deg);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        /* le mot "réponse" sur le verso de la carte */
+        .card-back h1 {
+            position: absolute;
+            top: 2rem;
+            color: red;
+            font-size: 1.5rem;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* le contenu de la réponse sur le verso de la carte */
+        .card-back p {
+            position: absolute;
+            top: 7rem;
+            color: black;
+            font-size: 0.8rem;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            text-align: justify;
+        }
+        .line2 {
+            width: 10rem;
+            height: 0.6rem;
+            margin-top: -5rem; /* hauteur du gros trait noir sur le recto */
+            margin-bottom: 5rem;
+            border-radius: 55px;
+            box-shadow: inset 25px 25px 21px black, inset -25px -25px 21px #a21937;
+        }
+        .card-back a {
+            text-decoration: none;
+            color: white;
+            position: absolute;
+            bottom: 2rem;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            border-radius: 51px;
+            background: linear-gradient(145deg, #8d1530, #771229);
+            box-shadow: 21px 21px 42px #620f21, -21px -21px 42px #a61939;
+        }
+        .card-back a:focus {
+            border-radius: 51px;
+            background: linear-gradient(145deg, #771229, #8d1530);
+            box-shadow: 21px 21px 42px #620f21, -21px -21px 42px #a61939;
+        }
+        #user-icon {
+            font-size: 3rem;
+            color: white;
+        }
+        /* le mot "question" sur la face de la carte */
+        .card-front h2 {
+            position: absolute;
+            top: 2rem;
+            color: red;
+            font-size: 1.5rem;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* la grosse ligne sur la face de la carte */
+        .line {
+            width: 10rem;
+            height: 0.6rem;
+            margin-top: -5rem; /* hauteur du gros trait noir sur la face avant de la carte */
+            margin-bottom: 5rem;
+            border-radius: 55px;
+            box-shadow: inset 25px 25px 21px black, inset -25px -25px 21px #a21937;
+        }
+        /* la flèche sur la face de la carte */
+        .arrow {
+            margin-right: 1rem;
+            height: 0.1rem;
+            width: 1.5rem;
+            position: absolute;
+            top: 11.5rem; /* hauteur de la flèche */
+            transition: all 0.2s;
+            background: var(--color-4);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .arrow::before, .arrow::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 0.1rem;
+            width: 0.6rem;
+            background: var(--color-4);
+        }
+        .arrow::before {
+            transform: rotate(45deg);
+            transform-origin: right bottom;
+        }
+        .arrow::after {
+            transform: rotate(-45deg);
+            transform-origin: right top;
+        }
+        .card-front:hover .arrow {
+            transition: all 0.2s;
+            margin-left: 0.5rem;
+            width: 5rem;
+        }
+        /* le contenu de la question sur le recto de la carte */
+        .Dicover {
+            position: absolute;
+            top: 7rem;
+            color: black;
+            font-size: 0.8rem;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            text-align: justify;
+            justify-content: center;
+            flex-direction: column;
+            transition: all 0.2s;
+        }
+        a.lien {
+            color: #000f55;
+            margin: 0 0 20px 0;
+            line-height: 48px;
+            text-decoration: none; /* pour enlever le soulignement du lien hypertexte */
+            font-size: 20px;
+        }
+        a.lien:hover {
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <header>
+            <p style="margin: 15px; line-height: 48px; text-align: center; color:red; font-size:40px; font-weight: bold; font-family: 'Muli', sans-serif">interrogation</p>
+            <p style="margin: 0px; line-height: 1px; text-align: center; color:black; font-size:20px">réviser les repères</p>
+        </header>
+        <main>
+            <template id="card_template">
+                <div class="card-wrapper">
+                    <div class="card">
+                        <div class="card-front">
+                            <h2>Question</h2>
+                            <div class="line"></div>
+                            <div class="Dicover">
+                                <h4>Définir : « <span class="question"></span> » </h4>
+                                <div class="arrow"></div>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h1>Réponse</h1>
+                            <div class="line2"></div>
+                            <p>&#9658; Réponse : <span class="reponse"></span> </p>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </main>
+        <footer>
+            <div id="page">
+                <a class="lien" href="javascript:location.reload();">
+                    <p style="margin: 15px; line-height: 48px; text-align: center; color:red; font-size:40px; font-family: 'Muli', sans-serif"> &#8635;</p>
+                </a>
+            </div>
+        </footer>
+    </section>
+    <script src="../../src/reperes.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const template = document.getElementById('card_template');
+            const main = document.querySelector('main');
+
+            // Créer un tableau de toutes les définitions
+            let allDefinitions = [];
+            reperes.forEach(repere => {
+                repere.parts.forEach(part => {
+                    allDefinitions.push(part);
+                });
+            });
+
+            // Mélanger le tableau
+            for (let i = allDefinitions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [allDefinitions[i], allDefinitions[j]] = [allDefinitions[j], allDefinitions[i]];
+            }
+
+            // Sélectionner les 5 premières définitions
+            const selectedDefinitions = allDefinitions.slice(0, 5);
+
+            // Créer les cartes pour les définitions sélectionnées
+            selectedDefinitions.forEach(part => {
+                const clone = template.content.cloneNode(true);
+                clone.querySelector('.question').textContent = part.name;
+                clone.querySelector('.reponse').textContent = part.definition;
+                main.appendChild(clone);
+            });
+        });
+    </script>
+</body>
+</html>

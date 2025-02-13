@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qui veut gagner des millions ?</title>
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #000033;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.button-style {
+    background-color: #000088;
+    border: none;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 15px;
+    width: 131px;
+    margin-top: auto;
+}
+
+.button-style:hover {
+    background-color: #ff9900;
+    color: black;
+}
+
+#game-container {
+    width: 600px;
+    height: 460px;
+    min-height: 400px;
+    max-height: 90vh;
+    background-image: radial-gradient(circle, #000066 0%, #000033 100%);
+    border: 2px solid #4444ff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #4444ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.frame {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 460px;
+    background-image: radial-gradient(circle, #000066 0%, #000033 100%);
+    border: 2px solid #4444ff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #4444ff;
+    margin-left: 20px;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+#logo {
+    display: block;
+    margin: 0 auto 10px;
+    max-width: 150px;
+    max-height: 75px;
+}
+
+h1 {
+    text-align: center;
+    color: #ff9900;
+    font-size: 20px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+#question-container {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+#answers-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.answer-btn {
+    background-color: #000088;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px;
+    color: white;
+    width: 100%;
+}
+
+.answer-text {
+    color: orange;
+}
+
+.answer-response {
+    color: white;
+    margin-left: 5px;
+}
+
+.answer-btn:hover {
+    background-color: orange;
+}
+
+.answer-btn:hover .answer-text {
+    color: white;
+}
+
+.answer-btn:hover .answer-response {
+    color: black;
+}
+
+.correct-answer {
+    background-color: #28a745;
+    color: white;
+}
+
+.incorrect-answer {
+    background-color: #dc3545;
+    color: white;
+}
+
+#next-question-btn {
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+    display: none;
+}
+
+#jokers-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.joker-btn {
+    background-color: transparent;
+    border: none;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.joker-btn img {
+    width: 130%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.paliers-scores-container {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.paliers, .scores {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #ff9900;
+    font-size: 14px;
+}
+
+.paliers div, .scores div {
+    text-align: right;
+    color: #ff9900;
+    padding: 2px 0;
+}
+
+.paliers div.special, .scores div.special {
+    color: white;
+}
+
+.special {
+    color: yellow;  
+    font-weight: bold; 
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+#timer {
+    font-size: 20px;
+    text-align: center;
+    color: #ff9900;
+}
+
+</style>
+</head>
+<body>
+<audio id="audioPlayer" preload="auto">
+    <source src="audio/generique.mp3" type="audio/mpeg">
+</audio>
+<audio id="fiftyFiftyAudio" preload="auto">
+    <source src="audio/joker-50-50.mp3" type="audio/mpeg">
+</audio>
+<audio id="phoneAFriendAudio" preload="auto">
+    <source src="audio/joker-appel.mp3" type="audio/mpeg">
+</audio>
+<audio id="publicHelpAudio" preload="auto">
+    <source src="audio/joker-public.mp3" type="audio/mpeg">
+</audio>
+<audio id="easyQuestionsAudio" preload="auto">
+    <source src="audio/questionstrèsfaciles.mp3" type="audio/mpeg">
+</audio>
+
+<div id="game-container">
+    <img id="logo" src="img/logo.png" alt="Logo Qui veut gagner des millions">
+    <h1>Qui veut gagner des millions de compétences ?</h1>
+    
+    <div id="timer">Temps restant : <span id="countdown">30</span> secondes</div>
+    
+    <div id="question-container"></div>
+    <div id="answers-container"></div>
+    <button id="next-question-btn" onclick="nextQuestion()" style="display:none;">Question suivante</button>
+</div>
+
+<div class="frame">
+    <div id="jokers-container">
+        <button class="joker-btn" onclick="useFiftyFifty()"><img src="img/50-50.png" alt="50/50"></button>
+        <button class="joker-btn" onclick="usePhoneAFriend()"><img src="img/appel.png" alt="Appel"></button>
+        <button class="joker-btn" id="publicHelpBtn" onclick="usePublicHelp()"><img src="img/public.png" alt="Public"></button>
+    </div>
+    <div class="paliers-scores-container">
+        <div class="paliers">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div class='special'>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div class='special'>10</div>
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+            <div>14</div>
+            <div class='special'>15</div>
+        </div>
+        <div class="scores">
+            <div>200 €</div>
+            <div>300 €</div>
+            <div>500 €</div>
+            <div>800 €</div>
+            <div class='special'>1500 €</div>
+            <div>3000 €</div>
+            <div>6000 €</div>
+            <div>12000 €</div>
+            <div>24000 €</div>
+            <div class='special'>48000 €</div>
+            <div>72000 €</div>
+            <div>100000 €</div>
+            <div>150000 €</div>
+            <div>300000 €</div>
+            <div class='special'>1000000 €</div>
+        </div>
+    </div>
+    <div class="buttons-container">
+        <button class="button-style" onclick="playAudio()">générique</button>
+        <button class="button-style" id="start-btn" onclick="startGame()">commencer</button>
+    </div>
+</div>
+
+<script src="questions.js"></script>
+<script>
+let currentQuestionIndex = 0;
+let previousQuestionIndex = -1;
+let incorrectAnswers = [];
+let isSpeaking = false;
+let isFiftyFiftyUsed = false;
+let isPhoneAFriendUsed = false;
+let countdownTimer;
+let timerDuration = 30; // Durée du minuteur en secondes
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function speak(text) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.onstart = function() {
+        isSpeaking = true;
+        disableButtons();
+    };
+    utterance.onend = function() {
+        isSpeaking = false;
+        enableButtons();
+    };
+    speechSynthesis.speak(utterance);
+}
+
+function disableButtons() {
+    const answerButtons = document.querySelectorAll('.answer-btn');
+    const jokerButtons = document.querySelectorAll('.joker-btn');
+    answerButtons.forEach(button => {
+        button.disabled = true;
+    });
+    jokerButtons.forEach(button => {
+        button.disabled = true;
+    });
+}
+
+function enableButtons() {
+    const answerButtons = document.querySelectorAll('.answer-btn');
+    const jokerButtons = document.querySelectorAll('.joker-btn');
+    answerButtons.forEach(button => {
+        button.disabled = false;
+    });
+    jokerButtons.forEach(button => {
+        button.disabled = false;
+    });
+}
+
+function playAudio() {
+    var audio = document.getElementById('audioPlayer');
+    audio.play();
+}
+
+function startGame() {
+    initializeGame();
+    shuffle(questions);
+    document.getElementById('easyQuestionsAudio').play();
+    displayQuestion();
+    document.getElementById('jokers-container').style.display = 'flex';
+    document.getElementById('publicHelpBtn').style.display = 'inline';
+    startTimer();
+}
+
+function initializeGame() {
+    currentQuestionIndex = 0;
+    previousQuestionIndex = -1;
+    incorrectAnswers = [];
+    document.getElementById('answers-container').innerHTML = '';
+    document.getElementById('next-question-btn').style.display = 'none';
+    document.getElementById('start-btn').innerText = 'commencer';
+    isFiftyFiftyUsed = false;
+    isPhoneAFriendUsed = false;
+    document.querySelector('.joker-btn img[alt="50/50"]').parentElement.style.display = 'inline';
+    document.querySelector('.joker-btn img[alt="Appel"]').parentElement.style.display = 'inline';
+}
+
+function displayQuestion() {
+    const question = questions[currentQuestionIndex];
+    document.getElementById('question-container').innerText = question.question;
+    speak(question.question);
+    const answerButtonsHtml = question.answers.map((answer, index) => `
+        <button class='answer-btn' onclick='checkAnswer(${index})'>
+            <span class="answer-text">⬪ ${String.fromCharCode(65 + index)} :</span>
+            <span class="answer-response">${answer}</span>
+        </button>
+    `).join('');
+    document.getElementById('answers-container').innerHTML = answerButtonsHtml;
+    question.answers.forEach((answer, index) => {
+        setTimeout(() => {
+            speak(`réponse ${String.fromCharCode(65 + index)} : ${answer}`);
+        }, index * 3000);
+    });
+}
+
+function checkAnswer(selectedIndex) {
+    const question = questions[currentQuestionIndex];
+    const buttons = document.querySelectorAll('.answer-btn');
+    buttons.forEach(button => {
+        button.classList.remove('correct-answer');
+        button.classList.remove('incorrect-answer');
+    });
+
+    if (isSpeaking) {
+        speak("Veuillez attendre que la synthèse vocale se termine avant de répondre !");
+        return;
+    }
+
+    if (selectedIndex === question.correctAnswer) {
+        buttons[selectedIndex].classList.add('correct-answer');
+        var audio = new Audio('audio/bonnereponsefacile.mp3');
+        audio.play().catch(function(error) {
+            console.error("Erreur de lecture audio : ", error);
+        });
+        const palierDiv = document.querySelectorAll('.paliers div')[currentQuestionIndex];
+        const scoreDiv = document.querySelectorAll('.scores div')[currentQuestionIndex];
+        if (previousQuestionIndex !== -1) {
+            const previousPalierDiv = document.querySelectorAll('.paliers div')[previousQuestionIndex];
+            const previousScoreDiv = document.querySelectorAll('.scores div')[previousQuestionIndex];
+            previousPalierDiv.style.color = previousPalierDiv.classList.contains('special') ? 'white' : '#ff9900';
+            previousPalierDiv.style.backgroundColor = 'transparent';
+            previousScoreDiv.style.color = previousScoreDiv.classList.contains('special') ? 'white' : '#ff9900';
+            previousScoreDiv.style.backgroundColor = 'transparent';
+        }
+        palierDiv.style.color = 'black';
+        scoreDiv.style.color = 'black';
+        palierDiv.style.backgroundColor = 'orange';
+        scoreDiv.style.backgroundColor = 'orange';
+        previousQuestionIndex = currentQuestionIndex;
+        setTimeout(() => {
+            if ([4, 9, 14].includes(currentQuestionIndex)) {
+                palierDiv.style.color = 'white';
+                scoreDiv.style.color = 'white';
+            }
+            nextQuestion();
+        }, 1000);
+    } else {
+        buttons[selectedIndex].classList.add('incorrect-answer');
+        speak("Mauvaise réponse ! La bonne réponse était : " + question.answers[question.correctAnswer]);
+        disableButtons();
+        document.getElementById('start-btn').innerText = 'recommencer ?';
+    }
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex >= questions.length) {
+        speak("Fin du jeu !");
+        initializeGame();
+    } else {
+        resetTimer();
+        displayQuestion();
+    }
+}
+
+function startTimer() {
+    document.getElementById('countdown').innerText = timerDuration;
+    let timer = timerDuration;
+    
+    countdownTimer = setInterval(() => {
+        timer--;
+        document.getElementById('countdown').innerText = timer;
+        
+        if (timer <= 0) {
+            clearInterval(countdownTimer);
+            speak("Temps écoulé !");
+            disableButtons();
+            document.getElementById('next-question-btn').style.display = 'inline'; // Passe à la question suivante  
+        }
+    }, 1000);
+}
+
+function resetTimer() {
+    clearInterval(countdownTimer);
+    startTimer();
+}
+
+function useFiftyFifty() {
+    if (isFiftyFiftyUsed) {
+        speak("Le joker 50/50 a déjà été utilisé.");
+        return;
+    }
+    var audio = document.getElementById('fiftyFiftyAudio');
+    audio.play();
+    const question = questions[currentQuestionIndex];
+    const answerButtons = document.querySelectorAll('.answer-btn');
+    answerButtons.forEach(button => {
+        button.style.display = 'inline-block';
+    });
+    incorrectAnswers = [];
+    while (incorrectAnswers.length < 2) {
+        const randomIndex = Math.floor(Math.random() * question.answers.length);
+        if (randomIndex !== question.correctAnswer && !incorrectAnswers.includes(randomIndex)) {
+            incorrectAnswers.push(randomIndex);
+        }
+    }
+    answerButtons.forEach((button, index) => {
+        if (incorrectAnswers.includes(index)) {
+            button.style.display = 'none';
+        }
+    });
+    isFiftyFiftyUsed = true;
+    document.querySelector('#jokers-container .joker-btn img[alt="50/50"]').parentElement.style.display = 'none';
+}
+
+function usePhoneAFriend() {
+    stopAllAudio();
+    var audio = document.getElementById('phoneAFriendAudio');
+    audio.play();
+    
+    document.querySelector('#jokers-container .joker-btn img[alt="Appel"]').parentElement.style.display = 'none';
+    
+    audio.onended = function() {
+        const question = questions[currentQuestionIndex];
+        const answerButtons = document.querySelectorAll('.answer-btn');
+        const availableAnswers = Array.from(answerButtons)
+            .filter((button, index) => button.style.display !== 'none' && index !== question.correctAnswer)
+            .map((button, index) => String.fromCharCode(65 + index));
+        
+        const randomLetter = availableAnswers[Math.floor(Math.random() * availableAnswers.length)];
+        speak("Votre ami n'est pas sûr de lui, mais il propose la réponse " + randomLetter + ".");
+    };
+}
+
+function usePublicHelp() {
+    stopAllAudio();
+    var audio = document.getElementById('publicHelpAudio');
+    audio.play();
+    const question = questions[currentQuestionIndex];
+    const answerButtons = document.querySelectorAll('.answer-btn');
+    const availableAnswers = Array.from(answerButtons)
+        .filter((button, index) => button.style.display !== 'none' && index !== question.correctAnswer)
+        .map((button, index) => String.fromCharCode(65 + index));
+
+    const correctAnswerLetter = String.fromCharCode(65 + question.correctAnswer);
+    let randomLetter;
+    do {
+        randomLetter = availableAnswers[Math.floor(Math.random() * availableAnswers.length)];
+    } while (randomLetter === correctAnswerLetter);
+    
+    setTimeout(() => {
+        speak("Le public pense que la réponse correcte est " + correctAnswerLetter + " ou " + randomLetter + ".");
+        document.getElementById('publicHelpBtn').style.display = 'none';
+    }, audio.duration * 1000);
+}
+
+function stopAllAudio() {
+    const audioElements = document.querySelectorAll('audio');
+    audioElements.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+    });
+}
+
+window.onload = function() {
+    var audio = document.getElementById('audioPlayer');
+    audio.play().catch(function(error) {
+        console.log("Lecture automatique bloquée : " + error);
+    });
+};
+</script>
+</body>
+</html>

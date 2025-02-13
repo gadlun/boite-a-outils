@@ -1,0 +1,35 @@
+Créer un fichier JavaScript nommé bonheur.js contenant une série de 20 questions sur la notion de XXXX, formatées selon ce modèle :
+
+const questions = [
+    { 
+        question: "Exemple de question...",
+        answers: ["Réponse 1", "Réponse 2", "Réponse 3"],
+        correct: index, // où index est l'indice de la bonne réponse  
+        explanation: "Explication de la réponse."
+    },
+    // Ajouter d'autres questions ici  
+];
+
+Assure-toi d'inclure des questions variées qui touchent aux différents aspects philosophiques pour un niveau de classe de terminale, 
+ainsi que des réponses appropriées.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Version 2 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Créer un fichier JavaScript contenant une série de 100 questions sur la notion philosophique suivante : [INSÉRER LA NOTION ICI]. 
+
+Le format doit être structuré de la manière suivante :
+
+const questions = [
+    // question n°X : 
+    { 
+        question: "Entrez ici votre question sur la notion philosophique...",
+        answers: ["Réponse A", "Réponse B", "Réponse C"], 
+        correct: index, // Remplacez index par l'indice de la bonne réponse  
+        explanation: "Explication de la réponse." // Fournissez une explication pour la bonne réponse  
+    }, 
+    
+    // Ajoutez d'autres questions ici...
+];
+
+Assurez-vous d'inclure des questions variées qui touchent aux différents aspects de la notion choisie, ainsi que des réponses appropriées. 
+Les questions doivent être adaptées à des élèves de terminale.

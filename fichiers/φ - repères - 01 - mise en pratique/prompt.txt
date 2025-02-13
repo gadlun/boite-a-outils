@@ -1,0 +1,13 @@
+Peux-tu me fournir un fichier HTML complet qui réalise les fonctionnalités suivantes :
+
+    Le titre du document doit être en rouge, centré en haut de la page.
+    Les éléments de la page doivent utiliser un style neumorphique (avec des ombres douces).
+    Inclure deux dropzones où les utilisateurs peuvent faire glisser des étiquettes. Les dropzones doivent avoir une bonne esthétique.
+    Inclure un compteur de bonnes réponses et un compteur de réponses totales.
+    Ajouter un bouton 'vérifier' qui, lorsqu'il est cliqué, évalue les réponses et met à jour les compteurs.
+    Inclure une fonctionnalité pour corriger les réponses incorrectes par glissement, avec une animation fluide où chaque étiquette glisse directement vers sa colonne correcte sans se rassembler en haut.
+    Les couleurs des résultats corrects et incorrects doivent être pastel.
+    Le bouton doit être situé à 5 mm sous les dropzones.
+    Lors de l'appui sur "recommencer", un nouveau tirage au sort doit être effectué pour choisir deux nouveaux mots pour les colonnes.
+
+Fournis-moi le code HTML complet que je peux utiliser directement.

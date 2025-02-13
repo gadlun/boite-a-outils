@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<!--------------------------- Daniel Boulagnon --------------------------->
+<!-------------------- daniel.boulagnon@ac-lille.fr ---------------------->
+<!----------------------------- version 2023 ----------------------------->
+<html lang="fr" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" href="../../src/favicon.ico">
+	<title>puzzle</title>	
+	<p style="margin: 15px; line-height: 48px; text-align: center; color:red; font-size:40px; font-weight: bold; font-family: 'Muli', sans-serif">puzzle</p>
+	<p style="margin: 0px; line-height: 1px; text-align: center; color:black; font-size:20px">apprendre à reconnaître les auteurs</p>
+	<br>
+        <style type="text/css">
+
+            html,
+            body {
+                height: 100%;
+                margin: 0px;
+                background-color: white;
+            }
+            body {
+                --colorDestacat: darkgray;
+                font-family: Arial, Helvetica, sans-serif;
+                background-image: linear-gradient(60deg, white 15%, white 55%, white);
+                background-size: 100%;
+                background-attachment: fixed;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                overflow: hidden;
+                color: var(--colorDestacat);
+            }
+            h1 {
+                display: inline-block;
+                margin: 0px 0px 0px 10px;
+                line-height: 50px;
+                vertical-align: middle;
+                font-family: arial;
+                font-weight: normal;
+                margin-right: 10px;
+            }
+            h2 {
+                margin: 0;
+                font-weight: normal;
+            }
+            #cap {
+                display: flex;
+                align-items: center;
+                height: 50px;
+                white-space: nowrap;
+                padding-right: 55px;
+            }
+            #container {
+                margin: 5px auto;
+                background-repeat: no-repeat;
+            }
+            .position {
+                position: relative;
+                width: 100px;
+                height: 100px;
+                display: inline-block;
+                vertical-align: top;
+                background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='black' ><circle  cx='50' cy='50' r='2' /></svg>");
+            }
+            .move {
+                filter: drop-shadow(5px 5px 5px black);
+                width: 0px;
+                height: 0px;
+                position: absolute;
+                z-index: 0;
+                transition: transform 0.2s, filter 0.2s, z-index 0s linear 0.4s;
+            }
+            .move:hover {
+                filter: drop-shadow(8px 8px 5px black);
+            }
+            .move > div {
+                margin-top: -40px;
+                margin-left: -40px;
+                width: 180px;
+                height: 180px;
+                transition: 0.16s;
+                background-color: transparent;
+            }
+            .move > span {
+                position: absolute;
+                display: flex;
+                width: 50px;
+                height: 103px;
+                background-color: transparent;
+                border-radius: 45px;
+                margin-top: -53px;
+                margin-left: 25px;
+                transform-origin: center bottom;
+                transform: rotate(0deg) scale(0);
+                transition: 0.4s ease 0.4s;
+                cursor: default;
+                justify-content: center;
+            }
+            .move:hover > span:first-of-type {
+                transform: rotate(-45deg) scale(1);
+            }
+            .move:hover > span:last-of-type {
+                transform: rotate(45deg) scale(1);
+            }
+            .move > span > span {
+                display: block;
+                width: 30px;
+                height: 30px;
+                background-color: rgba(0, 0, 0, 0.2);
+                border-radius: 15px;
+                background-size: 22px;
+                background-position: center center;
+                background-repeat: no-repeat;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+            .move > span:first-of-type > span {
+                background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' fill='white'> <path d='M32 4c-8.837 0-16.836 3.582-22.627 9.374l-9.373-9.374v24h24l-8.971-8.97c4.344-4.343 10.343-7.030 16.971-7.030 13.254 0 24 10.745 24 24 0 7.169-3.143 13.602-8.126 18l5.292 6c6.644-5.864 10.834-14.442 10.834-24 0-17.673-14.327-32-32-32z'/></svg>");
+            }
+            .move > span:last-of-type > span {
+                background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' fill='white'><path d='M0 36c0 9.558 4.191 18.136 10.834 24l5.292-6c-4.983-4.398-8.126-10.831-8.126-18 0-13.255 10.746-24 24-24 6.628 0 12.627 2.687 16.971 7.030l-8.971 8.97h24v-24l-9.373 9.374c-5.791-5.791-13.79-9.374-22.627-9.374-17.673 0-32 14.327-32 32z'/></svg>");
+            }
+            .move > span > span:hover {
+                box-shadow: 0 0 15px 3px rgb(0, 255, 0), 0 0 0 2px white;
+                background-color: rgba(0, 255, 0, 0.2);
+            }
+            @keyframes rotar {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+            #tap {
+                position: absolute;
+                width: 100%;
+                min-height: calc(100% - 50px);
+                background-color: black;
+                z-index: 900;
+                opacity: 0;
+                transition: height 0s ease, opacity 0.6s ease;
+                color: white;
+                max-height: 100%;
+                overflow-y: auto;
+            }
+            #models {
+                text-align: center;
+                display: none;
+            }
+            #models > div {
+                display: inline-block;
+                vertical-align: middle;
+                margin: 10px;
+                padding: 10px;
+                border: 1px solid white;
+                text-align: left;
+                cursor: pointer;
+                transition: 0.24s;
+            }
+            #models > div:hover {
+                background-color: white;
+                color: black;
+                white-space: pre-wrap;
+            }
+            #lang {
+                border: none;
+                outline: none;
+                width: 18px;
+                height: 32px;
+                text-indent: 20px;
+                font-size: larger;
+            }
+            input {
+                width: 128px;
+                min-width: 32px;
+                height: 32px;
+                margin: 5px;
+                font-size: 18px;
+                padding: 0;
+                cursor: pointer;
+                transition: 0.3s;
+                overflow: hidden;
+                transition: background-color.2s, color 0.2s ease 0.3s, width 0.4s ease 0.2s;
+                border: 1px solid var(--colorDestacat);
+                border-radius: 0;
+                color: var(--colorDestacat);
+                animation-duration: 1s;
+            }
+            input:hover {
+                color: gray;
+                transition: 0.1s;
+            }
+
+            #fullscreen {
+                height: 32px;
+                width: 32px;
+                position: fixed;
+                top: 8px;
+                right: 18px;
+                cursor: pointer;
+                transition: 0.24s;
+                z-index: 1000;
+            }
+            #fullscreen:hover {
+                transform: scale(1.1);
+            }
+            .fullscreen {
+                background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><path d=' M 2 2 L 14 2 L 14 6 L 6 6 L 6 14 L 2 14 L 2 2 Z  M 2 30 L 14 30 L 14 26 L 6 26 L 6 18 L 2 18 L 2 30 Z  M 30 2 L 18 2 L 18 6 L 26 6 L 26 14 L 30 14 L 30 2 Z  M 30 30 L 18 30 L 18 26 L 26 26 L 26 18 L 30 18 L 30 30 Z ' fill='darkgray'/></svg>");
+            }
+            .fullscreenOff {
+                background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><path d=' M 14 14 L 2 14 L 2 10 L 10 10 L 10 2 L 14 2 L 14 14 Z  M 14 18 L 2 18 L 2 22 L 10 22 L 10 30 L 14 30 L 14 18 Z  M 18 14 L 30 14 L 30 10 L 22 10 L 22 2 L 18 2 L 18 14 Z  M 18 18 L 30 18 L 30 22 L 22 22 L 22 30 L 18 30 L 18 18 Z ' fill='darkgray'/></svg>");
+            }
+            .fullscreenCloseModels {
+                background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' stroke-width ='5' stroke='darkgray' width='32' height='32'><line x1='4' y1 ='4' x2='28' y2 ='28'/><line x1='4' y1 ='28' x2='28' y2 ='4'/></svg>");
+            }
+            #time {
+                text-align: center;
+                font-size: 24px;
+                margin-top: 20px;
+                transition: 0.6s;
+                transition-delay: 1s;
+                margin-left: 10px;
+                color: black;
+                display: none;
+            }
+            #time sup,
+            #time span {
+                color: gray;
+                font-style: italic;
+            }
+            #time em {
+                color: black;
+                font-style: normal;
+            }
+            #logo {
+                display: inline-block;
+                margin: 10px 0px 10px 10px;
+                vertical-align: middle;
+                filter: opacity(60%) grayscale(100%);
+            }
+            #logo:hover {
+                filter: grayscale(0);
+            }
+            optgroup {
+                width: 150px;
+            }
+        </style>
+        <script>
+            /* © wDisseny */
+            var zIndex = 1;
+            var host = "img/index.html";
+            trosSeleccionat = false;
+            function crearDreta(i) {
+                var path = [
+                    { draw: "q-4,20-5,43 l-5,0 a11,11 1,1,0 0,14 l5,0 q1,20 5,43", invers: "q-4,-20 -5,-43 l-5,0 a11,11 1,1,1 0,-14 l5,0 q 1-20 5,-43" },
+                    { draw: "q-4,20-5,43 l5,0 a11,11 1,1,1 0,14 l-5,0 q1,20 5,43", invers: "q-4,-20-5,-43 l 5,0 a11,11 1,1,0 0,-14 l-5,0 q 1-20 5,-43" },
+                    { draw: "q 4,20 5,43 l-5,0 a11,11 1,1,0 0,14 l5,0 q-1,20-5,43", invers: "q 4,-20  5,-43 l-5,0 a11,11 1,1,1 0,-14 l5,0 q-1-20-5,-43" },
+                    { draw: "q 4,20 5,43 l5,0 a11,11 1,1,1 0,14 l-5,0	q-1,20-5,43", invers: "q 4,-20  5,-43 l5,0 a11,11 1,1,0 0,-14 l-5,0 q-1-20-5,-43" },
+                ];
+                return path[Math.floor(Math.random() * path.length)];
+            }
+            function crearInferior(i) {
+                var path = [
+                    { draw: "q-20,-4-43,-5 l0,-5 a11,11 1,1,0-14,0 l0,5 q-20,1-43,5", invers: "q 20,-4 43,-5 l0,-5 a11,11 1,1,1 14,0 l0,5 q20,1 43,5 " },
+                    { draw: "q-20,-4-43,-5 l0,5 a11,11 1,1,1-14,0 l0,-5 q-20,1-43,5", invers: "q 20,-4 43,-5 l0,5 a11,11 1,1,0 14,0 l0,-5 q20,1 43,5 " },
+                    { draw: "q-20,4-43,5 l0,-5 a11,11 1,1,0-14,0 l0,5 q-20,-1-43,-5", invers: "q 20,4 43,5 l0,-5 a11,11 1,1,1 14,0 l0,5 q20,-1 43,-5 " },
+                    { draw: "q-20,4-43,5 l0,5 a11,11 1,1,1-14,0 l0,-5 q-20,-1-43,-5", invers: "q 20,4 43,5 l0,5 a11,11 1,1,0 14,0 l0,-5 q20,-1 43,-5 " },
+                ];
+                return path[Math.floor(Math.random() * path.length)];
+            }
+            function inversDreta(i) {
+                return { draw: director[i - 1].b.invers };
+            }
+            function inversSuperior(i) {
+                return { draw: director[i - numCols].c.invers };
+            }
+            function dadesPeza(row, col, index) {
+                var object = {};
+                switch (true) {
+                    case col == 0 && row == 0:
+                        object = { type: "supEsquerra", a: { draw: " l 100,0 " }, b: crearDreta(index), c: crearInferior(index), d: { draw: " l 0,-100" } };
+                        break;
+                    case row == 0 && col == numCols - 1:
+                        object = { type: "supDreta", a: { draw: " l 100,0 " }, b: { draw: " l 0,100 " }, c: crearInferior(index), d: inversDreta(index) };
+                        break;
+                    case row == numRows - 1 && col == 0:
+                        object = { type: "infEsquerra", a: inversSuperior(index), b: crearDreta(index), c: { draw: " l-100,0 " }, d: { draw: " l 0,-100 " } };
+                        break;
+                    case row == numRows - 1 && col == numCols - 1:
+                        object = { type: "infDreta", a: inversSuperior(index), b: { draw: " l 0,100 " }, c: { draw: " l-100,0 " }, d: inversDreta(index) };
+                        break;
+                    case row == 0:
+                        object = { type: "superior", a: { draw: " l 100,0 " }, b: crearDreta(index), c: crearInferior(index), d: inversDreta(index) };
+                        break;
+                    case col == 0:
+                        object = { type: "esquerra", a: inversSuperior(index), b: crearDreta(index), c: crearInferior(index), d: { draw: " l 0,-100 " } };
+                        break;
+                    case col == numCols - 1:
+                        object = { type: "dreta", a: inversSuperior(index), b: { draw: " l 0,100 " }, c: crearInferior(index), d: inversDreta(index) };
+                        break;
+                    case row == numRows - 1:
+                        object = { type: "inferior", a: inversSuperior(index), b: crearDreta(index), c: { draw: " l-100,0 " }, d: inversDreta(index) };
+                        break;
+                    default:
+                        object = { type: "central", a: inversSuperior(index), b: crearDreta(index), c: crearInferior(index), d: inversDreta(index) };
+                }
+                object.col = col;
+                object.row = row;
+                object.index = index;
+                object.path = function () {
+                    return this.a.draw + this.b.draw + this.c.draw + this.d.draw + "z";
+                };
+                return object;
+            }
+            function crearTros(pathTros, x, y, index) {
+                var move = document.createElement("DIV");
+                move.innerHTML = '<span><span onclick="girar(this,-1)"></span></span><span><span onclick="girar(this,1)"></span></span>';
+                var tros = document.createElement("DIV");
+                tros.style.clipPath = "path('M40,40 " + pathTros + "')";
+                tros.style.backgroundImage = "url(" + host + model.urlImg + ")";
+                tros.style.backgroundPosition = x * -100 + 40 + "px " + (y * -100 + 40) + "px";
+                move.appendChild(tros);
+                move.className = "move";
+                move.onmousemove = getPos;
+                move.onmouseout = stopTracking;
+                move.angle = 0;
+                move.style.filter = "drop-shadow(0px 0px 1px black)";
+                move.position = function () {
+                    return { left: this.offsetLeft + 50, top: this.offsetTop + 50 };
+                };
+                move.onmouseup = dropPiece;
+                move.index = index;
+                var position = document.createElement("DIV");
+                position.className = "position";
+                position.index = index;
+                container.appendChild(position);
+                position.appendChild(move);
+                move.onmouseover = function () {
+                    this.style.zIndex = zIndex + 1;
+                };
+                move.onmouseout = function () {
+                    this.style.zIndex = this.zIndex;
+                };
+            }
+            var i, element;
+            var models = [		
+                { numRows: 4, numCols: 4, urlImg: "bergson.png" },
+                { numRows: 4, numCols: 4, urlImg: "comte.png" },
+                { numRows: 4, numCols: 4, urlImg: "descartes.png" },
+                { numRows: 4, numCols: 4, urlImg: "hegel.png" },
+                { numRows: 4, numCols: 4, urlImg: "hume.png" },
+                { numRows: 4, numCols: 4, urlImg: "kant.png" },
+                { numRows: 4, numCols: 4, urlImg: "kierkegaard.png" },
+                { numRows: 4, numCols: 4, urlImg: "nietzsche.png" },
+                { numRows: 4, numCols: 4, urlImg: "pascal.png" },
+                { numRows: 4, numCols: 4, urlImg: "rousseau.png" },
+                { numRows: 4, numCols: 4, urlImg: "sartre.png" },
+                { numRows: 4, numCols: 4, urlImg: "schopenhauer.png" },
+                { numRows: 4, numCols: 4, urlImg: "spinoza.png" },
+            ];
+            function createListModels() {
+                var HTMLmodels = "<h2>" + TR_selecciona + "</h2>";
+                models.forEach(function (e, i) {
+                    HTMLmodels +=
+                        "<div onClick='selectModel(" +
+                        i +
+                        ")'>" +
+                        e.numCols * e.numRows +
+                        " " +
+                        TR_peces +
+                        "<br>" +
+                        '<img height="' +
+                        (e.numRows / 3) * 100 +
+                        '" src="' +
+                        host +
+                        e.urlImg +
+                        '" width="' +
+                        (e.numcols / 3) * 100 +
+                        '"><br><small>' +
+                        e.numCols * 100 +
+                        "x" +
+                        e.numRows * 100 +
+                        "</small></div>";
+                });
+                document.getElementById("models").innerHTML = HTMLmodels;
+            }
+            function createPuzzle(model) {
+                trosAlSeuLloc = 0;
+                container.innerHTML = "";
+                director = [];
+                index = 0;
+                trosSeleccionat = false;
+                numRows = model.numRows;
+                numCols = model.numCols;
+                container.style.width = numCols * 100 + "px";
+                container.innerHTML = "";
+                container.style.backgroundPositionY = 100 * model.numRows + "px";
+                for (row = 0; row < numRows; row++) {
+                    for (col = 0; col < numCols; col++) {
+                        var dades = dadesPeza(row, col, index);
+                        director.push(dades);
+                        crearTros(dades.path(), col, row, index);
+                        index++;
+                    }
+                }
+            }
+            function selectModel(i) {
+                document.getElementById("models").style.display = "none";
+                model = models[i];
+                createPuzzle(model);
+                setTimeout(function () {
+                    document.getElementById("start").disabled = false;
+                }, 200);
+                document.getElementById("fullscreen").className = isFullScreen ? "fullscreenOff" : "fullscreen";
+                tap.style.opacity = 0;
+                tap.style.top = "";
+                tap.style.minHeight = "";
+            }
+            document.addEventListener("DOMContentLoaded", function () {
+                if (typeof window.orientation !== "undefined") {
+                    document.write('<meta name="viewport" content="width=device-width,initial-scale=1.0"/>');
+                    document.write('<div style="font-size:24px;text-align:center;margin-top:100px">⚠️ Sorry. At the moment this app does not work on mobile devices.<div  style="font-size:100px">🤔<\/div><\/div>');
+                    return;
+                }
+                model = models[2];
+                createPuzzle(model);
+                createListModels();
+
+
+                document.getElementById("start").disabled = true;
+
+                document.getElementById("start").onclick = start;
+                setTimeout('document.getElementById("start").disabled=false', 200);
+                document.getElementById("modelsButton").onclick = showModels;
+                var botoFullScreen = document.getElementById("fullscreen");
+                botoFullScreen.fullScreen = false;
+                botoFullScreen.onclick = function () {
+                    if (this.className == "fullscreenCloseModels") {
+                        tap.style.opacity = 0;
+                        tap.style.top = "";
+                        tap.style.minHeight = "";
+                        document.getElementById("models").style.display = "none";
+                        this.className = isFullScreen ? "fullscreenOff" : "fullscreen";
+                        return;
+                    }
+                    if (this.fullScreen) {
+                        if (document.msExitFullscreen) {
+                            document.msExitFullscreen();
+                        } else {
+                            document.exitFullscreen();
+                        }
+                        this.className = "fullscreen";
+                    } else {
+                        if (document.body.msRequestFullscreen) {
+                            document.body.msRequestFullscreen();
+                        } else {
+                            document.body.requestFullscreen();
+                        }
+                        this.className = "fullscreenOff";
+                    }
+                    this.fullScreen = !this.fullScreen;
+                };
+                tap = document.getElementById("tap");
+                container = document.getElementById("container");
+            });
+            function scrollBodyTop() {
+                return document.body.scrollTop || document.documentElement.scrollTop;
+            }
+            function final() {
+                document.getElementById("modelsButton").disabled = false;
+                tap.style.minHeight = "";
+                tap.style.opacity = 0;
+                tap.style.top = "";
+
+                document.getElementById("models").style.display = "none";
+                document.getElementById("time").style.opacity = 1;
+            }
+            function showModels() {
+                document.getElementById("fullscreen").className = "fullscreenCloseModels";
+                document.getElementById("models").style.display = "block";
+                document.getElementById("time").style.display = "none";
+                tap.style.minHeight = "100%";
+                tap.style.display = "block";
+                tap.style.opacity = 1;
+                tap.style.top = 0;
+            }
+            function start() {
+                document.getElementById("start").disabled = true;
+                document.getElementById("modelsButton").disabled = true;
+
+                tap.style.minHeight = 0;
+                tap.style.opacity = 0;
+                document.querySelectorAll(".move").forEach(function (e, i) {
+                    e.zIndex = 1;
+                    e.style.filter = "";
+                    e.parentNode.removeChild(e);
+                    document.body.appendChild(e);
+                    e.style.top = Math.random() * window.innerHeight - 50 + "px";
+                    e.style.left = Math.random() * window.innerWidth - 50 + "px";
+                    setTimeout(function () {
+                        var angle = Math.floor(Math.random() * 4);
+                        var img = e.querySelector("div");
+                        img.style.transform = "rotate(" + angle * 90 + "deg)";
+                        img.style.transition = "";
+                        e.angle = angle;
+                    }, 10);
+                });
+                timeInitial = new Date().getTime();
+                document.getElementById("time").style.display = "none";
+                document.getElementById("time").style.opacity = 0;
+            }
+            function girar(boto, inc) {
+                boto.style.transform = "scale(.8)";
+                boto.style.cursor = "none";
+                setTimeout(function () {
+                    boto.style.transform = "";
+                    boto.style.cursor = "";
+                }, 60);
+                var tros = boto.parentNode.parentNode;
+                var position = document.querySelectorAll(".position")[tros.index];
+                tros.angle += inc;
+                var img = tros.querySelector("div");
+                img.style.transform = "rotate(" + tros.angle * 90 + "deg)";
+                if (tros.position().left > position.offsetLeft && tros.position().left < position.offsetLeft + 100 && tros.position().top > position.offsetTop && tros.position().top < position.offsetTop + 100) {
+                    if (tros.angle % 4 == 0) {
+                        tros.style.transition = ".15s";
+                        tros.style.left = position.offsetLeft + "px";
+                        tros.style.top = position.offsetTop + "px";
+                        setTimeout(function () {
+                            fixarTros(tros);
+                        }, 151);
+                    }
+                }
+            }
+            function takePiece(e) {
+                trosSeleccionat = this;
+                zIndex++;
+                this.style.zIndex = zIndex;
+                this.zIndex = zIndex;
+                offset = [this.offsetLeft - e.clientX, this.offsetTop - e.clientY];
+            }
+            function fixarTros(p) {
+                document.body.removeChild(p);
+                document.querySelectorAll(".position")[p.index].appendChild(p);
+                p.onmousedown = "";
+                p.onmouseover = "";
+                p.onmouseout = "";
+                p.onmousemove = "";
+                p.onmouseup = "";
+                p.style.cursor = "default";
+                p.style.position = "static";
+                p.style.filter = "drop-shadow(0px 0px 1px black)";
+                p.querySelectorAll("span").forEach(function (boto) {
+                    boto.style.display = "none";
+                });
+                p.style.transition = ".1s";
+                setTimeout(function () {
+                    p.style.transform = "scale(1.05)";
+                }, 50);
+                setTimeout(function () {
+                    p.style.transform = "scale(1)";
+                }, 150);
+                setTimeout(function () {
+                    p.style.zIndex = 0;
+                }, 250);
+                trosAlSeuLloc++;
+                if (trosAlSeuLloc == numRows * numCols) {
+                    var timeSpent = Math.floor((new Date().getTime() - timeInitial) / 1000);
+                    var hores = Math.floor(timeSpent / 3600);
+                    var minuts = Math.floor((timeSpent - hores * 3600) / 60);
+                    var segons = timeSpent - hores * 3600 - minuts * 60;
+                    hores = hores > 0 ? hores + "<sup>h<\/sup>" : "";
+                    minuts = minuts > 0 ? minuts + "<sup>m<\/sup>" : "";
+                    document.getElementById("resultat").innerHTML = hores + minuts + segons + "<sup>s<\/sup>";
+                    document.getElementById("time").style.display = "block";
+                    setTimeout(final, 1000);
+                }
+            }
+            function placePiece(p) {
+                var position = document.querySelectorAll(".position")[p.index];
+                if (p.position().left > position.offsetLeft && p.position().left < position.offsetLeft + 100 && p.position().top > position.offsetTop && p.position().top < position.offsetTop + 100) {
+                    if (p.angle % 4 == 0) {
+                        p.style.transition = "0.1s";
+                        p.style.left = position.offsetLeft + "px";
+                        p.style.top = position.offsetTop + "px";
+                        setTimeout(function () {
+                            fixarTros(p);
+                        }, 100);
+                    }
+                }
+            }
+            function dropPiece() {
+                placePiece(trosSeleccionat);
+                trosSeleccionat = false;
+            }
+            document.addEventListener(
+                "mousemove",
+                function (event) {
+                    event.preventDefault();
+                    if (trosSeleccionat) {
+                        mousePosition = { x: event.clientX, y: event.clientY };
+                        trosSeleccionat.style.left = mousePosition.x + offset[0] + "px";
+                        trosSeleccionat.style.top = mousePosition.y + offset[1] + "px";
+                    }
+                },
+                true
+            );
+            function getPos(e) {
+                var x = e.clientX - this.offsetLeft;
+                var y = e.clientY - this.offsetTop + scrollBodyTop();
+                this.onmousedown = takePiece;
+                this.style.cursor = "move";
+            }
+            isFullScreen = false;
+            document.addEventListener("fullscreenchange", function () {
+                isFullScreen = window.innerHeight == screen.height;
+                if (document.getElementById("fullscreen").className == "fullscreenCloseModels") return;
+                document.getElementById("fullscreen").className = isFullScreen ? "fullscreenOff" : "fullscreen";
+            });
+            function stopTracking() {}
+        </script>
+    </head>
+    <body>
+        <div id="cap">
+
+            <input id="modelsButton" type="button" value="Choisir" />
+            <input id="start" disabled type="button" value="Commencer" />
+
+        </div>
+        <div id="tap">
+            <div id="models"></div>
+        </div>
+        <div id="container"></div>
+        <div id="time"><span>temps utilisé :</span> <em id="resultat"></em></div>
+        <div id="fullscreen" class="fullscreen"></div>
+        <script>
+            TR_peces = "pièces";
+            TR_selecciona = "sélectionner le portrait d'un philosophe";
+
+	
+        </script>
+    </body>
+</html>

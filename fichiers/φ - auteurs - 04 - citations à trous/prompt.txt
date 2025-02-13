@@ -1,0 +1,8 @@
+"Pouvez-vous me fournir le contenu complet du fichier citations.js ainsi que le code HTML entier de l'application 'citations à trous', incluant toutes les modifications récentes comme l'animation des étiquettes lors de la correction et le changement de titre en 'citations à trous' ?" Voici comment vous pourriez procéder pour obtenir ce que vous voulez :
+
+    Demander le fichier citations.js :
+        "Pouvez-vous me fournir le fichier citations.js avec des citations contenant deux phrases et cinq mots cachés par citation ?"
+    Demander le code HTML :
+        "Pouvez-vous me donner le code HTML complet de l'application 'citations à trous', qui inclut l'animation graphique des étiquettes vers leur bon emplacement lorsqu'on appuie sur le bouton 'Corriger' ?"
+
+En utilisant ces prompts, vous devriez être en mesure d'obtenir les fichiers nécessaires avec les spécifications que vous avez demandées.

@@ -1,0 +1,666 @@
+<!DOCTYPE html><html lang="fr">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3.0">
+	<link rel="icon" type="image/svg+xml" href="src/favicon.ico" />
+	<title>quiz φ</title>
+	<link rel="stylesheet" href="src/css.css">
+</head>
+
+<body>	
+	<br><br>
+
+	<main id="content" class="content--v2" role="main" data-template-id="quiz">
+		<!-------------------------------- barre de titre ----------------------------------------------------->
+		<div class="wrapper--with-menu content--v2--header">
+			<div class="wrapper--grid-playlist">
+				<div class="grid-area--player grid-area--player-relative">		
+					<div id="quiz" class="container--quiz" data-slug="quiz-l-art">
+						<div id="quizStart">
+							<div class="container--quiz-start">
+								<div class="quiz-start__img">
+									<img class="lazy" alt="" src="rousseau.png" data-src="" data-srcset="" />
+									<div class="quiz-start__opacity"></div>
+									<div class="quiz-start__button">
+										<button id="quizStartBtn" class="quiz-btn quiz-btn--large quiz-btn--fill" type="button" tabindex="0" aria-label="Commencer le quiz L'art en Philo">Commencer le quiz </button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div id="quizQuestions" class="hidden" data-reviewing="false">
+							<div class="progress-bar">
+								<div class="progress-bar__info">
+									<div class="progress-bar__title">
+									<img src="src/phi.png" alt="philosophie">
+									<h1 id="quizTitle" aria-label="Rousseau 1/14 , cochez le bouton radio choisi pour valider votre réponse.">Rousseau : le philosophe</h1>
+									</div>
+									<div class="progress-bar__count" aria-hidden="true">
+									<span id="currentQuestion">1</span> /  
+									<span id="totalQuestions" data-value="14">14</span>
+									</div>
+								</div>
+								<div class="progress-bar__cursor">
+									<span class="progress-bar__cursor--dynamic"></span>
+								</div>
+							</div>
+
+						<!--------------------------------------- question n°01 ----------------------------------------------------->
+							<div class="container--question " data-question="1" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>À quoi Rousseau s'identifie-t-il dans la nature&nbsp?</p></legend>
+										<ul>
+	
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">aux oiseaux</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">aux fleurs des sous-bois</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">à la nature entière</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Rousseau fait découvrir à ses lecteurs des lieux, avec des descriptions qui ont une valeur informative. Mais il va beaucoup plus loin et « subjectivise » le paysage : il se considère comme un élément du paysage. Il y participe et s'y fond, dans un état proche de l'extase.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°01 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°02 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="2" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Dans quel livre Jean-Jacques Rousseau aborde-t-il les fondements de ce qui deviendra l'ethnologie ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite"><i>Du contrat social ou principes du droit politique</i></span>
+												</div>
+											</li>					
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite"><i>Discours sur l'origine et les fondements de l'inégalité parmi les hommes</i></span>
+												</div>
+											</li>	
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite"><i>Les Confessions</i></span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Ce livre a été publié en 1755. Rousseau y explique que les Européens n'étudient que les hommes de leur pays. Il souhaiterait qu'ils dépassent leurs préjugés et apprennent à connaître les mœurs des autres hommes.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°02 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°03 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="3" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Rousseau est un démocrate.</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Vrai</span>
+												</div>
+											</li>				
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Faux</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Rousseau souhaite l'instauration d'une démocratie qui repose sur un contrat social, un pacte librement établi entre les citoyens. Il défend l'idée d'une démocratie directe : les citoyens ne seraient pas représentés par des députés, car pour lui « la volonté ne se représente point ».</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°03 ----------------------------------------------------->	
+
+						<!--------------------------------------- question n°04 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="4" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Quelle est la source du mal dans la société, selon Rousseau ?</p></legend>
+										<ul>					
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">les mauvais traitements infligés aux enfants</span>
+												</div>
+											</li>	
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">les inégalités entre les citoyens</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">le manque d'éducation</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>En 1753, l'académie de Dijon propose un sujet : « Quelle est l'origine de l'inégalité parmi les hommes et si elle est autorisée par la loi naturelle. » Rousseau y répond que l'inégalité vient de la propriété. Elle profite aux riches et, selon lui, est la source du mal et des conflits.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°04 ----------------------------------------------------->			
+							
+						<!--------------------------------------- question n°05 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="5" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Comment Rousseau retrouve-t-il l'image des premiers temps de l'humanité ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">en s'enfonçant dans la forêt</span>
+												</div>
+											</li>										
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">en se baignant dans un lac</span>
+												</div>
+											</li>				
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">en se promenant dans une ville</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Dans ses récits, Rousseau se présente souvent marchant en forêt. Il imagine un homme antérieur à la société, à l'état de nature. Cet homme est peu sujet aux maladies, qui selon Rousseau naissent dans la vie civilisée. Il se nourrit de plantes et boit l'eau des ruisseaux.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°05 ----------------------------------------------------->					
+
+						<!--------------------------------------- question n°06 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="6" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Comment retrouver l'homme originel, selon Rousseau ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">en se retirant de la société</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">en devenant pauvre</span>
+												</div>
+											</li>											
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">en découvrant notre intériorité </span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Chez Rousseau, la recherche de l'origine passe par une ascèse et une anamnèse personnelles. Il invite à aller retrouver en soi-même l'homme originel sous les masques sociaux et les normes. C'est ce qu'il entreprend dans <i>Les Confessions</i>, son œuvre majeure.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°06 ----------------------------------------------------->					
+
+						<!--------------------------------------- question n°07 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="7" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Rousseau pense qu'il faut se battre pour que les hommes soient égaux.</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Vrai.</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Faux.</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Pour Rousseau, les hommes sont censés être égaux comme les animaux de chaque espèce. Selon lui l'inégalité est due à l'histoire, elle lui est insupportable. Il imagine une solution : une libre convention entre citoyens qui renoncent à leurs intérêts personnels.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°07 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°08 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="8" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>À quelle catégorie de philosophes Rousseau appartient-il ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Les philosophes des Lumières</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Les philosophes structuralistes</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Les philosophes positivistes</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Ces philosophes européens du 18e siècle cherchaient à combattre les ténèbres de l'ignorance par la diffusion du savoir. Comme eux, Rousseau exalte la nature mais, pour lui, la sophistication des savoirs favorise trop la séduction et donc la servitude.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°08 ----------------------------------------------------->
+						
+						<!--------------------------------------- question n°09 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="9" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Pourquoi Rousseau s'intéresse-t-il aux écrits des philosophes ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">pour réussir à un examen important</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">pour obéir à sa bienfaitrice, Madame de Warens</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">pour se constituer un magasin d'idées</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Rousseau veut penser par lui-même. Il échafaude au fil du temps une philosophie et une science politique. Son premier texte philosophique, le <i>Discours sur l'origine et les fondements de l'inégalité parmi les hommes</i> le rend célèbre. Il est un philosophe des Lumières.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°09 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°10 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="10" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Qui doit établir les lois dans le modèle social pensé par Rousseau ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">l'élite</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">les citoyens</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">les monarques</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Chez Rousseau, la loi est la loi qu'on s'est soi-même donnée. Le même individu, en tant que citoyen, promulgue les lois et, en tant que sujet, y obéit. Cela nécessite de se plier à la volonté générale, pas aux volontés particulières.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°10 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°11 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="11" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Pour Rousseau, quand la législation atteint-elle sa perfection ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Quand chaque citoyen devient autonome.</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Quand chaque citoyen s'oublie lui-même.</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Quand chaque citoyen ne peut rien que par les autres.</span>
+												</div>
+											</li>
+
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Il évoque une dépendance à l'égard de tous qui n'est une dépendance à l'égard d'aucun en particulier. Et dans le contrat social, la patrie est comme la « mère commune des citoyens ».</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°11 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°12 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="12" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Pour Rousseau, les citoyens du contrat social ne sont pas libres.</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Vrai</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Faux</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Pour Rousseau, en renonçant par le contrat social à sa liberté naturelle, le citoyen ne renonce pas pour autant à sa liberté. Il dispose d'une liberté civile réglée par la loi. Cette loi le protège et il jouit d'une liberté réelle. La liberté naturelle, elle, est fictive.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°12 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°13 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="13" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>De quelle nature est le contrat social imaginé par Rousseau ?</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="1">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">une association</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">une concertation</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">une aliénation</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>Dans le contrat social, chacun s'unit à tous. Cette relation est différente des liens familiaux, ethniques, religieux ou économiques. Pourtant, dans cette relation politique, chacun cherche « constamment le bonheur de chacun ». Elle tend vers le bien commun.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°13 ----------------------------------------------------->
+
+						<!--------------------------------------- question n°14 ----------------------------------------------------->
+							<div class="container--question hidden" data-question="14" data-correct="">	
+								<fieldset>
+									<legend class="quiz__question"><p>Dans son traité <i>Du contrat social</i>, Rousseau définit une forme de société idéale où les hommes s'associent tout en gardant leur liberté.</p></legend>
+										<ul>
+											<li class="quiz-answer quiz-answer--valid quiz-answer--default" data-correct="true" data-position="2">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="false" tabindex="0">
+													<img src="src/true.svg" class="hidden" alt="">
+													<span aria-live="polite">Vrai</span>
+												</div>
+											</li>
+											<li class="quiz-answer quiz-answer--invalid quiz-answer--default" data-correct="false" data-position="3">
+												<div class="quiz-checkbox" role="checkbox" aria-checked="true" tabindex="0">
+													<img src="src/false.svg" class="hidden" alt="">
+													<span aria-live="polite">Faux</span>
+												</div>
+											</li>
+										</ul>
+								</fieldset>
+							
+								<div class="quiz-explanation" aria-live="polite">
+									<div class="quiz-explanation__label ">
+										<div class="quiz-explanation__label__icon success">
+											<img src="src/emoji-happy.gif" alt="" aria-hidden="true">
+										</div>
+										<div class="quiz-explanation__label__icon error">
+											<img src="src/emoji-sad.gif" alt="" aria-hidden="true">
+										</div>
+										<span>Mauvaise réponse !</span>
+									</div>
+									<p class="quiz-explanation__detail">
+										<p>L'ouvrage <i>Du contrat social</i>, paru en 1762, est l'exposé des principes politiques de Jean-Jacques Rousseau. L'auteur place la notion de volonté générale au cœur de sa conception de la démocratie.</p>
+									</p>
+								</div>
+							</div>
+						<!----------------------------------- fin question n°14 ----------------------------------------------------->
+
+							<div id="quizBtnControls" class="container--quiz-btn hidden">
+								<button id="nextQuestion" class="quiz-btn quiz-btn--default quiz-btn--fill" type="button" tabindex="0" aria-label="passer à la question suivante">Suivant</button>
+							</div>
+						</div>
+						
+						<div id="quizEnd" class="hidden">
+							<div class="container--quiz-end" data-result="loose">
+								<div class="container--quiz-results">
+									<div class="container--quiz-message"><p class="quiz-end__results">
+										<span class="quiz-end__message-failure">Votre score :</span>
+										<br><br>
+										<span class="quiz-end__score">0</span> bonne(s) réponse(s) sur 14.</p>
+										<br>
+									</div>
+									<br><br>
+									<div class="container--quiz-btn">
+										<button id="quizReview" class="quiz-btn quiz-btn--default quiz-review-btn" type="button" aria-label="Voir la correction">
+											<span class="quiz-review-answers">Réponses</span>
+											<span class="quiz-review-correction">Correction</span>
+										</button>
+										<button class="quiz-btn quiz-btn--default quiz-btn--fill quiz-btn-retry" type="button" tabindex="0" aria-label="Rejouer">Réessayer</button>
+										<button id="quizNext" class="quiz-btn quiz-btn--default quiz-btn--fill quiz-btn-next" type="button" tabindex="1" aria-label="Suivant">Suivant</button>
+									</div>
+									<a href="#playlistQuiz" title="" class="quiz-end__link"></a>
+								</div>
+							</div>
+						</div>						
+						<button class="fullscreen-quiz"></button>
+					</div>	
+				</div>
+				
+				<!-- conteneur vide à droite sur la plage -->
+				<div class="grid-area--playlist" id="playlistQuiz"></div>	
+			</div>
+		</div>
+	</main>
+		<script src="src/java.js"></script>
+	</body>
+</html>

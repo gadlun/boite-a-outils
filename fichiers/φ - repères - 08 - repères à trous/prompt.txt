@@ -1,0 +1,20 @@
+Prompt : Développez une application web interactive qui permet aux utilisateurs de réviser des repères philosophiques à travers un exercice de texte à trous. L'application doit inclure les fonctionnalités suivantes :
+
+    Affichage du Texte à Trous :
+        Le texte doit contenir des phrases avec certains mots manquants, représentés par des "trous" (éléments HTML <span>).
+        Les trous doivent être centrés verticalement par rapport à la ligne de texte, même lorsqu'ils sont vides.
+    Banque de Mots :
+        Une banque de mots doit être générée, contenant les mots manquants du texte.
+        Les mots dans la banque doivent être affichés sous forme de tags cliquables, permettant aux utilisateurs de les faire glisser et de les déposer dans les trous correspondants.
+    Interactions Utilisateur :
+        Les utilisateurs doivent pouvoir faire glisser les mots depuis la banque et les déposer dans les trous.
+        Lorsque le mot est déposé dans un trou, il doit remplacer le trou vide.
+    Vérification des Réponses :
+        Un bouton "Vérifier" doit permettre aux utilisateurs de vérifier leurs réponses.
+        Si un trou est rempli correctement, il doit être marqué comme correct ; sinon, il doit être marqué comme incorrect.
+        Un bouton "Corriger" doit permettre aux utilisateurs de voir les réponses correctes après avoir vérifié.
+    Ajustements Visuels :
+        Les éléments doivent avoir un style visuel agréable, avec des ombres et des coins arrondis pour améliorer l'interface utilisateur.
+        Les tags doivent être centrés verticalement par rapport à leur conteneur.
+    Gestion des Majuscules :
+        Tous les mots dans la banque et les trous doivent être en minuscules pour éviter toute confusion.

@@ -1,0 +1,114 @@
+*,body,html{color:#000}
+* h1{color:#000}
+* h3{margin:0;padding:1em .5em;color:#FFF;background-color:#000}
+* a,* a:focus,* a:hover,* a:active{color:#000}
+* a{border-bottom:1px dotted #000}
+* a:focus,* a:hover,* a:active{text-decoration:underline!important;border:0}
+* img,#logo_et_urlEGF .logo{filter:grayscale(1)}
+.acces-rapides > li.outils-rapides{background:#000}
+#actus{display:flex;flex-wrap:wrap}
+#actus .actu div[id^="logo_article_"] h2.classique{display:none}
+#actus .actu div[id^="logo_article_"] h2.contraste{display:block;top:0;bottom:unset;color:#000}
+#actus .actu div[id^="logo_article_"] a.classique{display:none}
+#actus .actu div[id^="logo_article_"] div.contraste{display:block;padding-left:1em;border-left:1em solid transparent;box-shadow:inset 5px 0 0 0 #000}
+#actus .actu div[id^="logo_article_"] div.texte.contraste,#contenu.rubrique div.texte.contraste{display:block}
+table caption{background-color:#000}
+em.sr-only{color:#000!important}
+.btn-default{background-color:#000}
+.btn-default:hover{color:#000!important;background-color:#FFF;border:1px solid #000}
+mark{background-color:#F9F9F9}
+#cookie-bar{background-color:#F9F9F9!important}
+#cookie-bar .cb-enable{background:#000!important}
+#cookie-bar .cb-policy{background:#000!important}
+.navbar-default{background-color:#000}
+.navbar-default .navbar-nav > li > a:focus,.navbar-default .navbar-nav > li > a:hover,.navbar-default .navbar-nav .menu-large .on{background-color:#000}
+.navbar-default .navbar-nav > .open > a,.navbar-default .navbar-nav > .open > a:focus,.navbar-default .navbar-nav > .open > a:hover{background-color:#000}
+.megamenu p{color:#000}
+.megamenu> li > ul > li > a,.navbar-nav .open .dropdown-menu li ul.important li.chapo ul li a{color:#000;white-space:normal;border-left:5px solid #000}
+.megamenu> li > ul > li.dropdown-header > a{color:#FFF}
+.dropdown-header{background-color:#000}
+.navbar-default .navbar-collapse,.navbar-default .navbar-form{background-color:#000}
+.navbar-outils > div a{color:#000}
+#cPanneau.ouvert,#cPanneau #outils-rapides div.outils-rapides{background:#000}
+#cPanneau #outils-rapides div.outils-rapides.ouvert a em{color:#000}
+#cPanneau h2{color:#000}
+#cPanneau ul li::before{color:#000}
+#accessibilite div.styleactuel{background:#000}
+#accessibilite div{border-color:#000}
+#fermerOutils a em{color:#FFF}
+.navbar-nav .open .dropdown-menu{border:1px solid #000}
+.navbar-default .navbar-toggle:focus em.fa,.navbar-default .navbar-toggle:hover em.fa{color:#000}
+.dropdown-menu li.lien-rubrique a,.dropdown-menu li.lien-rubrique a:focus,.dropdown-menu li.lien-rubrique a:hover{background-color:#000}
+.navbar-nav .open .dropdown-menu li ul.important li,.navbar-nav .open .dropdown-menu li ul.important li.chapo p{border-left:medium solid #000!important}
+.navbar-nav .open .dropdown-menu li ul.important li.chapo p,.navbar-nav .open .dropdown-menu li ul.important li.chapo ul{border:1px solid #000}
+.navbar-nav .open .dropdown-menu li ul.important li.dropdown-header{background-color:#000!important}
+#recherche input[type="text"]{color:#000;box-shadow:inset 0 0 0 1px #000}
+#recherche em.fa-times{color:#000}
+#recherche button[type="submit"]{background-color:#000}
+#recherche button:hover[type="submit"],#recherche button:focus[type="submit"]{color:#000;background-color:#FFF}
+#recherche > a{color:#000}
+#recherche > a:hover > em{color:#FFF;background-color:#000;width:100%}
+#recherche > ul > li{background-color:#000}
+div.scrollup-visible em{text-shadow:0 0 0 #FFF}
+div.scrollup-visible em,div.scrollup-visible em:hover{color:#000}
+#actus .actu .back div.plus em{color:#000}
+#actus .front > h2,#actus .back > h2,#actus .back div.alaune_sanstitre{background-color:#000}
+#actus .actu .front h2{color:#000;opacity:1}
+#agenda-up,#agenda-down{color:#000}
+.agenda{box-shadow:0 0 0 1px #000 inset}
+.agendaplus{background-color:#000}
+#agenda li.mois,.agenda li.mois{background-color:#000}
+#agenda li.lien em,.agenda li.lien em{color:#000}
+#contenu #agenda li.lien a,#contenu .agenda li.lien a{color:#000}
+#agenda-liens div{background-color:#000}
+#agenda-liens div:hover{background-color:#000}
+.actusautres h2,.actusautres p{color:#000}
+.actusautres a.btn-default{background-color:#000}
+.actusautres a:hover.btn-default{color:#000;border-color:#000}
+.actusautres-background{background-image:none!important}
+div.menu-rubrique > h2 a{color:#000}
+div.menu-rubrique.encart{box-shadow:1px 1px 5px #000}
+div.menu-important{box-shadow:0px 0px 1px 1px #000 inset}
+div.menu-important > h2{background-color:#000}
+div.menu-important > h2 a{color:#FFF}
+div.menu-important ul.secteurSousMenu li em::before{color:#000!important}
+#contenu div.rss em,#contenu div.rss a{color:#000}
+#sommaire a,#sommaire li::before{color:#000!important}
+#sommaire h2{color:#000!important}
+#sommaire.replie,#sommaire.ouvert{border:2px solid #000}
+#sommaire::before{color:#000}
+#contenu .siteref{box-shadow:0px 0px 0px 3px #000 inset}
+#contenu.rubrique dl.spip_documents,#contenu.contenu-central dl.spip_documents{background-color:#FFF;box-shadow:inset 0 0 0 1px #000}
+#contenu.rubrique dl.spip_documents dd span,#contenu.contenu-central dl.spip_documents dd span{color:#FFF;background:#000}
+#contenu-droit #documents{border:1px solid #000;background-color:#FFF}
+#contenu-droit #ensavoirplus,#contenu #ps{background-color:#FFF;border:1px solid #000}
+#contenu-droit #avoiraussi{background-color:#000}
+#contenu.contenu-central h2{border-left-color:#000}
+#contenu.contenu-central ul li:before,#contenu.rubrique div.texte ul li:before,#contenu-droit ul li:before,#notes ul li:before{color:#000}
+#contenu.contenu-central ol > li,#contenu.contenu ol > li,#contenu #ps ol > li{border-left:2px solid #000}
+#contenu.contenu-central ol > li:before,#contenu.contenu ol > li:before,#contenu #ps ol > li:before{color:#000}
+#contenu-droit ul li em.sr-only{color:#000!important}
+#contenu #ps h2{background-color:#FFF}
+#contenu #menuRS *{color:#000}
+#contenu #menuRS{border-color:#000}
+#contenu #menuRS h2{background-color:#000}
+#contenu #menuRS ul li em.fa:hover,#contenu #menuRS ul li em.fa:focus{color:#FFF!important;background-color:#000;border:3px solid transparent}
+div.formulaire_formidable p.boutons input[type="submit"]{background-color:#000}
+div .formulaire_formidable .slideOne{background:#000}
+div .formulaire_formidable .slideOne label{border:2px solid #000}
+div .formulaire_formidable .squaredThree label{background:#000}
+.barre_alphabetique{background-color:#000!important;border:1px solid transparent}
+.lettre_contexte{background-color:#FFF;color:#000!important}
+a.cs_glossaire span.gl_mot{color:#000!important}
+h2 a.cs_glossaire span.gl_mot{color:#000!important}
+#promolongue div.logo{background:#000}
+#promoMEN{display:flex;flex-wrap:wrap}
+#promoMEN div.classique{display:none}
+#promoMEN div.contraste{display:block;border:0;margin:1em}
+#promoMEN div.contraste:hover{background-color:#FFF}
+#liens_pied_page{background-color:#FFF}
+#liens_pied_page > div{background-color:#FFF}
+#liens_pied_page h2{color:#000}
+#liens_pied_page h3{border-bottom:1px dotted #000}
+#liens_pied_page a{color:#000}
+footer{background-color:#000}

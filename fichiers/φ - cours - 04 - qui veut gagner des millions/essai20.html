@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qui veut gagner des millions ?</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #000033;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        button {
+            margin-right: 20px;
+            display: block;
+        }
+		.button-container {
+			display: flex;
+			flex-direction: column; /* Met les boutons en colonne */
+			gap: 20px; /* Espace entre les boutons */
+		}
+        #game-container {
+            width: 100%;
+            max-width: 800px;
+            height: 460px;
+            min-height: 400px;
+            max-height: 90vh;
+            background-image: radial-gradient(circle, #000066 0%, #000033 100%);
+            border: 2px solid #4444ff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #4444ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .frame {
+            width: 400px;
+            height: 460px;
+            background-image: radial-gradient(circle, #000066 0%, #000033 100%);
+            border: 2px solid #4444ff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #4444ff;
+            margin-left: 5mm;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+        }
+        #logo {
+            display: block;
+            margin: 0 auto 10px;
+            max-width: 150px;
+            max-height: 75px;
+        }
+        h1 {
+            text-align: center;
+            color: #ff9900;
+            font-size: 20px;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        #question-container {
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: transparent;
+            border-radius: 10px;
+        }
+        #answers-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .answer-btn {
+            background-color: #000088; /* Couleur de fond normale */
+            border: none;
+            padding: 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 25px;
+            min-width: 150px; /* Largeur minimum pour bien afficher le texte */
+            margin: 5px; /* Marge pour l'espacement */
+        }
+
+        .answer-btn .answer-text {
+            color: orange; /* Couleur du texte pour "⬪" */
+        }
+        
+        .answer-btn .answer-response {
+            color: white; /* Texte après ":" en blanc par défaut */
+        }
+
+        .answer-btn:hover {
+            background-color: #ff9900; /* Couleur de fond au survol */
+        }
+
+        .answer-btn:hover .answer-text {
+            color: white; /* Changer la couleur du texte au survol */
+        }
+
+        .answer-btn:hover .answer-response {
+            color: black; /* Changer la couleur des réponses au survol */
+        }
+
+        .correct-answer {
+            background-color: #28a745; /* Vert pour la bonne réponse */
+            color: white; /* Garder le texte en blanc */
+        }
+
+        #next-question-btn {
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+        #jokers-container {
+            display: none; /* Cacher les jokers initialement */
+            justify-content: center;
+            margin-top: 15px;
+        }
+        .joker-btn {
+            background-color: transparent;
+            border: none;
+            width: 50px;
+            height: 50px;
+            margin: 0 15px;
+            cursor: pointer;
+        }
+        .joker-btn img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+        .paliers, .scores {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            flex-basis: auto;
+            width: 50%;
+            margin: 0;
+            text-align: center;
+            color: #ff9900; /* Couleur de base */
+            font-size: auto;
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+        .paliers div, .scores div {
+            text-align: right;
+            color: #ff9900; /* Couleur de base */
+            width: auto;
+        }
+        .paliers div.special, .scores div.special {
+            color: white; /* Pour les valeurs spéciales */
+        }
+    </style>
+</head>
+<body>
+    <audio id="audioPlayer" preload="auto">
+        <source src="audio/generique.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="fiftyFiftyAudio" preload="auto">
+        <source src="audio/joker-50-50.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="phoneAFriendAudio" preload="auto">
+        <source src="audio/joker-appel.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="publicHelpAudio" preload="auto">
+        <source src="audio/joker-public.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="easyQuestionsAudio" preload="auto">
+        <source src="audio/questionstrèsfaciles.mp3" type="audio/mpeg">
+    </audio>
+
+    <button onclick="playAudio()">générique</button>
+    <button onclick="startGame()">lancer jeu</button>
+
+    <div id="game-container">
+        <img id="logo" src="img/logo.png" alt="Logo Qui veut gagner des millions">
+        <h1>Qui veut gagner des millions ?</h1>
+        
+        <div id="question-container"></div>
+        <div id="answers-container"></div>
+
+        <button id="next-question-btn" onclick="nextQuestion()" style="display:none;">Question suivante</button>
+
+        <div id="jokers-container">
+            <button class="joker-btn" onclick="useFiftyFifty()"><img src="img/50-50.png" alt="50/50"></button>
+            <button class="joker-btn" onclick="usePhoneAFriend()"><img src="img/appel.png" alt="Appel"></button>
+            <button class="joker-btn" onclick="usePublicHelp()"><img src="img/public.png" alt="Public"></button>
+        </div>
+    </div>
+
+    <div class="frame">
+        <div class="paliers">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div class='special'>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div class='special'>10</div>
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+            <div>14</div>
+            <div class='special'>15</div>
+        </div>
+
+        <div class="scores">
+            <div>200 €</div>
+            <div>300 €</div>
+            <div>500 €</div>
+            <div>800 €</div>
+            <div class='special'>1500 €</div>
+            <div>3000 €</div>
+            <div>6000 €</div>
+            <div>12000 €</div>
+            <div>24000 €</div>
+            <div class='special'>48000 €</div>
+            <div>72000 €</div>
+            <div>100000 €</div>
+            <div>150000 €</div>
+            <div>300000 €</div>
+            <div class='special'>1000000 €</div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+
+    <!-- Logique du jeu -->
+    <script>
+        let currentQuestionIndex = 0;
+
+        function playAudio() {
+            var audio = document.getElementById('audioPlayer');
+            audio.play();
+        }
+
+        function startGame() {
+            initializeGame();
+            document.getElementById('easyQuestionsAudio').play(); 
+            displayQuestion();
+            document.getElementById('jokers-container').style.display = 'flex'; 
+        }
+
+        function initializeGame() {
+            currentQuestionIndex = 0;
+            document.getElementById('answers-container').innerHTML = ''; 
+            document.getElementById('next-question-btn').style.display = 'none'; 
+        }
+
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex]; 
+            document.getElementById('question-container').innerText = question.question;
+
+            // Créer les boutons  
+            const answerButtons = question.answers.map((answer, index) => `
+                <button class='answer-btn' onclick='checkAnswer(${index})'>
+                    <span class="answer-text">⬪ ${String.fromCharCode(65 + index)} :</span> 
+                    <span class="answer-response">${answer}</span>
+                </button>
+            `);
+
+            // Disposer les boutons sur deux lignes  
+            const linesHtml = `
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                    <div style="flex: 1; display: flex; justify-content: space-around;">
+                        ${answerButtons[0]} <!-- Bouton A -->
+                        ${answerButtons[1]} <!-- Bouton B -->
+                    </div>
+                    <div style="flex: 1; display: flex; justify-content: space-around;">
+                        ${answerButtons[2]} <!-- Bouton C -->
+                        ${answerButtons[3]} <!-- Bouton D -->
+                    </div>
+                </div>
+            `; 
+
+            document.getElementById('answers-container').innerHTML = linesHtml; 
+        }
+
+        function checkAnswer(selectedIndex) {
+            const question = questions[currentQuestionIndex];
+            const buttons = document.querySelectorAll('.answer-btn');
+
+            // Retirer la classe de la bonne réponse des boutons précédents  
+            buttons.forEach(button => {
+                button.classList.remove('correct-answer');
+            });
+
+            if (selectedIndex === question.correctAnswer) {
+                // Ajouter la classe à la bonne réponse  
+                buttons[selectedIndex].classList.add('correct-answer');
+                setTimeout(nextQuestion, 1000); // Passer à la question suivante après une seconde  
+            } else {
+                alert("Mauvaise réponse !");
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex >= questions.length) {
+                alert("Fin du jeu !");
+                initializeGame(); 
+            } else {
+                displayQuestion();
+            }
+        }
+
+        function highlightScore(isCorrect) {
+            const palierDiv = document.querySelectorAll('.paliers div')[currentQuestionIndex];
+            const scoreDiv = document.querySelectorAll('.scores div')[currentQuestionIndex];
+            
+            if (isCorrect) {
+                palierDiv.style.color = 'black'; 
+                scoreDiv.style.color = 'black'; 
+                setTimeout(() => {
+                    palierDiv.style.color = '#ff9900'; 
+                    scoreDiv.style.color = 'white';
+                }, 1000); 
+            }
+        }
+
+        function useFiftyFifty() {
+            var audio = document.getElementById('fiftyFiftyAudio');
+            audio.play();
+        }
+
+        function usePhoneAFriend() {
+            var audio = document.getElementById('phoneAFriendAudio');
+            audio.play();
+            alert("Votre ami pense que la réponse est B.");
+        }
+
+        function usePublicHelp() {
+            var audio = document.getElementById('publicHelpAudio');
+            audio.play();
+            alert("Le public pense que la réponse correcte est A ou C.");
+        }
+
+        window.onload = function() {
+            var audio = document.getElementById('audioPlayer');
+            audio.play().catch(function(error) {
+                console.log("Lecture automatique bloquée : " + error);
+            });
+        };
+    </script>
+</body>
+</html>

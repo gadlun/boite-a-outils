@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Auto-complete</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<p>Autocomplete qui supporte les fautes de frappe</p>
+<p>Liste des oeuvres de Jules Verne en exemple, tapez pour tester (et même sans espaces):</p>
+<ul>
+  <li>cetre</li>
+  <li>chate carpa</li>
+  <li>avanture afriq</li>
+</ul>
+
+<input type="text" id="titre" onkeyup="autocomp(this);" >
+<span id="auto_titre" style="display:none;"></span>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>

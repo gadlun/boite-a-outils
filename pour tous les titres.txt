@@ -1,0 +1,37 @@
+REMARQUES SUR LES REPERES
+Jeu n°1 : L'élève est allé spontanément sur la boîte interrogation
+Jeu n°2 : matching words : pas de reload, tirage fixe
+Jeu n°3 : le pendu sur cahier, affichage quand grand format, le pendu est trop en haut à droite et pas calé sur une ligne
+Jeu n°4 : distinguer entre les notions : quand le premier tableau est une adresse obligé, dès le 2e tableau.
+En fait il faut imaginer que l'on voit l'objet saisi alors que l'objet n'est pas vu et est à distance du curseur (pb d'adresse)
+
+
+<!DOCTYPE html>
+<!------------------------------------ Daniel Boulagnon ------------------------------------>
+<!----------------------------- daniel.boulagnon@ac-lille.fr ------------------------------->
+<!------------------------------------- version 2025 --------------------------------------->
+<!----------------- Exploitation à but strictement pédagogique et non lucratif ------------->
+
+<html lang="fr" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="icon" href="../../src/favicon.ico" />
+	<title>d'ac ou pas d'ac ?</title>	
+	<p style="margin: 15px; line-height: 48px; text-align: center; color:red; font-size:40px; font-weight: bold; font-family: 'Muli', sans-serif">d'ac ou pas d'ac ?</p>
+	<p style="margin: 0px; line-height: 1px; text-align: center; color:black; font-size:20px">réviser les auteurs</p>
+	<br>
+
+
+
+faire :
+- un fichier avec deux colonnes : pouvoir faire drag des liens d'une colonne où il y a des mots et l'autre colonne où il y a les définitions
+
+
+https://www.ortholud.com/passe-compose-cliquer-glisser-partir.html
+https://www.ortholud.com/puzzles-vocabulaire.html
+
+https://edu.directplateforme.com/bordas/3133099081746/next/~structure
+
+texte à trous sur la liberté : https://www.atelierphilo.fr/exercice/revision-liberte-tstmg1-2019/
+
+mettre des liens entre deux colonnes différentes : https://edu.directplateforme.com/structure/demo/4710845007265792/next/~bordas~3133099081746~next~~structure?page=3

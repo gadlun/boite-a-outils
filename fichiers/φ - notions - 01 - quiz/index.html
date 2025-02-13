@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" href="src/src/favicon.ico" />
+    <title>quiz φ notions</title>
+    
+    <style>
+        /* Style général et réinitialisation */
+        body {
+            background-color: #ffffff;
+            color: black;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            padding: 20px;
+            overflow-x: hidden; /* Masque la barre de défilement horizontal */
+        }
+
+        .slider {
+            display: flex; 
+            overflow-x: auto; /* Permet le défilement horizontal */
+            scroll-behavior: smooth; /* Douceur du défilement */
+            gap: 10px; /* espace entre les slides, modifié */
+            padding-bottom: 10px; /* Padding pour laisser de la place à la scrollbar */
+            scrollbar-width: none; /* Cache la barre de défilement pour Firefox */
+        }
+
+        .slider::-webkit-scrollbar {
+            display: none; /* Cache la barre de défilement pour les autres navigateurs */
+        }
+
+        .slider__slide {
+            flex: 0 0 180px; /* Largeur fixe pour chaque slide, modifié */
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+        }
+
+        .card {
+            width: 180px; /* Largeur réduite */
+            height: 280px; /* Diminution de la hauteur des vignettes */
+            border-radius: 15px;
+            background: #ffffff;
+            box-shadow: 5px 5px 16px #d9d9d9;
+            transition: all 0.25s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; 
+            padding: 10px; 
+            position: relative; 
+        }
+
+        .card:hover {
+            transform: scale(1.05); 
+        }
+
+        .card__label {
+            position: absolute; 
+            top: 10px;
+            left: 10px;
+            font-size: 0.7rem; 
+            color: black; 
+            background-color: white; 
+            padding: 5px; 
+            border: none; 
+            border-radius: 0 0 5px 0; 
+            white-space: nowrap; 
+            width: auto; 
+            min-width: 50px; 
+            text-align: center; 
+        }
+
+        .card__imagearea {
+            width: 100%; 
+            height: auto;
+            text-align: center; 
+        }
+
+        .card__image {
+            width: 100%; 
+            height: 150px; 
+            border-radius: 10px; 
+        }
+
+        .card__info {
+            margin-top: 5px; 
+            text-align: left; 
+            width: 100%; 
+        }
+
+        .card__title {
+            font-size: 1.1rem; 
+            margin: 0; 
+            font-weight: bold; 
+        }
+
+        .card__metadata-info {
+            font-size: 0.8rem; 
+            color: #555; 
+            margin-top: 5px; 
+        }
+
+        .card__metadata-separator {
+            margin: 0 5px; 
+        }
+
+        /* Style pour le menu déroulant */
+        .dropdown {
+            margin-top: 20px; 
+            text-align: center; 
+        }
+
+        .dropdown label {
+            font-size: 1rem; 
+        }
+
+        .dropdown select {
+            padding: 10px; 
+            font-size: 1rem; 
+            border-radius: 5px; 
+            border: 1px solid #ccc; 
+            background-color: #ffffff; 
+            cursor: pointer; 
+            line-height: 1; 
+        }
+
+        .dropdown select option {
+            text-transform: lowercase; 
+            line-height: 1.2; 
+        }
+    </style>
+    <script>
+        function openPage() {
+            var selectedValue = document.getElementById("categories").value;
+            if (selectedValue) {
+                window.location.href = selectedValue; 
+            }
+        }
+    </script>
+</head>
+
+<body data-new-da="true" data-theme="lycee">
+    <main class="container--body" role="main" data-template-id="matière">
+        <h1 style="text-align: center; color: red;">quiz φ</h1>
+        <p style="text-align: center; font-size: 20px;">réviser les notions</p>
+
+        <div class="segment">
+            <div class="slider" data-cs-override-id="quiz-philo">
+                <!-- Cartes des quiz -->
+                <!-- Exemple de badge pour le quiz -->
+                <div class="slider__slide" role="group" aria-label="1 / 18" data-slide="1" data-card-type="quiz">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/art.html"><img class="lazy card__image" src="src/art.png" alt="Quiz sur l'art"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">art</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG & BTN  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="2 / 18" data-slide="2">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/bonheur.html"><img class="lazy card__image" src="src/bonheur.png" alt="Quiz sur le bonheur"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">bonheur</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="3 / 18" data-slide="3">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/conscience.html"><img class="lazy card__image" src="src/conscience.png" alt="Quiz sur la conscience"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">conscience</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="4 / 18" data-slide="4">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/devoir.html"><img class="lazy card__image" src="src/devoir.png" alt="Quiz sur le devoir"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">devoir</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="5 / 18" data-slide="5">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/état.html"><img class="lazy card__image" src="src/état.png" alt="Quiz sur l'état"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">État</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="6 / 18" data-slide="6">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/inconscient.html"><img class="lazy card__image" src="src/inconscient.png" alt="Quiz sur l'inconscient"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">inconscient</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="7 / 18" data-slide="7">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/justice.html"><img class="lazy card__image" src="src/justice.png" alt="Quiz sur la justice"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">justice</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG & BTN  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="8 / 18" data-slide="8">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/langage.html"><img class="lazy card__image" src="src/langage.png" alt="Quiz sur le langage"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">langage</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="9 / 18" data-slide="9">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/liberté.html"><img class="lazy card__image" src="src/liberté.png" alt="Quiz sur la liberté"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">liberté</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG & BTN  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="10 / 18" data-slide="10">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/nature.html"><img class="lazy card__image" src="src/nature.png" alt="Quiz sur la nature"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">nature</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG & BTN  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="11 / 18" data-slide="11">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/raison.html"><img class="lazy card__image" src="src/raison.png" alt="Quiz sur la raison"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">raison</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="12 / 18" data-slide="12">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/religion.html"><img class="lazy card__image" src="src/religion.png" alt="Quiz sur la religion"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">religion</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG & BTN  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="13 / 18" data-slide="13">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/science.html"><img class="lazy card__image" src="src/science.png" alt="Quiz sur la science"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">science</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="14 / 18" data-slide="14">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/technique.html"><img class="lazy card__image" src="src/technique.png" alt="Quiz sur la technique"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">technique</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG & BTN  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="15 / 18" data-slide="15">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/temps.html"><img class="lazy card__image" src="src/temps.png" alt="Quiz sur le temps"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">temps</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="16 / 18" data-slide="16">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/travail.html"><img class="lazy card__image" src="src/travail.png" alt="Quiz sur le travail"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">travail</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="17 / 18" data-slide="17">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/vérité.html"><img class="lazy card__image" src="src/vérité.png" alt="Quiz sur la vérité"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">vérité</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG & BTN  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider__slide" role="group" aria-label="18 / 18" data-slide="18">
+                    <div class="card">
+                        <span class="card__label"> QUIZ </span>
+                        <div class="card__imagearea">
+                            <a href="src/citations.html"><img class="lazy card__image" src="src/citations.png" alt="Quiz sur les citations"></a>
+                        </div>
+                        <div class="card__info">
+                            <p class="card__title">citations</p>
+                            <div class="card__metadata-info">10 questions  
+                                <span class="card__metadata-separator">|</span>φ BCG  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu déroulant -->
+        <div class="dropdown">
+            <label for="categories">choisissez une notion :</label>
+            <select id="categories" onchange="openPage()">
+                <option value="" disabled selected>-- sélectionner --</option>
+                <option value="src/art.html">art</option>
+                <option value="src/bonheur.html">bonheur</option>
+                <option value="src/conscience.html">conscience</option>
+                <option value="src/devoir.html">devoir</option>
+                <option value="src/état.html">État</option>
+                <option value="src/inconscient.html">inconscient</option>
+                <option value="src/justice.html">justice</option>
+                <option value="src/langage.html">langage</option>
+                <option value="src/liberté.html">liberté</option>
+                <option value="src/nature.html">nature</option>
+                <option value="src/raison.html">raison</option>
+                <option value="src/religion.html">religion</option>
+                <option value="src/science.html">science</option>
+                <option value="src/technique.html">technique</option>
+                <option value="src/temps.html">temps</option>
+                <option value="src/travail.html">travail</option>
+                <option value="src/vérité.html">vérité</option>
+                <option value="src/citations.html">citations</option>
+            </select>
+        </div>
+    </main>
+    <script>
+        function openPage() {
+            var selectedValue = document.getElementById("categories").value;
+            if (selectedValue) {
+                window.location.href = selectedValue; 
+            }
+        }
+    </script>
+</body>
+</html>

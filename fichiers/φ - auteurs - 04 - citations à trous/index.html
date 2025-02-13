@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" href="../../src/favicon.ico">
+    <title>citations à trous</title>
+    <p style="margin: 15px; line-height: 48px; text-align: center; color:red; font-size:40px; font-weight: bold; font-family: 'Muli', sans-serif">Citations à Trous</p>
+    <p style="margin: 0px; line-height: 1px; text-align: center; color:black; font-size:20px">Réviser le Cours</p>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e0e0e0; /* Couleur de fond plus claire */
+            box-shadow: inset 8px 8px 16px #b8b8b8, inset -8px -8px 16px #ffffff; /* Ombres internes */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #ff0000;
+            text-align: center;
+            margin-top: 0px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        #text-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            line-height: 2.5;
+            box-shadow: 8px 8px 15px #babecc, -8px -8px 15px #ffffff; /* Ombres internes */
+            flex-grow: 0;
+            height: auto;
+            min-height: 200px;
+            overflow-y: auto;
+        }
+        .dropzone {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 30px;
+            border: none;
+            background-color: #f4f7fa;
+            margin: 0 5px;
+            border-radius: 10px;
+            box-shadow: 8px 8px 15px #babecc, -8px -8px 15px #ffffff; /* Ombres internes */
+        }
+        #words-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .draggable-word {
+            padding: 10px 15px;
+            margin: 5px;
+            background-color: #f4f7fa;
+            border-radius: 10px;
+            box-shadow: 8px 8px 15px #babecc, -8px -8px 15px #ffffff; /* Ombres internes */
+            cursor: move;
+            user-select: none;
+            transition: transform 0.2s;
+        }
+        .draggable-word:hover {
+            transform: scale(1.05); /* Légère augmentation au survol */
+            box-shadow: 4px 4px 10px #babecc, -4px -4px 10px #ffffff; /* Ombres au survol */
+        }
+        .draggable-word.animating {
+            transition: all 0.5s ease-in-out;
+            position: absolute; 
+        }
+        #action-button {
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 200px; 
+            height: 50px; 
+            margin: 20px auto; 
+            padding: none; 
+            background-color: #f4f7fa; /* Couleur de fond */
+            color: #333; /* Couleur du texte */
+            border: none; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            box-shadow: 8px 8px 15px #babecc, -8px -8px 15px #ffffff; /* Ombres internes */
+            transition: box-shadow 0.2s;
+        }
+        #action-button:hover { 
+            box-shadow: inset 4px 4px 8px #babecc, inset -4px -4px 8px #ffffff; /* Ombres inversées au survol */
+        }
+        .reload-symbol { 
+            color: red; 
+            font-size: 48px; 
+            line-height: 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        /* Align author and citation info to the right */
+        #citation-info {
+            text-align: right; /* Align text to the right */
+            margin-top: 10px; /* Optional spacing */
+        }
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <div id="text-container"></div>
+    <div id="words-container"></div>
+    <button id="action-button">Vérifier</button>
+    <script src="citations.js"></script>
+    <script>
+        let currentTextIndex = 0;
+        let currentState = "verify";
+        const textContainer = document.getElementById("text-container");
+        const wordsContainer = document.getElementById("words-container");
+        const actionButton = document.getElementById("action-button");
+
+        function getRandomIndex(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function displayText(index) {
+            const citation = citations[index];
+            let citationText = citation.text;
+
+            const missingWords = citation.missingWords;
+
+            missingWords.forEach(word => {
+                citationText = citationText.replace(word, `<span class="dropzone" data-answer="${word}"></span>`);
+            });
+
+            textContainer.innerHTML = citationText + 
+                `<br><br><div id="citation-info">${citation.author}, <i>${citation.work}</i>, ${citation.publisher}, ${citation.city}, ${citation.year}, p. ${citation.page}</div>`;
+
+            wordsContainer.innerHTML = missingWords  
+                .sort(() => Math.random() - 0.5)
+                .map(word => `<span class="draggable-word" draggable="true">${word}</span>`)
+                .join("");
+
+            addDragAndDropListeners();
+        }
+
+        function addDragAndDropListeners() {
+            document.querySelectorAll('.draggable-word').forEach(word => {
+                word.addEventListener('dragstart', dragStart);
+            });
+            document.querySelectorAll('.dropzone').forEach(zone => {
+                zone.addEventListener('dragover', dragOver);
+                zone.addEventListener('drop', drop);
+            });
+        }
+
+        function dragStart(e) {
+            if (e.target.classList.contains('draggable-word')) {
+                e.dataTransfer.setData('text/plain', e.target.innerText);
+            }
+        }
+
+        function dragOver(e) {
+            if (e.target.classList.contains('dropzone')) {
+                e.preventDefault();
+            }
+        }
+
+        function drop(e) {
+            if (e.target.classList.contains('dropzone')) {
+                e.preventDefault();
+                const newWord = e.dataTransfer.getData('text/plain');
+                const oldWord = e.target.textContent;
+
+                if (oldWord) {
+                    const oldWordElement = document.createElement('span');
+                    oldWordElement.className = 'draggable-word';
+                    oldWordElement.draggable = true;
+                    oldWordElement.textContent = oldWord;
+
+                    wordsContainer.appendChild(oldWordElement);
+                }
+
+                e.target.textContent = newWord;
+
+                const draggedWord = Array.from(document.querySelectorAll('.draggable-word'))
+                    .find(el => el.textContent === newWord);
+
+                if (draggedWord) {
+                    draggedWord.remove();
+                }
+
+                addDragAndDropListeners();
+            }
+        }
+
+        function verifyAnswers() {
+            const dropzones = textContainer.querySelectorAll(".dropzone");
+            let allCorrect = true;
+
+            dropzones.forEach(zone => {
+                if (zone.textContent.toLowerCase() === zone.dataset.answer.toLowerCase()) {
+                    zone.style.backgroundColor = "#90EE90"; // Vert clair pour les bonnes réponses  
+                } else {
+                    zone.style.backgroundColor = "#FFB6C1"; // Rouge clair pour les mauvaises réponses  
+                    allCorrect = false;
+                }
+            });
+
+            return allCorrect;
+        }
+
+        function showCorrections() {
+            const dropzones = textContainer.querySelectorAll(".dropzone");
+            const words = document.querySelectorAll(".draggable-word");
+
+            dropzones.forEach((zone) => {
+                const correctWord = zone.dataset.answer;
+
+                if (zone.textContent.toLowerCase() !== correctWord.toLowerCase()) {
+                    const wordElement = Array.from(words).find(word => word.textContent.toLowerCase() === correctWord.toLowerCase());
+
+                    if (wordElement) {
+                        const wordRect = wordElement.getBoundingClientRect();
+                        const zoneRect = zone.getBoundingClientRect();
+
+                        wordElement.style.position = 'absolute';
+                        wordElement.style.top = `${wordRect.top}px`;
+                        wordElement.style.left = `${wordRect.left}px`;
+
+                        setTimeout(() => {
+                            wordElement.classList.add('animating');
+                            wordElement.style.top = `${zoneRect.top}px`;
+                            wordElement.style.left = `${zoneRect.left}px`;
+                        }, 50);
+
+                        setTimeout(() => {
+                            zone.textContent = correctWord;
+                            zone.style.backgroundColor = "#90EE90";
+                            wordElement.remove();
+                        }, 550);
+                    } else {
+                        zone.textContent = correctWord; // Juste pour assurer que la correction est faite  
+                        zone.style.backgroundColor = "#90EE90";
+                    }
+                }
+            });
+
+            setTimeout(() => {
+                wordsContainer.innerHTML = '';
+            }, 600);
+        }
+
+        function resetDropzones() {
+            const dropzones = textContainer.querySelectorAll(".dropzone");
+            dropzones.forEach(zone => {
+                zone.textContent = "";
+                zone.style.backgroundColor = "";
+            });
+        }
+
+        actionButton.addEventListener("click", () => {
+            switch (currentState) {
+                case "verify":
+                    if (verifyAnswers()) {
+                        actionButton.innerHTML = "<span class='reload-symbol'>&#8635;</span>";
+                        currentState = "change";
+                    } else {
+                        actionButton.textContent = "Corriger";
+                        currentState = "correct";
+                    }
+                    break;
+
+                case "correct":
+                    showCorrections();
+                    actionButton.innerHTML = "<span class='reload-symbol'>&#8635;</span>";
+                    currentState = "change";
+                    break;
+
+                case "change":
+                    currentTextIndex = getRandomIndex(citations.length);
+                    displayText(currentTextIndex);
+                    resetDropzones();
+                    actionButton.textContent = "Vérifier";
+                    currentState = "verify";
+                    break;
+            }
+        });
+
+        currentTextIndex = getRandomIndex(citations.length);
+        displayText(currentTextIndex);
+    </script>
+</body>
+</html>

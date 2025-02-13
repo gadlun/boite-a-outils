@@ -1,0 +1,1 @@
+Quand on appuie sur la dernière lettre et qu'elle est correcte, elle ne s'affiche pas

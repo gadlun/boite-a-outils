@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" href="../../src/favicon.ico" />
+    <title>mots cachés</title>
+    <style>
+        /* Styles Neumorphic */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0e5ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: red;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: black;
+            margin: 0;
+        }
+
+        .main-container {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .controls-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .container {
+            background: #e0e5ec;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
+        }
+
+        .grid {
+            display: grid;
+            gap: 5px;
+            margin: 20px 0;
+        }
+
+        .cell {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #e0e5ec;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .cell.selected {
+            background: #a3b1c6;
+            box-shadow: inset 5px 5px 10px #8a96a8, inset -5px -5px 10px #b8c6e0;
+        }
+
+        .cell.highlighted {
+            background: #a3b1c6;
+            box-shadow: inset 5px 5px 10px #8a96a8, inset -5px -5px 10px #b8c6e0;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #e0e5ec;
+            box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        button:active {
+            box-shadow: inset 5px 5px 10px #8a96a8, inset -5px -5px 10px #b8c6e0;
+        }
+
+        .words-list {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .words-list span {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            background: #e0e5ec;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+        }
+
+        .words-list span.crossed-out {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        /* Style pour la boîte de dialogue de félicitations */
+        #congrats-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #e0e5ec;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>mots cachés</h1>
+        <h2>repérer les repères</h2>
+    </header>
+
+    <div class="main-container">
+        <div class="controls-container">
+            <select id="level" onchange="generateGrid()">
+                <option value="8">Facile (8x8)</option>
+                <option value="10">Moyen (10x10)</option>
+                <option value="15">Difficile (15x15)</option>
+            </select>
+            <button onclick="reloadGrid()">Recharger</button>
+        </div>
+
+        <div class="container">
+            <div class="grid" id="grid"></div>
+            <div class="words-list" id="words-list"></div>
+        </div>
+    </div>
+
+    <div id="congrats-modal">
+        <h2>Félicitations ! 🎉</h2>
+        <p>Vous avez trouvé tous les mots !</p>
+        <button onclick="closeCongratsModal()">Fermer</button>
+    </div>
+
+    <script src="../../src/reperes.js"></script>
+    <script>
+        // Variables globales
+        let gridSize = 8;
+        let grid = [];
+        let words = [];
+        let selectedCells = [];
+        let wordsToFind = [];
+
+        // Directions possibles pour placer les mots
+        const directions = [
+            { row: 1, col: 0 }, { row: -1, col: 0 }, { row: 0, col: 1 }, { row: 0, col: -1 },
+            { row: 1, col: 1 }, { row: 1, col: -1 }, { row: -1, col: 1 }, { row: -1, col: -1 }
+        ];
+
+        // Fréquence des lettres en français (approximative)
+        const letterFrequency = [
+            'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
+            'B', 'B', 'B', 'B',
+            'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C',
+            'D', 'D', 'D', 'D', 'D', 'D',
+            'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E',
+            'F', 'F', 'F', 'F',
+            'G', 'G', 'G', 'G', 'G',
+            'H', 'H', 'H', 'H',
+            'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I',
+            'J', 'J',
+            'K',
+            'L', 'L', 'L', 'L', 'L', 'L', 'L', 'L',
+            'M', 'M', 'M', 'M', 'M', 'M',
+            'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N',
+            'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O',
+            'P', 'P', 'P', 'P', 'P', 'P',
+            'Q',
+            'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R',
+            'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S',
+            'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T',
+            'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+            'V', 'V', 'V',
+            'W',
+            'X',
+            'Y', 'Y',
+            'Z'
+        ];
+
+        // Charger les mots depuis reperes.js (propriété "name")
+        function loadWords() {
+            words = reperes.flatMap(repere => repere.parts.map(part => part.name.toUpperCase()));
+        }
+
+        // Générer la grille
+        function generateGrid() {
+            gridSize = parseInt(document.getElementById("level").value);
+            grid = Array(gridSize * gridSize).fill({ letter: '', selected: false });
+            placeWords();
+            fillEmptyCells();
+            renderGrid();
+            renderWordsList();
+        }
+
+        // Remplir les cellules vides avec des lettres aléatoires
+        function fillEmptyCells() {
+            for (let i = 0; i < grid.length; i++) {
+                if (!grid[i].letter) {
+                    grid[i].letter = getRandomLetter();
+                }
+            }
+        }
+
+        // Obtenir une lettre aléatoire basée sur la fréquence en français
+        function getRandomLetter() {
+            return letterFrequency[Math.floor(Math.random() * letterFrequency.length)];
+        }
+
+        // Placer les mots dans la grille
+        function placeWords() {
+            loadWords();
+            wordsToFind = [];
+
+            // Vérifier qu'il y a au moins 10 mots disponibles
+            if (words.length < 10) {
+                alert("Erreur : Il n'y a pas assez de mots dans le fichier reperes.js.");
+                return;
+            }
+
+            // Déterminer le nombre de mots à placer en fonction de la difficulté
+            let numWords;
+            switch (gridSize) {
+                case 8:
+                    numWords = 10; // Facile : 10 mots
+                    break;
+                case 10:
+                    numWords = 15; // Moyen : 15 mots
+                    break;
+                case 15:
+                    numWords = 20; // Difficile : 20 mots
+                    break;
+                default:
+                    numWords = 10;
+            }
+
+            // Sélectionner les mots aléatoires
+            const randomWords = getRandomSubset(words, numWords);
+
+            randomWords.forEach(word => {
+                let placed = false;
+                let attempts = 0;
+
+                while (!placed && attempts < 100) {
+                    const direction = directions[Math.floor(Math.random() * directions.length)];
+                    const startRow = Math.floor(Math.random() * gridSize);
+                    const startCol = Math.floor(Math.random() * gridSize);
+
+                    if (canPlaceWord(word, startRow, startCol, direction)) {
+                        placeWord(word, startRow, startCol, direction);
+                        placed = true;
+                        wordsToFind.push(word);
+                    }
+                    attempts++;
+                }
+            });
+        }
+
+        // Obtenir un sous-ensemble aléatoire de mots
+        function getRandomSubset(array, size) {
+            const filteredWords = array.filter(word => word.length >= 4 && word.length <= 8);
+            const shuffled = filteredWords.sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, size);
+        }
+
+        // Vérifier si un mot peut être placé à une position donnée
+        function canPlaceWord(word, startRow, startCol, direction) {
+            let row = startRow;
+            let col = startCol;
+
+            for (let i = 0; i < word.length; i++) {
+                if (row < 0 || row >= gridSize || col < 0 || col >= gridSize || grid[row * gridSize + col].letter !== '') {
+                    return false;
+                }
+                row += direction.row;
+                col += direction.col;
+            }
+            return true;
+        }
+
+        // Placer un mot dans la grille
+        function placeWord(word, startRow, startCol, direction) {
+            let row = startRow;
+            let col = startCol;
+
+            for (let i = 0; i < word.length; i++) {
+                const index = row * gridSize + col;
+                grid[index] = { letter: word[i], selected: false, word: word };
+                row += direction.row;
+                col += direction.col;
+            }
+        }
+
+        // Afficher la grille
+        function renderGrid() {
+            const gridElement = document.getElementById("grid");
+            gridElement.style.gridTemplateColumns = `repeat(${gridSize}, 40px)`;
+            gridElement.innerHTML = grid.map((cell, index) => `
+                <div class="cell ${cell.selected ? 'selected' : ''} ${cell.highlighted ? 'highlighted' : ''}" 
+                     onclick="selectCell(${index})">
+                    ${cell.letter}
+                </div>
+            `).join('');
+        }
+
+        // Sélectionner une cellule
+        function selectCell(index) {
+            if (selectedCells.includes(index)) return;
+
+            if (selectedCells.length < 2) {
+                selectedCells.push(index);
+                grid[index].selected = true;
+                renderGrid();
+            }
+
+            if (selectedCells.length === 2) {
+                const [start, end] = selectedCells;
+                const wordFound = checkWord(start, end);
+                if (wordFound) {
+                    highlightWord(start, end);
+                    crossOutWord(wordFound);
+                }
+                selectedCells.forEach(cellIndex => {
+                    grid[cellIndex].selected = false;
+                });
+                selectedCells = [];
+                renderGrid();
+            }
+        }
+
+        // Vérifier si un mot est correct
+        function checkWord(start, end) {
+            const startCell = grid[start];
+            const endCell = grid[end];
+
+            // Vérifier si les deux cellules font partie du même mot
+            if (startCell.word && endCell.word && startCell.word === endCell.word) {
+                // Calculer la direction entre les deux cellules
+                const startRow = Math.floor(start / gridSize);
+                const startCol = start % gridSize;
+                const endRow = Math.floor(end / gridSize);
+                const endCol = end % gridSize;
+
+                const rowDiff = endRow - startRow;
+                const colDiff = endCol - startCol;
+
+                // Vérifier l'alignement
+                if (rowDiff === 0 || colDiff === 0 || Math.abs(rowDiff) === Math.abs(colDiff)) {
+                    // Vérifier que toutes les lettres entre start et end appartiennent au même mot
+                    const stepRow = rowDiff === 0 ? 0 : rowDiff / Math.abs(rowDiff);
+                    const stepCol = colDiff === 0 ? 0 : colDiff / Math.abs(colDiff);
+
+                    let currentRow = startRow;
+                    let currentCol = startCol;
+
+                    for (let i = 0; i <= Math.max(Math.abs(rowDiff), Math.abs(colDiff)); i++) {
+                        const currentIndex = currentRow * gridSize + currentCol;
+                        if (grid[currentIndex].word !== startCell.word) {
+                            return null; // Une lettre ne fait pas partie du mot
+                        }
+                        currentRow += stepRow;
+                        currentCol += stepCol;
+                    }
+
+                    return startCell.word; // Toutes les lettres appartiennent au même mot
+                }
+            }
+            return null;
+        }
+
+        // Surligner un mot dans la grille
+        function highlightWord(start, end) {
+            const startRow = Math.floor(start / gridSize);
+            const startCol = start % gridSize;
+            const endRow = Math.floor(end / gridSize);
+            const endCol = end % gridSize;
+
+            const rowDiff = endRow - startRow;
+            const colDiff = endCol - startCol;
+
+            const stepRow = rowDiff === 0 ? 0 : rowDiff / Math.abs(rowDiff);
+            const stepCol = colDiff === 0 ? 0 : colDiff / Math.abs(colDiff);
+
+            let currentRow = startRow;
+            let currentCol = startCol;
+
+            for (let i = 0; i <= Math.max(Math.abs(rowDiff), Math.abs(colDiff)); i++) {
+                const currentIndex = currentRow * gridSize + currentCol;
+                grid[currentIndex].highlighted = true;
+                currentRow += stepRow;
+                currentCol += stepCol;
+            }
+
+            renderGrid();
+        }
+
+        // Barrer un mot dans la liste
+        function crossOutWord(word) {
+            const wordElement = document.querySelector(`.words-list span[data-word="${word}"]`);
+            if (wordElement) {
+                wordElement.classList.add('crossed-out');
+            }
+            wordsToFind = wordsToFind.filter(w => w !== word);
+
+            if (wordsToFind.length === 0) {
+                showCongratsModal();
+            }
+        }
+
+        // Afficher la liste des mots à trouver
+        function renderWordsList() {
+            const wordsListElement = document.getElementById("words-list");
+            wordsListElement.innerHTML = wordsToFind.map(word => `
+                <span data-word="${word}">${word}</span>
+            `).join('');
+        }
+
+        // Recharger la grille
+        function reloadGrid() {
+            grid = [];
+            selectedCells = [];
+            wordsToFind = [];
+            generateGrid();
+        }
+
+        // Afficher la boîte de dialogue de félicitations
+        function showCongratsModal() {
+            const modal = document.getElementById("congrats-modal");
+            modal.style.display = "block";
+        }
+
+        // Fermer la boîte de dialogue de félicitations
+        function closeCongratsModal() {
+            const modal = document.getElementById("congrats-modal");
+            modal.style.display = "none";
+        }
+
+        // Initialiser la grille au chargement
+        loadWords();
+        generateGrid();
+    </script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style type="text/css">.ui-draggable {-ms-touch-action:none;}</style>
+
+<!-- Matomo -->
+<script async="" src="../matomo.js"></script><script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+  (function() {
+    var u="//analytics.learningapps.org/";
+    _paq.push(["setTrackerUrl", u+"matomo.php"]);
+    _paq.push(["setSiteId", "1"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
+    g.async=true; g.src=u+"matomo.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+<script type="text/javascript" src="watch_data/data"></script>
+<script type="text/javascript" src="watch_data/AppClientServer.js"></script><link type="text/css" rel="stylesheet" href="watch_data/LearningApps.css"><link type="text/css" rel="stylesheet" href="watch_data/bootstrap.css">
+<script type="text/javascript">/* <![CDATA[ */
+ var AppID = "p7pmjqjcj20";
+ var AppClientLanguage = "FR";
+ var AppClient = new AppClientClass(AppID,false,0);
+/* ]]> */
+</script>
+  
+<script type="text/javascript" src="watch_data/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="watch_data/jquery-ui-1.8.22.min.js"></script>
+<script type="text/javascript" src="watch_data/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="watch_data/jquery.easing-1.3.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="watch_data/jquery.fancybox-1.3.4.css" media="screen">
+<script type="text/javascript" src="watch_data/jquery.fancybox-1.3.4.pack.js"></script>
+
+<style type="text/css">
+
+.feedback{
+ -webkit-border-radius:15px;
+ -moz-border-radius:15px;
+ border-radius:15px;
+
+ box-shadow: 0 3px 6px rgba(0,0,0,.5);
+ -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.5); 
+ -moz-box-shadow: 0 3px 6px rgba(0,0,0,.5);
+ -ms-box-shadow: 0 3px 6px rgba(0,0,0,.5);
+ -o-box-shadow: 0 3px 6px rgba(0,0,0,.5);
+
+ border:10px solid #ddd;
+ background:white;
+ z-index:100000;
+}
+
+html, body { height:100%; padding:0px; margin:0px; font-family:Arial; background:url(back.jpg); overflow:hidden;}
+
+*{
+ -webkit-touch-callout: none;
+ -webkit-user-select: none;
+ -khtml-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+
+img{ border:0px}
+
+.card{
+ overflow:hidden;
+ position:relative;
+ border-radius: 10px;
+ background:#ffd;
+ float:left;
+ text-align:center;
+ border:2px solid #999;
+ cursor:pointer;
+ margin:10px;
+ margin-bottom:5px;
+ z-index:1000;
+ padding:5px;
+-ms-touch-action: none;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+ user-select: none;
+-ms-touch-action: none;
+ touch-action: none;
+}
+
+.tableCell{
+ float:left;
+ position:relative;
+ border-radius: 10px;
+ width:164px;
+ height:60px;
+ background:transparent;
+ border:3px dashed #666;
+ margin-top:8px;
+ margin-bottom:30px;
+ margin-left:10px;
+ margin-right:10px;
+ text-align:center;
+ padding-left:4px;
+ padding-top:4px;
+}
+.tableCellInner{
+ text-align:center;
+ overflow:hidden;
+}
+.fixedCell{
+ border: 3px solid #666;
+ background:#ffd;
+}
+
+.tableCell.highlight {
+  background: #ffe;
+}
+
+.tableCell.hovered {
+  border-color: blue;
+  background: #ffc;
+}
+
+#nav {
+  background: #ffc;
+  box-shadow: 0 3px 6px rgba(0,0,0,.5);
+ -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.5); 
+ -moz-box-shadow: 0 3px 6px rgba(0,0,0,.5);
+ -ms-box-shadow: 0 3px 6px rgba(0,0,0,.5);
+ -o-box-shadow: 0 3px 6px rgba(0,0,0,.5);
+  width: 100%;
+  z-index:1000;
+}
+
+
+.dropableSlot{
+ position:relative;
+}
+.snakeContainer{
+ position:absolute;
+  pointer-events:none;
+  z-index:100;
+}
+  
+</style>
+<script type="text/javascript" src="watch_data/layout.js"></script>
+</head>
+<body onresize="refreshResize();buildSnakeBackground()" style="overflow-wrap: break-word; cursor: auto;">
+
+<script type="text/javascript">
+
+var cardList = new Array();
+
+function init(){ 
+
+ if(AppClient.isMobileDevice())
+  document.getElementById("mobileCSS").innerHTML = 
+        '<style type="text/css">'+
+        '.card , .tableCell{'+
+        '  border-radius: 0px;'+
+        '}</style>';
+
+
+ // Daten einlesen und in Array füllen
+ var maxcolums = 0;
+ for (var i=0; i < 50; i++){
+  var value = AppClient.getParameter("content"+i,"");
+  if(trim(value.replace("|","")) != "") {
+   var definedItem = AppClient.getParameter("defined"+i,"") == "true";
+   cardList.push({paramName:"content"+i, value:value, defined:definedItem});
+  }
+  // old data only
+  var value = AppClient.getParameter("v"+i,"");
+  if(trim(value.replace("|","")) != "") {
+   cardList.push({paramName:"v"+i, value:value, defined:false});
+  }
+ } 
+
+ var s = ""; 
+ s += '<div id="dataTable" style="width:100%">';
+ s += '<div id="snakehead" style="width:100%"><b><i>'+AppClient.getParameter("textLeft","Test")+'</i></b></div>';
+ for (var i=0; i < cardList.length; i++){
+  var ende = "";
+  if(i == cardList.length-1){
+	ende =	'<div id="snaketail" style="width:100%;position:absolute;padding-right:10%;text-align:right;bottom:-30px;"><b><i>'+AppClient.getParameter("textRight","Test")+'</i></b></div>';
+  }
+  var green = "";
+  if(AppClient.getParameter("showhints","") == "true" || 
+     AppClient.getParameter("showhints","") == "") green = ' style="background-color:lightgreen" ';
+  if(cardList[i].defined) { // already predefined item
+   s += '<div id="fixed_'+cardList[i].paramName+'" '+green+' class="tableCell fixedCell"><div id="snake_'+cardList[i].paramName+'" class="snakeContainer"></div>'+ende+'<div class="tableCellInner" style="padding:5px;">'+formatContent(cardList[i].paramName)+'</div></div>';
+
+  }else
+   s += '<div id="slot_'+cardList[i].paramName+'" class="tableCell dropableSlot"><div id="snake_'+cardList[i].paramName+'" class="snakeContainer"></div>'+ende+
+        '<div id="slotinner_'+cardList[i].paramName+'" class="tableCellInner" style="position:absolute;padding:10px;font-size:50px;color:#999"></div></div>';
+ }
+ s += '</div><div style="clear:both"></div>';
+
+document.getElementById("tab").innerHTML = s;
+
+ totalCards = 0;
+  
+ var s = "";
+ for (var i=0; i < cardList.length; i++){
+  if(cardList[i].defined) continue; // already predefined item
+  if(Math.random() > 0.5)
+   s += '<div id="'+cardList[i].paramName+'" class="card dragableCard">'+formatContent(cardList[i].paramName)+'</div>'; else
+   s =  '<div id="'+cardList[i].paramName+'" class="card dragableCard">'+formatContent(cardList[i].paramName)+'</div>' + s;
+   totalCards++;
+ }
+ document.getElementById("nav").innerHTML = '<div id="navinner" style="">'+s+'</div>';
+
+
+ // layout.js functions
+ makeCardsDragable(); 
+ refreshResize();
+ 
+ buildSnakeBackground();
+}
+
+function buildSnakeBackground(){
+ var elementList = new Array();
+ for (var i=0; i < cardList.length; i++){
+  d = document.getElementById("snake_"+cardList[i].paramName);
+  elementList.push(d);
+ }
+ for(var i=1; i < elementList.length; i++){
+  var d1 = elementList[i];
+  var d0 = elementList[i-1];
+  
+  var s = "";
+  if(findPosY(d1) == findPosY(d0)){
+   // same line
+   var h = Math.min(48,cardHeight/3);
+   s += '<img style="width:'+h+'px;height:'+h+'px;position:absolute;margin-left:-'+(h)+'px;margin-top:'+(10+cardHeight/3-(h)/2)+'px" src="next.png"/>';
+  }else{
+   var dx = findPosX(d0)-findPosX(d1)+cardWidth;
+   // next line
+   s += '<div style="position:absolute;width:'+dx+'px;margin-left:-10px;margin-top:-'+(cardHeight/2.2)+'px">'+
+        '<img style="height:'+Math.min(76,cardHeight*0.6)+'px" src="arrow1.png"/><img style="width:'+(dx-cardWidth)+'px;height:'+Math.min(76,cardHeight*0.6)+'px" src="arrow2.png"/><img style="height:'+Math.min(76,cardHeight*0.6)+'px" src="arrow3.png"/>'+
+		'</div>';
+   
+  }
+  d1.innerHTML = s;  
+ } 
+}
+function findPosY(obj){
+    var c = 0;
+    if(obj.offsetParent)
+        while(1) 
+        {
+          c += obj.offsetTop;
+          if(!obj.offsetParent)
+            break;
+          obj = obj.offsetParent;
+        }
+    else if(obj.y)
+        c += obj.y;
+    return c;
+}
+function findPosX(obj){
+    var c = 0;
+    if(obj.offsetParent)
+        while(1) 
+        {
+          c += obj.offsetLeft;
+          if(!obj.offsetParent)
+            break;
+          obj = obj.offsetParent;
+        }
+    else if(obj.x)
+        c += obj.x;
+    return c;
+}
+  
+var totalCards = 0;
+var arrowVisible = true;
+
+
+function checkCorrectCards(){ 
+ $('.card').css("background","#ffd");
+ var greenCards = 0;
+ var droppedCards = 0; 
+
+ $('.dropableSlot').each(function(i, slot) {
+   var d = $('#'+slot.id).data('dropped');
+   if(d){
+     droppedCards++;
+     var p1 = 'slot_'+d.attr('id');
+     var p2 = slot.id; 
+     var a1 = p1.split("_");
+     var a2 = p2.split("_");
+     var id1 = a1[1];
+     var id2 = a2[1];
+     
+	 if(id1 == id2 || AppClient.getParameter(id1) == AppClient.getParameter(id2)){
+      d.css("backgroundColor","lightgreen");
+	  greenCards++;
+     }else{
+	  d.css("background","#fdd");
+     }
+   }
+ });
+  
+ if(droppedCards == totalCards)
+  AppClient.setChecked(greenCards == totalCards ? 1 : 0,droppedCards-greenCards);
+
+ if(greenCards == totalCards) finished();
+}
+
+var firstSolved = false;
+function finished() {
+  if(firstSolved == false) AppClient.setSolved();
+  firstSolved = true;
+  AppClient.showFeedbackPanel("feedback");  
+}
+
+AppClient.checkSolution = function(){
+  checkCorrectCards();
+};
+
+
+AppClient.onInit = init;
+
+</script>
+<div id="mobileCSS" style="display:none"></div>
+
+<div id="scrollPanel">
+  <div id="wrapper" style="width:100%;height:100%;overflow:auto;position:absolute;">
+    <div id="dragHandler" style="z-index:1100;position:absolute;width:150px;height:50px;top:-50px"></div>
+    <div id="arrow" style="z-index: 3000; position: absolute; left: 40%; bottom: 70px; display: none;"><img style="transform:rotate(180deg)" src="watch_data/arrow.png" alt=""></div>
+
+    <div id="nav" style="position: absolute; bottom: 0px; left: 0px; height: 119px; overflow: auto hidden;"><div id="navinner" style="width: 2281px;"></div></div>
+    <div id="tab" style="position: absolute; inset: 0px; padding-bottom: 100px; overflow: auto; box-sizing: border-box; margin-left: 68px;"><div id="dataTable" style="width:100%"><div id="snakehead" style="width:100%"><b><i></i></b></div><div id="slot_content1" class="tableCell dropableSlot ui-droppable" style="width: 181px; height: 101px; margin-bottom: 30.3333px;"><div id="snake_content1" class="snakeContainer"></div><div id="slotinner_content1" class="tableCellInner" style="position: absolute; padding: 10px; font-size: 50px; color: rgb(153, 153, 153); width: 171px; height: 91px;"></div><div id="content1" class="card dragableCard ui-draggable" style="width: 171px; height: 91px; z-index: 22; background: lightgreen; margin: -2px;"><a id="contentcontent1trigger" class="fancybox" href="#itemcontent1content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent1" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">La philosophie</div> <div style="display:none;"><div id="itemcontent1content" style="padding:5px;text-align:left">La philosophie</div></div></div></div></div><div id="slot_content2" class="tableCell dropableSlot ui-droppable" style="width: 181px; height: 101px; margin-bottom: 30.3333px;"><div id="snake_content2" class="snakeContainer"><img style="width:30.333333333333332px;height:30.333333333333332px;position:absolute;margin-left:-30.333333333333332px;margin-top:25.166666666666664px" src="watch_data/next.png"></div><div id="slotinner_content2" class="tableCellInner" style="position: absolute; padding: 10px; font-size: 50px; color: rgb(153, 153, 153); width: 171px; height: 91px;"></div><div id="content2" class="card dragableCard ui-draggable" style="width: 171px; height: 91px; z-index: 11; margin: -2px; background: lightgreen;"><a id="contentcontent2trigger" class="fancybox" href="#itemcontent2content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent2" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">débute avec</div> <div style="display:none;"><div id="itemcontent2content" style="padding:5px;text-align:left">débute avec</div></div></div></div></div><div id="slot_content3" class="tableCell dropableSlot ui-droppable" style="width: 181px; height: 101px; margin-bottom: 30.3333px;"><div id="snake_content3" class="snakeContainer"><img style="width:30.333333333333332px;height:30.333333333333332px;position:absolute;margin-left:-30.333333333333332px;margin-top:25.166666666666664px" src="watch_data/next.png"></div><div id="slotinner_content3" class="tableCellInner" style="position: absolute; padding: 10px; font-size: 50px; color: rgb(153, 153, 153); width: 171px; height: 91px;"></div><div id="content3" class="card dragableCard ui-draggable" style="width: 171px; height: 91px; z-index: 12; margin: -2px; background: lightgreen;"><a id="contentcontent3trigger" class="fancybox" href="#itemcontent3content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent3" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">l'étonnement.</div> <div style="display:none;"><div id="itemcontent3content" style="padding:5px;text-align:left">l'étonnement.</div></div></div></div></div><div id="fixed_content4" style="background-color: lightgreen; width: 181px; height: 101px;" class="tableCell fixedCell"><div id="snake_content4" class="snakeContainer"><img style="width:30.333333333333332px;height:30.333333333333332px;position:absolute;margin-left:-30.333333333333332px;margin-top:25.166666666666664px" src="watch_data/next.png"></div><div class="tableCellInner" style="padding: 5px; width: 171px; height: 91px;"><a id="contentcontent4trigger" class="fancybox" href="#itemcontent4content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent4" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">En effet, la démarche</div> <div style="display:none;"><div id="itemcontent4content" style="padding:5px;text-align:left">En effet, la démarche</div></div></div></div></div><div id="slot_content5" class="tableCell dropableSlot ui-droppable" style="width: 181px; height: 101px; margin-bottom: 30.3333px;"><div id="snake_content5" class="snakeContainer"><div style="position:absolute;width:171px;margin-left:-10px;margin-top:-41.36363636363636px"><img style="height:54.6px" src="watch_data/arrow1.png"><img style="width:0px;height:54.6px" src="watch_data/arrow2.png"><img style="height:54.6px" src="watch_data/arrow3.png"></div></div><div id="slotinner_content5" class="tableCellInner" style="position: absolute; padding: 10px; font-size: 50px; color: rgb(153, 153, 153); width: 171px; height: 91px;"></div><div id="content5" class="card dragableCard ui-draggable" style="width: 171px; height: 91px; z-index: 13; margin: -2px; background: lightgreen;"><a id="contentcontent5trigger" class="fancybox" href="#itemcontent5content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent5" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">commence dès le moment où</div> <div style="display:none;"><div id="itemcontent5content" style="padding:5px;text-align:left">commence dès le moment où</div></div></div></div></div><div id="slot_content6" class="tableCell dropableSlot ui-droppable" style="width: 181px; height: 101px; margin-bottom: 30.3333px;"><div id="snake_content6" class="snakeContainer"><div style="position:absolute;width:774px;margin-left:-10px;margin-top:-41.36363636363636px"><img style="height:54.6px" src="watch_data/arrow1.png"><img style="width:603px;height:54.6px" src="watch_data/arrow2.png"><img style="height:54.6px" src="watch_data/arrow3.png"></div></div><div id="slotinner_content6" class="tableCellInner" style="position: absolute; padding: 10px; font-size: 50px; color: rgb(153, 153, 153); width: 171px; height: 91px;"></div><div id="content9" class="card dragableCard ui-draggable" style="width: 171px; height: 91px; z-index: 10; margin: -2px; background: rgb(255, 221, 221);"><a id="contentcontent9trigger" class="fancybox" href="#itemcontent9content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent9" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">le langage </div> <div style="display:none;"><div id="itemcontent9content" style="padding:5px;text-align:left">le langage </div></div></div></div></div><div id="fixed_content7" style="background-color: lightgreen; width: 181px; height: 101px;" class="tableCell fixedCell"><div id="snake_content7" class="snakeContainer"><img style="width:30.333333333333332px;height:30.333333333333332px;position:absolute;margin-left:-30.333333333333332px;margin-top:25.166666666666664px" src="watch_data/next.png"></div><div class="tableCellInner" style="padding: 5px; width: 171px; height: 91px;"><a id="contentcontent7trigger" class="fancybox" href="#itemcontent7content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent7" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">Ensuite</div> <div style="display:none;"><div id="itemcontent7content" style="padding:5px;text-align:left">Ensuite</div></div></div></div></div><div id="slot_content8" class="tableCell dropableSlot ui-droppable" style="width: 181px; height: 101px; margin-bottom: 30.3333px;"><div id="snake_content8" class="snakeContainer"><img style="width:30.333333333333332px;height:30.333333333333332px;position:absolute;margin-left:-30.333333333333332px;margin-top:25.166666666666664px" src="watch_data/next.png"></div><div id="slotinner_content8" class="tableCellInner" style="position: absolute; padding: 10px; font-size: 50px; color: rgb(153, 153, 153); width: 171px; height: 91px;"></div><div id="content8" class="card dragableCard ui-draggable" style="width: 171px; height: 91px; z-index: 15; margin: -2px; background: lightgreen;"><a id="contentcontent8trigger" class="fancybox" href="#itemcontent8content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent8" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">faire de la philosophie, c'est utiliser</div> <div style="display:none;"><div id="itemcontent8content" style="padding:5px;text-align:left">faire de la philosophie, c'est utiliser</div></div></div></div></div><div id="slot_content9" class="tableCell dropableSlot ui-droppable" style="width: 181px; height: 101px; margin-bottom: 30.3333px;"><div id="snake_content9" class="snakeContainer"><img style="width:30.333333333333332px;height:30.333333333333332px;position:absolute;margin-left:-30.333333333333332px;margin-top:25.166666666666664px" src="watch_data/next.png"></div><div id="slotinner_content9" class="tableCellInner" style="position: absolute; padding: 10px; font-size: 50px; color: rgb(153, 153, 153); width: 171px; height: 91px;"></div><div id="content12" class="card dragableCard ui-draggable" style="width: 171px; height: 91px; z-index: 14; margin: -2px; background: rgb(255, 221, 221);"><a id="contentcontent12trigger" class="fancybox" href="#itemcontent12content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent12" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">de façon cohérent et rationnelle.</div> <div style="display:none;"><div id="itemcontent12content" style="padding:5px;text-align:left">de façon cohérent et rationnelle.</div></div></div></div></div><div id="slot_content10" class="tableCell dropableSlot ui-droppable" style="width: 181px; height: 101px; margin-bottom: 30.3333px;"><div id="snake_content10" class="snakeContainer"><div style="position:absolute;width:774px;margin-left:-10px;margin-top:-41.36363636363636px"><img style="height:54.6px" src="watch_data/arrow1.png"><img style="width:603px;height:54.6px" src="watch_data/arrow2.png"><img style="height:54.6px" src="watch_data/arrow3.png"></div></div><div id="slotinner_content10" class="tableCellInner" style="position: absolute; padding: 10px; font-size: 50px; color: rgb(153, 153, 153); width: 171px; height: 91px;"></div><div id="content10" class="card dragableCard ui-draggable" style="width: 171px; height: 91px; z-index: 18; background: lightgreen; margin: -2px;"><a id="contentcontent10trigger" class="fancybox" href="#itemcontent10content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent10" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">pour formuler puis exprimer ses idées</div> <div style="display:none;"><div id="itemcontent10content" style="padding:5px;text-align:left">pour formuler puis exprimer ses idées</div></div></div></div></div><div id="fixed_content11" style="background-color: lightgreen; width: 181px; height: 101px;" class="tableCell fixedCell"><div id="snake_content11" class="snakeContainer"><img style="width:30.333333333333332px;height:30.333333333333332px;position:absolute;margin-left:-30.333333333333332px;margin-top:25.166666666666664px" src="watch_data/next.png"></div><div class="tableCellInner" style="padding: 5px; width: 171px; height: 91px;"><a id="contentcontent11trigger" class="fancybox" href="#itemcontent11content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent11" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">Bref, pour construire sa pensée</div> <div style="display:none;"><div id="itemcontent11content" style="padding:5px;text-align:left">Bref, pour construire sa pensée</div></div></div></div></div><div id="slot_content12" class="tableCell dropableSlot ui-droppable" style="width: 181px; height: 101px; margin-bottom: 30.3333px;"><div id="snake_content12" class="snakeContainer"><img style="width:30.333333333333332px;height:30.333333333333332px;position:absolute;margin-left:-30.333333333333332px;margin-top:25.166666666666664px" src="watch_data/next.png"></div><div id="slotinner_content12" class="tableCellInner" style="position: absolute; padding: 10px; font-size: 50px; color: rgb(153, 153, 153); width: 171px; height: 91px;"></div><div id="content15" class="card dragableCard ui-draggable" style="width: 171px; height: 91px; z-index: 16; margin: -2px; background: rgb(255, 221, 221);"><a id="contentcontent15trigger" class="fancybox" href="#itemcontent15content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent15" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">pour la remettre en question et la faire évoluer</div> <div style="display:none;"><div id="itemcontent15content" style="padding:5px;text-align:left">pour la remettre en question et la faire évoluer</div></div></div></div></div><div id="fixed_content13" style="background-color: lightgreen; width: 181px; height: 101px;" class="tableCell fixedCell"><div id="snake_content13" class="snakeContainer"><img style="width:30.333333333333332px;height:30.333333333333332px;position:absolute;margin-left:-30.333333333333332px;margin-top:25.166666666666664px" src="watch_data/next.png"></div><div class="tableCellInner" style="padding: 5px; width: 171px; height: 91px;"><a id="contentcontent13trigger" class="fancybox" href="#itemcontent13content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent13" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">Enfin, c'est confronter cette dernière</div> <div style="display:none;"><div id="itemcontent13content" style="padding:5px;text-align:left">Enfin, c'est confronter cette dernière</div></div></div></div></div><div id="slot_content14" class="tableCell dropableSlot ui-droppable" style="width: 181px; height: 101px; margin-bottom: 30.3333px;"><div id="snake_content14" class="snakeContainer"><div style="position:absolute;width:171px;margin-left:-10px;margin-top:-41.36363636363636px"><img style="height:54.6px" src="watch_data/arrow1.png"><img style="width:0px;height:54.6px" src="watch_data/arrow2.png"><img style="height:54.6px" src="watch_data/arrow3.png"></div></div><div id="slotinner_content14" class="tableCellInner" style="position: absolute; padding: 10px; font-size: 50px; color: rgb(153, 153, 153); width: 171px; height: 91px;"></div><div id="content14" class="card dragableCard ui-draggable" style="width: 171px; height: 91px; z-index: 17; margin: -2px; background: lightgreen;"><a id="contentcontent14trigger" class="fancybox" href="#itemcontent14content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent14" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">à celle des autres</div> <div style="display:none;"><div id="itemcontent14content" style="padding:5px;text-align:left">à celle des autres</div></div></div></div></div><div id="slot_content15" class="tableCell dropableSlot ui-droppable" style="width: 181px; height: 101px; margin-bottom: 30.3333px;"><div id="snake_content15" class="snakeContainer"><div style="position:absolute;width:774px;margin-left:-10px;margin-top:-41.36363636363636px"><img style="height:54.6px" src="watch_data/arrow1.png"><img style="width:603px;height:54.6px" src="watch_data/arrow2.png"><img style="height:54.6px" src="watch_data/arrow3.png"></div></div><div id="snaketail" style="width:100%;position:absolute;padding-right:10%;text-align:right;bottom:-30px;"><b><i></i></b></div><div id="slotinner_content15" class="tableCellInner" style="position: absolute; padding: 10px; font-size: 50px; color: rgb(153, 153, 153); width: 171px; height: 91px;"></div><div id="content6" class="card dragableCard ui-draggable" style="width: 171px; height: 91px; z-index: 21; background: rgb(255, 221, 221); margin: -2px;"><a id="contentcontent6trigger" class="fancybox" href="#itemcontent6content" title=""></a> <div style="margin-top:0px;text-align:center;font-size:16px;overflow:hidden;height:100%"><div id="contentcontent6" style="width:100%;cursor:pointer;height:100%;text-align:center;" ontouchend="openItem(this)" onmouseup="openItem(this)">l'on se pose des questions sur le monde.</div> <div style="display:none;"><div id="itemcontent6content" style="padding:5px;text-align:left">l'on se pose des questions sur le monde.</div></div></div></div></div></div><div style="clear:both"></div></div>
+
+    <div id="navFade" style="position: absolute; bottom: 0px; right: 0px; height: 119px; width: 200px; z-index: 1001; background: linear-gradient(90deg, rgba(255, 255, 204, 0) 0%, rgb(255, 255, 204) 50%, rgb(255, 255, 204) 100%); pointer-events: none;"></div>
+
+    <div id="checksolutionBtnPanel" style="bottom: 2em;right: 2em;"><div id="checkSolutionBtn" onclick="AppClient.checkSolution()"><i class="glyphicon glyphicon-check"></i></div></div>
+  </div>
+</div>
+
+
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div><div id="AppClientLoadingPanel" style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; box-sizing: border-box; z-index: 999999; background-color: rgb(255, 255, 255); display: none;"><table style="box-sizing:border-box; width:100%;height:100%"><tbody><tr><td width="100%" align="center" style="color:#333;font-family:Arial;" id="LoadingPanelContent"><img src="watch_data/loading.gif" alt="" style="vertical-align:middle;margin:5px"> <b> Loading ... </b></td></tr></tbody></table></div><div id="AppClientTaskPanel" style="box-sizing: border-box; font-family: Arial; position: absolute; left: 0px; top: 20%; max-height: 65%; overflow: auto; z-index: 999998; padding: 10px; border: 10px solid rgb(221, 221, 221); box-shadow: rgb(51, 51, 51) 0px 0px 10px; border-radius: 10px; background-color: rgb(255, 255, 255); width: 40%; margin-left: 30%; margin-right: 30%; display: none;"><p style="text-align:center;font-size:150%;padding:0px;margin:0px;margin-bottom:5px"><b>Consigne</b></p><div style="max-height:195px;overflow:auto;">Pour vous familiariser avec la logique du langage, recomposez une définition cohérente du concept de philosophie </div><div style="margin-top:10px;text-align:center"><button type="button" onclick="AppClient.closeTaskPanel()" style="font-size:120%;z-index: 2;position: relative;">OK</button></div></div><div id="AppClientTaskButton" style="position: fixed; width: 16px; left: 2px; top: 2px; z-index: 999997;"><a style="padding:0px; margin:0px; text-decoration:none; font-size:16px" href="javascript:AppClient.showTaskPanel()"><img border="0" style="vertical-align:top" src="watch_data/taskicon.gif" title="Afficher la consigne" alt=""></a></div><div id="AppClientHelpButton" style="position: fixed; width: 16px; left: 22px; top: 2px; z-index: 999997; display: none;"><a style="padding:0px; margin:0px; text-decoration:none; font-size:16px" href="javascript:AppClient.showHelpPanel()"><img border="0" style="vertical-align:top" src="watch_data/helpicon.png" title="Afficher des indices" alt=""></a></div><div id="AppClientFullscreenButton" style="position: fixed; width: 16px; right: 2px; top: 2px; z-index: 999997;"><a style="padding:0px; margin:0px; text-decoration:none; font-size:16px" href="https://learningapps.org/watch?v=p7pmjqjcj20" onclick="return AppClient.doFullscreen()" target="_blank"><img border="0" style="vertical-align:top" src="watch_data/fullscreenicon.png" title="Afficher l'appli en plein écran" alt=""></a></div></body></html>

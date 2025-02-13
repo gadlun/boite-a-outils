@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--------------------------- Daniel Boulagnon --------------------------->
+<!-------------------- daniel.boulagnon@ac-lille.fr ---------------------->
+<!----------------------------- version 2024 ----------------------------->
+<html lang="fr" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="icon" href="../../src/favicon.ico" />
+	<title>mots croisés</title>	
+	<p style="margin: 15px; line-height: 48px; text-align: center; color:red; font-size:40px; font-weight: bold; font-family: 'Muli', sans-serif">mots croisés</p>
+	<p style="margin: 0px; line-height: 1px; text-align: center; color:black; font-size:20px">réviser les repères</p>
+	<br>
+
+	<link rel='stylesheet' href='bootstrap.min.css'>
+	<link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+
+<div class="row info margin-bottom-sm">
+	<div class="col-md-12">
+	<center>
+		<button class="btn btn-lg btn-default pen-ignore hidden-print" id="btnCheck"data-toggle="tooltip" title="Enlever les mauvaises lettres">Vérification</button>
+		<button class="btn btn-lg btn-default pen-ignore hidden-print" id="btnHint" data-toggle="tooltip" title="Ajouter une lettre">Aide</button>
+		<button class="btn btn-lg btn-default pen-ignore hidden-print" id="btnReset"data-toggle="tooltip" title="Recommencer">Autre grille</button>
+	</center>
+	</div>
+</div>
+
+<div class="row" style="margin-left: 7px;" >
+	<div class="col-lg-12">
+	<!-- Boutons Créer et lire requis pour les mots croisés générés par l'utilisateur - désactivés pour les questions interdites -->
+	</div>
+	<div class="col-lg-12 text-center wjec-crossword" id="crossword"></div>
+
+	<div class="wjec-crossword-clues col-lg-6 margin-bottom-md">
+		<h3><p style="color:red">HORIZONTAL</p></h3>
+		<div class="clueBlock" id="cluesAcross">
+			<div class="clueDirection" id="directionAcross"></div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+			<div class="line">
+				<input class="word" type="text" />
+				<span class="lineNum"></span>
+				<input class="clue" />
+			</div>
+		</div>
+	</div>
+
+	<div class="wjec-crossword-clues col-lg-6 margin-bottom-md">
+		<h3><p style="color:red">VERTICAL</p></h3>
+		<div class="clueBlock" id="cluesDown">
+			<div class="clueDirection" id="directionDown"></div>
+		</div>
+	</div>
+
+</div>
+
+
+	<script src='jquery-2.2.4.min.js'></script>
+	<script src='bootstrap.min.js'></script>
+	<script  src="./script.js"></script>
+
+</body>
+</html>

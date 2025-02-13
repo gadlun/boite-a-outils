@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr-fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="author" content="Timo van Neerden">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
+	<meta name="description" content="Le jeu de la vie">
+	<title>Le jeu de la vie</title>
+
+	<style>
+
+html {
+	height: 100%;
+}
+body {
+	min-height: 100%;
+	background-color: transparent;
+	color: white;
+}
+
+@keyframes fadeout {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: .1;
+	}
+}
+
+
+#top-nav {
+	background-color: rgba(0, 0, 0, .8);
+	box-shadow: 0 2px 5px rgba(255, 255, 255, 0.5);
+}
+
+#top-nav,
+#footer,
+.main-form > .options-actions > .options,
+.main-form > .options-actions > .actions {
+	animation-name: fadeout;
+	animation-delay: 5s;
+	animation-duration: 5s;
+	animation-fill-mode: forwards;
+}
+
+#top-nav:hover,
+#top-nav:hover + .main-form .options,
+#top-nav:hover + .main-form .actions,
+#top-nav:hover ~ #footer,
+.main-form > .options-actions > .options:hover,
+.main-form > .options-actions > .actions:hover,
+#footer:hover {
+	animation: none;
+}
+
+.main-form {
+	max-width: none;
+	position: relative;
+}
+
+.main-form > .options-actions {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap-reverse;
+}
+
+.main-form .actions {
+	background-color: transparent;
+	color: inherit;
+	flex: 0 0 auto;
+}
+.main-form .actions > button {
+	background-color: rgba(0, 0, 0, .7);
+	box-shadow: 0 2px 5px rgba(255, 255, 255, 0.5);
+	color: inherit;
+	font-weight: bold;
+}
+
+.main-form .options {
+	color: inherit;
+	font-weight: bold;
+	border: 1px solid transparent;
+	background-color: rgba(0, 0, 0, .7);
+	box-shadow: 0 2px 5px rgba(255, 255, 255, 0.5);
+	flex: 0 0 auto;
+}
+
+.main-form .parameter > * {
+	vertical-align: middle;
+}
+
+.main-form .parameter > label {
+	width: 9em;
+	display: inline-block;
+	text-align: right;
+}
+
+#canvas {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	z-index: -1;
+	background-color: black;
+	left: 0;
+}
+
+#footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+	</style>
+
+</head>
+<body>
+
+
+
+<div class="main-form">
+
+	<div class="options-actions">
+		<div class="options">
+			<div class="parameter">
+				<label for="size">Taille cellule (px)&nbsp;</label>
+				<input type="range" min="1" max="100" value="10" id="size" step="1" oninput="sizeOut.value = this.value + 'px'">
+				<output for="size" id="sizeOut">10px</output>
+			</div>
+
+			<div class="parameter">
+				<label for="time">Vitesse (ms)&nbsp;</label>
+				<input type="range" min="10" max="2500" value="10" id="time" step="1" oninput="timeOut.value = this.value + 'ms'">
+				<output for="time" id="timeOut">10ms</output>
+			</div>
+
+			<div class="parameter">
+				<label for="trail">Mort en dégradé&nbsp;</label>
+				<input type="checkbox" id="trail" checked="checked">
+			</div>
+
+		</div>
+
+		<div class="actions">
+			<button type="button" class="button" id="fullscreen">Plein écran</button>
+			<button type="button" class="button" id="reset">Relancer</button>
+		</div>
+	</div>
+
+	<canvas id="canvas" width="1280" height="539">
+		Your browser does not support the HTML5 canvas tag.
+	</canvas>
+</div>
+
+
+
+
+<script>
+'use strict'
+
+
+// Script adapted from : https://spicyyoghurt.com/tutorials/javascript/conways-game-of-life-canvas
+
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var pi = 3; //Math.PI
+var gridColumns, gridRows, drawing;
+var gameObjects = [];
+var beautify = true;
+
+// default values
+var cellSize = 10; // px
+var timeout = 250; // ms
+
+
+function drawCell(x, y) {
+	let cell = gameObjects[(x + (y*gridColumns))];
+
+	if (!beautify) {
+		context.fillStyle = (cell.alive ? '#0ce' : '#000');
+	} else {
+		if (cell.alive) {
+			cell.deadCount = 0;
+		} else {
+			cell.deadCount++;
+		}
+		if (cell.alive) {
+			context.fillStyle = '#0ce';
+		} else if (cell.deadCount == 1) {
+			context.fillStyle = '#079';
+		} else if (cell.deadCount == 2) {
+			context.fillStyle = '#034';
+		} else {
+			context.fillStyle = '#000';
+		}
+	}
+	context.beginPath();
+	context.arc(cell.gridX * cellSize, cell.gridY * cellSize, cellSize / 2, 0, 2 * pi);
+	context.fill();
+}
+
+function initCell(x, y) {
+	let cell = new Object();
+	cell.gridX = x;
+	cell.gridY = y;
+	cell.alive = Math.random() > 0.5;
+	return cell;
+}
+
+function initGameWorld() {
+	cellSize = cellSize;
+	timeout = timeout;
+
+	// grid sizes
+	gridColumns = Math.floor(window.innerWidth / cellSize);
+	gridRows = Math.floor(window.innerHeight / cellSize);
+
+	canvas.height = window.innerHeight;
+	canvas.width = window.innerWidth;
+
+	gameObjects = [];
+
+	for(let y = 0 ; y < gridRows ; y++) {
+		for(let x = 0 ; x < gridColumns ; x++) {
+			gameObjects.push(initCell(x, y));
+		}
+	}
+
+	drawing = setInterval(gameLoop, timeout);
+}
+
+
+function isAliveCell(x, y) {
+	if ( x < 0 || x >= gridColumns || y < 0 || y >= gridRows ) {
+		return 0;
+	}
+	return gameObjects[(x + (y*gridColumns))].alive ? 1 : 0;
+}
+
+
+function checkSurroundingCells() {
+	// compute next generation
+	for(let x = 1 ; x < gridColumns ; x++) {
+		for(let y = 1 ; y < gridRows ; y++) {
+			// count surrounding alive cells
+			let numAlive = 0;
+			for (let xx = x-1 ; xx <= x+1 ; xx++) {
+				for (let yy = y-1 ; yy <= y+1 ; yy++) {
+					if (!(yy == y && xx == x)) {
+						numAlive += isAliveCell(xx, yy);
+					}
+				}
+			}
+			let i = (x + (y*gridColumns));
+
+			// determine is cell should be alive or dead in next round
+			// dead cell with 3− cells OR live cell with 2+ becomes alive ; IE : with 2 live cells remains in its state
+			if (numAlive == 2) {
+				gameObjects[i].nextAlive = gameObjects[i].alive;
+			} else if (numAlive == 3) {
+				gameObjects[i].nextAlive = true;
+			} else {
+				gameObjects[i].nextAlive = false;
+			}
+		}
+	}
+
+	// update board
+	for (let i = 0, len = gameObjects.length ; i < len ; i++) {
+		//    if dead             &&              if was already dead                 && [ not beautify     ||   beautify && deadcount>2 ]
+		if (!gameObjects[i].alive && gameObjects[i].alive == gameObjects[i].nextAlive && ( !beautify || (beautify && gameObjects[i].deadCount > 2) )) {
+			gameObjects[i].redraw = false;
+		} else {
+			gameObjects[i].alive = gameObjects[i].nextAlive;
+			gameObjects[i].redraw = true;
+		}
+	}
+}
+
+function gameLoop() {
+	checkSurroundingCells();
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	//var loopscount = 0;
+	for (let i = 0, len = gameObjects.length ; i < len ; i++) {
+		if (gameObjects[i].redraw) {
+			//loopscount++;
+			let x = i % gridColumns;
+			let y = Math.floor(i / gridColumns);
+			drawCell(x, y);
+		}
+	}
+
+	//console.log(loopscount, gameObjects.length);
+}
+
+function reset() {
+	clearInterval(drawing);
+	console.log(timeout+100);
+	gameObjects = [];
+	setTimeout(function() {
+		initGameWorld();
+	}, timeout+100);
+
+}
+
+initGameWorld();
+
+
+
+
+/* UI */
+
+document.getElementById('size').addEventListener('change', function() {
+	cellSize = parseInt(this.value);
+	reset();
+});
+
+document.getElementById('time').addEventListener('change', function() {
+	timeout = parseInt(this.value);
+	clearInterval(drawing);
+	drawing = setInterval(gameLoop, timeout);
+});
+
+document.getElementById('trail').addEventListener('change', function() {
+	beautify = this.checked;
+});
+
+document.getElementById('reset').addEventListener('click', function() {
+	reset();
+});
+
+document.getElementById('fullscreen').addEventListener('click', function() {
+	if (!document.fullscreenElement) {
+		document.documentElement.requestFullscreen();
+	} else {
+		if (document.exitFullscreen) {
+			document.exitFullscreen(); 
+		}
+	}
+});
+
+
+
+
+</script>
+<!--
+
+# adresse de la page : https://lehollandaisvolant.net/tout/tools/life/
+#	 page créée le : 4 juin 2021
+#	mise à jour le : 5 juin 2021
+
+-->
+
+</body></html>

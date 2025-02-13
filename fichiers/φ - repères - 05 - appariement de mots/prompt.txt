@@ -1,0 +1,105 @@
+Contexte :
+Je travaille sur une application web en HTML, CSS et JavaScript. L'objectif est de créer un exercice interactif où l'utilisateur doit associer des mots à leurs définitions en traçant des flèches entre deux colonnes. Voici les spécifications techniques et fonctionnelles :
+
+Spécifications techniques :
+
+    Structure HTML :
+
+        Deux colonnes : une pour les mots (name) et une pour les définitions (definition).
+
+        Un canvas pour dessiner les flèches entre les éléments des deux colonnes.
+
+        Un bouton "Vérifier" pour valider les associations et un bouton "Recharger" pour recommencer.
+
+    Style CSS :
+
+        Les colonnes doivent être alignées horizontalement avec un espace entre elles.
+
+        Les cellules des tableaux doivent être interactives (curseur pointer) et avoir un effet visuel au survol.
+
+        Le canvas doit être positionné absolument pour superposer les flèches sur les colonnes.
+
+    Fonctionnalités JavaScript :
+
+        Charger les données depuis un fichier reperes.js contenant un tableau d'objets avec des name et des definition.
+
+        Sélectionner aléatoirement 5 mots et leurs définitions.
+
+        Mélanger aléatoirement l'ordre des mots dans la colonne de gauche et l'ordre des définitions dans la colonne de droite.
+
+        Permettre à l'utilisateur de cliquer sur un mot, puis sur une définition pour tracer une flèche entre les deux.
+
+        Vérifier les associations lorsque l'utilisateur clique sur "Vérifier" : les flèches correctes doivent devenir vertes, et les incorrectes rouges.
+
+        Permettre de recharger l'exercice avec de nouveaux mots et définitions aléatoires.
+
+Données d'exemple (fichier reperes.js) :
+javascript
+Copy
+
+const reperes = [
+  {
+    definition: "absolu/relatif",
+    parts: [
+      {
+        name: "absolu",
+        definition: "Ce qui est indépendant de toute condition ou relation.",
+        examples: [
+          "La vitesse de la lumière dans le vide est constante, indépendamment du référentiel.",
+          "Les lois de la physique sont invariantes dans tous les systèmes de référence inertiels."
+        ]
+      },
+      {
+        name: "relatif",
+        definition: "Ce qui dépend de conditions ou de relations.",
+        examples: [
+          "La perception du temps varie selon la vitesse de déplacement d'un observateur.",
+          "La valeur d'une monnaie fluctue en fonction des conditions économiques."
+        ]
+      }
+    ]
+  },
+  // Autres objets...
+];
+
+Attentes fonctionnelles :
+
+    Affichage initial :
+
+        Charger 5 mots et leurs définitions depuis reperes.js.
+
+        Mélanger aléatoirement l'ordre des mots dans la colonne de gauche et l'ordre des définitions dans la colonne de droite.
+
+    Interactions utilisateur :
+
+        Lorsque l'utilisateur clique sur un mot, puis sur une définition, une flèche est tracée entre les deux.
+
+        Si l'utilisateur clique sur "Vérifier", les flèches correctes deviennent vertes, et les incorrectes rouges.
+
+        Si l'utilisateur clique sur "Recharger", l'exercice recommence avec de nouveaux mots et définitions aléatoires.
+
+    Gestion des erreurs :
+
+        Si l'utilisateur essaie de tracer une flèche entre des éléments déjà associés, cela ne doit pas être possible.
+
+        Les flèches doivent toujours être orientées de gauche à droite.
+
+Exemple de résultat attendu :
+
+    Colonne de gauche (mots) : ["absolu", "relatif", ...] (ordre aléatoire).
+
+    Colonne de droite (définitions) : ["Ce qui est indépendant...", "Ce qui dépend...", ...] (ordre aléatoire).
+
+    L'utilisateur peut tracer des flèches entre les mots et les définitions.
+
+    Le bouton "Vérifier" valide les associations et colore les flèches en vert ou rouge.
+
+    Le bouton "Recharger" réinitialise l'exercice avec de nouveaux mots et définitions.
+
+Demande :
+
+    Fournissez le code HTML, CSS et JavaScript complet pour implémenter cette application.
+
+    Assurez-vous que le code est bien commenté pour faciliter la compréhension.
+
+    Expliquez les étapes clés pour garantir que les flèches fonctionnent correctement et que les associations sont vérifiées avec précision.

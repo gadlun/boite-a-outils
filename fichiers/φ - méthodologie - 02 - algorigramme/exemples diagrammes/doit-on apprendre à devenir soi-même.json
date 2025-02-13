@@ -1,0 +1,22 @@
+{ "class": "go.GraphLinksModel",
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [ 
+{"text":"Doit-on apprendre à devenir soi-même ?", "key":1, "loc":"170 -196.99999999999994", "category":"intitule"},
+{"text":"choix", "key":2, "loc":"170 -100", "figure":"Diamond"},
+{"text":"option a : on ne doit pas apprendre à devenir soi-même", "key":3, "loc":"-148.00000000000003 -100", "category":"Etape1"},
+{"text":"option b : on doit apprendre à devenir soi-même", "key":4, "loc":"538.9999999999995 -100", "category":"Etape1"},
+{"text":"justification : on n'a pas besoin \nd'apprendre à devenir \nsoi-même puisqu'on \nl'est déjà", "key":5, "loc":"-148.00000000000006 79.00000000000001", "category":"Etape2"},
+{"text":"justification : on a jamais fini de se définir, de se découvrir...", "key":6, "loc":"539.0000000000002 79.00000000000001", "category":"Etape2"},
+{"text":"Soit mon existence est la déclinaison d'un être premier → on ne doit pas apprendre à devenir soi-même, l’essence précède l'existence ; soit mon être se constitue au fil de ma propre existence (ce que je deviens) → on doit apprendre à devenir soi-même, l'existence précède l'essence", "key":7, "loc":"189 79", "category":"Etape3"}
+ ],
+  "linkDataArray": [ 
+{"from":4, "to":6, "fromPort":"B", "toPort":"T", "points":[538.9999999999995,-68.94499950408934,538.9999999999995,-58.94499950408934,538.9999999999995,-10.499999999999986,539.0000000000002,-10.499999999999986,539.0000000000002,37.94499950408937,539.0000000000002,47.94499950408937]},
+{"from":3, "to":5, "fromPort":"B", "toPort":"T", "points":[-148,-68.94499950408934,-148,-58.94499950408934,-148,-21.777500247955306,-148.00000000000006,-21.777500247955306,-148.00000000000006,15.389999008178727,-148.00000000000006,25.389999008178727]},
+{"from":2, "to":4, "fromPort":"R", "toPort":"L", "points":[233.82500076293945,-99.99999999999999,243.82500076293945,-99.99999999999999,312.8312473297117,-99.99999999999999,312.8312473297117,-99.99999999999999,381.8374938964839,-99.99999999999999,391.8374938964839,-99.99999999999999]},
+{"from":2, "to":3, "fromPort":"L", "toPort":"R", "points":[106.17499923706055,-99.99999999999999,96.17499923706055,-99.99999999999999,53.50624656677246,-99.99999999999999,53.50624656677246,-99.99999999999999,10.837493896484375,-99.99999999999999,0.837493896484375,-99.99999999999999]},
+{"from":6, "to":-3, "fromPort":"B", "toPort":"R", "points":[ 350,21,350,31,350,109,109,334,109,324,109 ]},
+{"from":1, "to":2, "fromPort":"B", "toPort":"T", "points":[170.00000000000006,-177.2224997520446,170.00000000000006,-167.2224997520446,170.00000000000006,-158.13875012397762,170,-158.13875012397762,170,-149.05500049591063,170,-139.05500049591063]},
+{"from":5, "to":7, "fromPort":"R", "toPort":"L", "points":[4.212493896484318,79.00000000000001,14.212493896484318,79.00000000000001,18.71874999999997,79.00000000000001,18.71874999999997,79,23.225006103515625,79,33.225006103515625,79]},
+{"from":6, "to":7, "fromPort":"L", "toPort":"R", "points":[381.1250000000002,79.00000000000001,371.1250000000002,79.00000000000001,362.9499969482423,79.00000000000001,362.9499969482423,79,354.7749938964844,79,344.7749938964844,79]}
+ ]}

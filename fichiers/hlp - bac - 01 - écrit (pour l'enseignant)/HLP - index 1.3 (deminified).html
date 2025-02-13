@@ -1,0 +1,501 @@
+<!--------------------------- Daniel Boulagnon --------------------------->
+<!-------------------- daniel.boulagnon@ac-lille.fr ---------------------->
+<!----------------------------- version 2024 ----------------------------->
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="../../src/favicon.ico">
+    <title>paliers de notation</title>
+    <style>
+        body, html {
+            margin: 0;
+        }
+
+        .switch-button {
+            background: rgba(0, 0, 0, .1);
+            border-radius: 30px;
+            border: 1px solid #bac6d3;
+            box-shadow: inset 1px 1px 2px rgba(0, 0, 0, .4), 1px 1px 1px rgba(255, 255, 255, .6);
+            color: #000;
+            font-size: 1em;
+            overflow: hidden;
+            padding-right: 180px;
+            position: relative;
+            text-align: center;
+            top: 40px;
+            width: 360px;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        .switch-button:before {
+            align-items: center;
+            bottom: 0;
+            content: "interprétation";
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 180px;
+            z-index: 3
+        }
+
+        .switch-button-checkbox {
+            bottom: 0;
+            cursor: pointer;
+            height: 100%;
+            left: 0;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 2
+        }
+
+        .switch-button-checkbox:checked+.switch-button-label:before {
+            transform: translateX(180px);
+            transition: transform .1s linear
+        }
+
+        .switch-button-checkbox+.switch-button-label {
+            display: block;
+            position: relative;
+            padding: 16px 0;
+            pointer-events: none;
+            user-select: none
+        }
+
+        .switch-button-checkbox+.switch-button-label:before {
+            background: #fff;
+            border-radius: 30px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, .42);
+            content: "";
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            transform: translateX(0);
+            transition: transform .3s;
+            width: 100%
+        }
+
+        .switch-button-checkbox+.switch-button-label .switch-button-label-span {
+            position: relative
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body,
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            color: #3d4852;
+            font-family: Muli, sans-serif;
+            font-size: 1rem;
+            line-height: 1.2
+        }
+
+        h0 {
+            color: red;					/* couleur du titre principal */
+            font-size: 2.5rem;
+            margin-top: 0;
+            text-align: center
+        }
+
+        h1 {
+            color: red;
+            font-size: 4rem;
+            margin-top: 0;
+            text-align: center
+        }
+
+        h2 {
+            color: #000;
+            font-size: 1.25rem;
+            margin-top: 0;
+            text-align: center
+        }
+
+        ul {
+            margin: 0 0 1.5rem;
+            padding: 0
+        }
+
+        li {
+            display: inline-block
+        }
+
+        svg {
+            fill: currentColor;
+            height: 1.5rem;
+            width: 1.5rem
+        }
+
+        img {
+            height: auto;
+            left: -1rem;
+            margin-bottom: .5rem;
+            max-width: calc(100% + 2rem);
+            position: relative;
+            right: -1rem
+        }
+
+        p {
+            text-align: justify;
+            text-align: left;
+            text-justify: inter-word;
+            margin: 0 0 .5rem
+        }
+
+        main {
+            margin: auto;
+        }
+
+        header {
+            padding: 1rem 2rem;
+            text-align: center
+        }
+
+        .card {
+            border: 0 solid #000;
+            border-radius: 15px;
+            box-shadow: rgba(50, 50, 93, .25) 0 50px 100px -20px, rgba(0, 0, 0, .3) 0 30px 60px -30px, rgba(10, 37, 64, .35) 0 -2px 6px 0 inset;
+            min-height: 500px;
+            padding: 1rem;
+            text-align: center
+        }
+
+        .onglet {
+            border: 0 solid #000;
+            display: none;
+            min-height: 60px;
+        }
+
+        .onglet > p {
+            margin: 2rem auto;
+            padding: 1rem;
+            max-width: 70ch;
+        }
+
+        .carousel-items {
+            display: flex;
+            overflow-x: scroll;
+            position: absolute;
+            width: 100%;
+            z-index: 3000
+        }
+
+        .carousel-item {
+            flex: 1 0 250px;
+            margin-bottom: 30px;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem
+        }
+
+
+/********************************************/
+
+        @media screen and (min-width:100px) {
+            .carousel-item {
+                flex-basis: 400px
+            }
+        }
+/********************************************/
+
+
+
+
+
+
+
+
+        @media screen and (min-width:576px) {
+            .carousel-item {
+                flex-basis: 300px
+            }
+        }
+
+        @media screen and (min-width:992px) {
+
+            body,
+            button,
+            input,
+            optgroup,
+            select,
+            textarea {
+                font-size: 1.125rem
+            }
+
+            h1 {
+                font-size: 2.75rem
+            }
+
+            .carousel-item {
+                flex-basis: 325px
+            }
+        }
+
+        @media screen and (min-width:1280px) {
+            h1 {
+                font-size: 4rem
+            }
+
+            .carousel-item {
+                flex-basis: 450px
+            }
+        }
+
+        @media screen and (min-width:1600px) {
+
+            body,
+            button,
+            input,
+            optgroup,
+            select,
+            textarea {
+                font-size: 1.25rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+	<p style="margin: 15px; line-height: 48px; text-align: center; color:red; font-size:40px; font-weight: bold; font-family: 'Muli', sans-serif">paliers de notation</p>		
+	<p style="margin: 15px; line-height: 30px; text-align: center; color:black; font-size:20px">pour guider la notation philosophique ou littéraire des copies de HLP</p>
+        
+        <div class="switch-button">
+            <center><input id="switch" class="switch-button-checkbox" type="checkbox"><label class="switch-button-label" for=""><span class="switch-button-label-span">essai</span></label></center>
+        </div>
+    </header>
+    <main>
+        <div class="div_onglets">
+            <div id="onglet_1" class="onglet">
+                <br></br>
+                <section class="carousel">
+                    <ul class="carousel-items">
+                        <li class="carousel-item">
+                            <div class="card">
+                                <h1 class="card-title">00-01</h1>
+                                <h2 class="card-title">copie manifestement indigente</h2>
+                                <div class="card-content">
+                                    <p>
+										- inintelligible ;<br />
+										- excessivement brève (quelques lignes) ;<br />
+										- marquant un refus manifeste de faire l'exercice.
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+						
+                        <li class="carousel-item">
+                            <div class="card">
+                                <h1 class="card-title">02-03</h1>
+                                <h2 class="card-title">copie intelligible mais qui ne répond pas aux critères de l'épreuve</h2>
+                                <div class="card-content">
+									<p>
+										- propos vagues, sans rapport avec la question ;<br />
+										- incohérence et/ou désordre excessif du propos ;<br />
+										- juxtaposition d'exemples sommaires ;<br />
+										- accumulation d'arguments ou d'autres énoncés sans pertinence ;<br />
+										- propos qui aurait pu être rédigé au début de l'année, sans cours d'HLP ou de connaissances acquises.
+									</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="carousel-item">
+                            <div class="card">
+                                <h1 class="card-title">04-05</h1>
+                                <h2 class="card-title">copie témoignant de l'effort de répondre à la question, même si la réponse demeure maladroite et inaboutie</h2>
+                                <div class="card-content">
+                                    <p>
+                                        - attention portée à la question ;<br />
+                                        - effort de définition des notions ;<br />
+                                        - réponse globalement argumentative ;<br />
+                                        - expression globalement correcte.
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="carousel-item">
+                            <div class="card">
+                                <h1 class="card-title">06-07</h1>
+                                <h2 class="card-title">si l'on trouve au moins un des éléments suivants en plus :</h2>
+                                <div class="card-content">
+                                    <p>
+                                        - compréhension du sens et des enjeux de la question ;<br />
+                                        - effort d'appui sur le texte ;<br />
+                                        - arguments pertinents ;<br />
+                                        - mobilisation à bon escient de connaissances.
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+						
+                        <li class="carousel-item">
+                            <div class="card">
+                                <h1 class="card-title">08</h1>
+                                <h2 class="card-title">si l'on trouve au moins un des éléments suivants en plus :</h2>
+								<div class="card-content">
+									<p>
+										- effort de problématisation et d'élucidation de la question ;<br />
+										- appui sur des éléments déterminants du texte ;<br />
+										- effort pour structurer une réponse développée et cohérente, se référant à des éléments précis de connaissance ;<br />
+										- expression bien maîtrisée, nuancée et précise.
+									</p>
+								</div>
+                            </div>
+                        </li>
+						
+                        <li class="carousel-item">
+                            <div class="card">
+                                <h1 class="card-title">09-10</h1>
+								<h2 class="card-title">si l'on trouve au moins un des éléments suivants en plus :</h2>
+                                <div class="card-content">
+                                    <p>
+                                        - démarche de recherche comprenant le souci des enjeux de la question ;<br />
+                                        - réponse développée avec justesse en la situant par rapport au texte ;<br />
+                                        - culture judicieusement utilisée.
+                                    </p>
+                                </div>
+							</div>
+                        </li>
+
+                    </ul>
+                </section>
+            </div>
+            <div id="onglet_2" class="onglet">
+
+                <section class="carousel">
+                    <ul class="carousel-items">
+                        <li class="carousel-item">
+                            <div class="card">
+                                <h1 class="card-title">00-01</h1>
+                                <h2 class="card-title">copie manifestement indigente</h2>
+                                <div class="card-content">
+                                    <p>
+                                        - inintelligible ;<br />
+                                        - excessivement brève (quelques lignes) ;<br />
+                                        - marquant un refus manifeste de faire l'exercice.
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="carousel-item">
+                            <div class="card">
+                                <h1 class="card-title">02-03</h1>
+                                <h2 class="card-title">copie intelligible mais qui ne répond pas aux critères de l'épreuve</h2>
+                                <div class="card-content">
+                                    <p>
+                                        - propos vagues, sans rapport avec le texte ;<br />
+                                        - incohérence et/ou désordre excessif du propos ;<br />
+                                        - argumentation lacunaire, difficile à comprendre ;<br />
+                                        - aucune prise en compte de la question ;<br />
+                                        - simple répétition du texte, paraphrastique et sans ordre ;<br />
+                                        - lecture excessivement superficielle.
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="carousel-item">
+                            <div class="card">
+                                <h1 class="card-title">04-05</h1>
+                                <h2 class="card-title">Copie témoignant de l'effort de répondre à la question, même si la réponse demeure maladroite et inaboutie</h2>
+                                <div class="card-content">
+                                    <p>
+                                        - effort pour analyser les éléments les plus décisifs ;<br />
+                                        - pas de contresens majeur sur le propos du texte et la démarche de l'auteur ;<br />
+                                        - réponse globalement argumentative ;<br />
+                                        - expression globalement correcte.
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="carousel-item">
+                            <div class="card">
+                                <h1 class="card-title">06-07</h1>
+                                <h2 class="card-title">Si l'on trouve au moins un des éléments suivants en plus :</h2>
+                                <div class="card-content">
+                                    <p>
+                                        - interrogation du texte avec un effort d'attention à sa construction et au détail du propos, aux effets de la langue et à la logique argumentative ;<br />
+                                        - arguments pertinents ;<br />
+                                        - mobilisation à bon escient de connaissances.
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="carousel-item">
+                            <div class="card">
+                                <h1 class="card-title">08</h1>
+                                <h2 class="card-title">Si l'on trouve au moins un des éléments suivants en plus :</h2>
+								<div class="card-content">
+									<p>
+										- effort d'interprétation témoignant d'un questionnement attentif, explicitant les éléments clés du texte ;<br />
+										- expression bien maîtrisée, nuancée et précise.
+									</p>
+								</div>
+							</div>
+                        </li>
+                        <li class="carousel-item">
+                            <div class="card">
+								<h1 class="card-title">09-10</h1>
+								<h2 class="card-title">Si l'on trouve au moins un des éléments suivants en plus :</h2>
+								<div class="card-content">
+									<p>
+										- attention soutenue aux élaborations conceptuelles, argumentatives et/ou littéraire du texte ;<br />
+										- positionnement du texte relativement à la question travaillée et à ses enjeux ;<br />
+										- réponse développée avec justesse ;<br />
+										- effort de mettre au jour les implicites, les difficultés et les nuances éventuelles d'interprétation ;<br />
+										- culture judicieusement utilisée.
+									</p>
+								</div>
+							</div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+<script type="text/javascript">
+    function hideAllElementByClassNam(e) {
+        for (var t = document.getElementsByClassName("onglet"), n = 0; n < t.length; n++) t[n].style.display = "none"
+    }
+
+    function ShowElementById(e) {
+        document.getElementById(e).style.display = "block"
+    }
+
+    function addClassActiveElm(e) {
+        for (var t = document.getElementsByClassName("active"), n = 0; n < t.length; n++) removeClass(t[n], "active");
+        document.getElementById(e).className = "btnmateriel active"
+    }
+
+    function removeClass(e, t) {
+        e.className = e.className.replace(new RegExp("(?:^|\\s)" + t + "(?!\\S)"), "")
+    }
+    var DisplayHideOnglets = function() {
+            hideAllElementByClassNam("onglet");
+            var e = this.getAttribute("data-onglet");
+            void 0 !== e && null != e && (ShowElementById("onglet_" + e), addClassActiveElm("btn_" + e))
+        },
+        ToggleOnglets = function() {
+            hideAllElementByClassNam("onglet"), ShowElementById("onglet_" + (1 + this.checked))
+        };
+
+    function initListener() {
+        document.getElementById("switch").addEventListener("change", ToggleOnglets);
+        for (var e = document.getElementsByClassName("btnmateriel"), t = 0; t < e.length; t++) e[t].addEventListener("click", DisplayHideOnglets, !1)
+    }
+    initListener(), ShowElementById("onglet_1")
+</script>

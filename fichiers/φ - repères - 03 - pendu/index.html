@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jeu du pendu</title>
+    <link rel="icon" href="../../src/favicon.ico">
+    <script src="../../src/reperes.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #e0e5ec;
+        }
+        h1 {
+            color: red;
+            text-transform: lowercase;
+            margin: 0; /* Supprime la marge par défaut */
+        }
+        h2 {
+            color: black; /* Couleur du sous-titre */
+            font-size: 18px; /* Taille du sous-titre */
+            margin-top: 5px; /* Espace au-dessus du sous-titre */
+        }
+        #game-container {
+            display: flex;
+            justify-content: center;
+            max-width: 1000px;
+            width: 90%;
+            margin: 20px auto; /* Ajout d'une marge en haut et en bas */
+            background: #e0e5ec;
+            border-radius: 50px;
+            box-shadow: 20px 20px 60px #bec3c9, -20px -20px 60px #ffffff;
+            padding: 20px;
+        }
+        #word-display {
+            font-size: 24px;
+            margin: 20px 0;
+            text-align: center; /* Centre le texte du mot affiché */
+        }
+        #alphabet {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 5px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .letter-btn {
+            font-size: 24px;
+            margin: 5px;
+            width: 60px;
+            height: 60px;
+            border: none;
+            background: #e0e5ec;
+            box-shadow: 5px 5px 10px #bec3c9, -5px -5px 10px #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .letter-btn.correct {
+            background: lightgreen; /* Si la lettre est correcte */
+        }
+        .letter-btn.incorrect {
+            background: lightcoral; /* Si la lettre est incorrecte */
+        }
+        #hangman-image {
+            width: 200px;
+            height: auto; /* Ajustement automatique de la hauteur */
+        }
+        #score {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>jeu du pendu</h1>
+    <h2>réviser les repères philosophiques</h2> <!-- Sous-titre -->
+    <div id="score">Score : 0/0</div>
+    <div id="game-container">
+        <div id="game-left">
+            <div id="word-display"></div> <!-- Affichage du mot -->
+            <div id="hint"></div>
+            <div id="alphabet"></div> <!-- Affichage des lettres de l'alphabet -->
+        </div>
+        <div id="game-right">
+            <img id="hangman-image" src="src/0.png" alt="Pendu">
+        </div>
+    </div>
+
+    <script>
+        let definitions = [];
+        let goodAnswers = 0; // Compteur des bonnes réponses
+        let totalAnswers = 0; // Compteur des réponses totales
+        let currentWord, currentHint, guessedLetters, remainingAttempts;
+
+        reperes.forEach(item => {
+            item.parts.forEach(part => {
+                definitions.push([part.name, part.definition]);
+            });
+        });
+
+        function normalizeChar(char) {
+            return char.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        function initGame() {
+            const randomIndex = Math.floor(Math.random() * definitions.length);
+            [currentWord, currentHint] = definitions[randomIndex];
+            currentWord = currentWord.toLowerCase();
+            guessedLetters = new Set();
+            remainingAttempts = 10;
+
+            updateDisplay();
+            createAlphabet();
+        }
+
+        function updateDisplay() {
+            const wordDisplay = document.getElementById('word-display');
+            wordDisplay.textContent = currentWord.split('').map(letter => 
+                guessedLetters.has(normalizeChar(letter)) || letter === ' ' || letter === '-' ? letter : '_'
+            ).join(' ');
+
+            document.getElementById('hint').textContent = `Indice : ${currentHint}`;
+            
+            document.getElementById('hangman-image').src = `src/${10 - remainingAttempts}.png`;
+
+            if (!wordDisplay.textContent.includes('_')) {
+                goodAnswers++; // Incrémente les bonnes réponses
+                totalAnswers++; // Incrémente le total des réponses
+                alert(`Bravo ! Vous avez gagné ! Le mot était : ${currentWord}`);
+                checkContinue();
+            } else if (remainingAttempts === 0) {
+                totalAnswers++; // Incrémente le total des réponses
+                alert(`Dommage ! Le mot était : ${currentWord}`);
+                checkContinue();
+            }
+        }
+
+        function createAlphabet() {
+            const alphabet = 'abcdefghijklmnopqrstuvwxyz-';
+            const alphabetContainer = document.getElementById('alphabet');
+            alphabetContainer.innerHTML = '';
+            
+            alphabet.split('').forEach(letter => {
+                const button = document.createElement('button');
+                button.textContent = letter;
+                button.className = 'letter-btn';
+                button.onclick = () => guessLetter(letter);
+                alphabetContainer.appendChild(button);
+            });
+        }
+
+        function guessLetter(letter) {
+            if (!guessedLetters.has(letter)) {
+                guessedLetters.add(letter);
+                const normalizedLetter = normalizeChar(letter);
+                const buttons = document.querySelectorAll('.letter-btn');
+                let letterFound = false;
+
+                for (let i = 0; i < currentWord.length; i++) {
+                    if (normalizeChar(currentWord[i]) === normalizedLetter) {
+                        letterFound = true;
+                    }
+                }
+
+                buttons.forEach(button => {
+                    if (normalizeChar(button.textContent) === normalizedLetter) {
+                        button.disabled = true;
+                        if (letterFound) {
+                            button.classList.add('correct');
+                        } else {
+                            button.classList.add('incorrect');
+                            remainingAttempts--;
+                        }
+                    }
+                });
+
+                updateDisplay();
+            }
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = `Score : ${goodAnswers}/${totalAnswers}`;
+        }
+
+        function checkContinue() {
+            updateScore();
+            if (confirm("Voulez-vous continuer ?")) {
+                initGame();
+            } else {
+                alert(`Merci d'avoir joué ! Votre score final est : ${goodAnswers}/${totalAnswers}`);
+                resetScore();
+            }
+        }
+
+        function resetScore() {
+            goodAnswers = 0;
+            totalAnswers = 0;
+            updateScore();
+        }
+
+        initGame(); // Initialise le jeu au chargement de la page
+    </script>
+</body>
+</html>

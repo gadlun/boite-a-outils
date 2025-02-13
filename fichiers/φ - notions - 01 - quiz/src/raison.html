@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3.0">
+    <link rel="icon" type="image/svg+xml" href="src/favicon.ico" />
+    <title>quiz φ</title>
+    <link rel="stylesheet" href="src/css.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .content--v2 {
+            padding-top: 10px;
+        }
+        .correct {
+            border: 2px solid green;
+        }
+        .incorrect {
+            border: 2px solid red;
+        }
+        .hidden {
+            display: none;
+        }
+        .next-button-container {
+            text-align: center;
+            margin-top: 5px;
+        }
+        .quiz-answer, .quiz-btn {
+            margin-bottom: 5px;
+            width: 95%;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            padding: 10px 5px;
+            box-sizing: border-box;
+            display: block;
+            padding-left: 15px; /* Décalage du texte à droite */
+        }
+        .emoji {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+        .answer-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+        }
+        fieldset {
+            margin-bottom: 5px;
+            padding: 5px;
+        }
+        legend {
+            margin-bottom: 5px;
+            width: 100%;
+            text-align: center;
+        }
+        legend p {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-weight: bold; /* Mise en gras de la question */
+        }
+        .progress-bar__cursor--dynamic {
+            transition: width 0.3s ease;
+        }
+        .quiz-explanation {
+            width: 95%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-explanation__label {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .quiz-explanation__detail {
+            margin: 5px 0;
+            width: 100%;
+        }
+        @keyframes shakeX {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        @keyframes shakeY {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-5px); }
+            75% { transform: translateY(5px); }
+        }
+        .shake-x {
+            animation: shakeX 0.5s;
+        }
+        .shake-y {
+            animation: shakeY 0.5s;
+        }
+        .progress-bar {
+            margin-bottom: 10px;
+        }
+        .progress-bar__info {
+            margin-bottom: 5px;
+        }
+        ul {
+            padding: 0;
+            list-style-type: none;
+        }
+        .quiz-straison__img {
+            width: 100%; /* Ajuste la largeur du conteneur */
+            height: 400px; /* Ajuste la hauteur selon tes besoins */
+            position: relative; /* Pour que les éléments enfants soient positionnés relativement */
+            overflow: hidden; /* Pour cacher les praisonies de l'image qui débordent */
+        }
+        .quiz-straison__img img {
+            width: 100%; /* Prend toute la largeur du conteneur */
+            height: auto; /* Conserve l'aspect ratio de l'image */
+            object-fit: cover; /* L'image couvre le conteneur sans déformation */
+        }
+    </style>
+</head>
+
+<body>
+    <main id="content" class="content--v2" role="main" data-template-id="quiz">
+        <div class="wrapper--with-menu content--v2--header">
+            <div class="wrapper--grid-playlist">
+                <div class="grid-area--player grid-area--player-relative">        
+                    <div id="quiz" class="container--quiz" data-slug="quiz-l-raison">
+                        <div id="quizStraison">
+                            <div class="container--quiz-straison">
+                                <div class="quiz-straison__img">
+                                    <img class="lazy" alt="L'raison" src="raison.png" data-src="" data-srcset="" />
+                                    <div class="quiz-straison__opacity"></div>
+                                    <div class="quiz-straison__button">
+                                        <button id="quizStraisonBtn" class="quiz-btn quiz-btn--large quiz-btn--fill" type="button" tabindex="0" aria-label="Commencer le quiz">
+                                            <span class="icon icon-play"></span> Commencer le quiz 
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div id="quizQuestions" class="hidden" data-reviewing="false">
+                            <div class="progress-bar">
+                                <div class="progress-bar__info">
+                                    <div class="progress-bar__title">
+                                        <img src="src/phi.png" alt="philosophie">
+                                        <h1 id="quizTitle" aria-label="raison 1/10 , cochez le bouton radio choisi pour valider votre réponse.">raison</h1>
+                                    </div>
+                                    <div class="progress-bar__count" aria-hidden="true">
+                                        <span id="currentQuestion">1</span> /  
+                                        <span id="totalQuestions" data-value="10">10</span>
+                                    </div>
+                                </div>
+                                <div class="progress-bar__cursor">
+                                    <span class="progress-bar__cursor--dynamic" style="width: 0%"></span>
+                                </div>
+                            </div>
+
+                            <div id="questionsContainer"></div>
+                        </div>
+
+                        <div id="quizEnd" class="hidden">
+                            <div class="container--quiz-end" data-result="loose">
+                                <div class="container--quiz-results">
+                                    <div class="container--quiz-message">
+                                        <p class="quiz-end__results">
+                                            <span class="quiz-end__message-failure">Votre score :</span>
+                                            <br><br>
+                                            <span class="quiz-end__score">0</span> bonne(s) réponse(s) sur 10.
+                                        </p>
+                                        <br>
+                                    </div>
+                                    <br><br>
+                                    <div class="container--quiz-btn">
+                                        <button id="quizRetry" class="quiz-btn quiz-btn--default quiz-btn--fill quiz-btn-retry" type="button" tabindex="0" aria-label="Rejouer">Réessayer</button>
+                                    </div>
+                                    <a href="#playlistQuiz" title="" class="quiz-end__link"></a>
+                                </div>
+                            </div>
+                        </div>                        
+                        <button class="fullscreen-quiz"></button>
+                    </div>    
+                </div>
+
+                <div class="grid-area--playlist" id="playlistQuiz"></div>    
+            </div>
+        </div>
+    </main>
+    <script src="raison.js"></script>
+    <script>
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let shuffledQuestions = [];
+        const TOTAL_QUESTIONS = 10;
+
+        document.getElementById('quizStraisonBtn').addEventListener('click', straisonQuiz);
+        document.getElementById('quizRetry').addEventListener('click', straisonQuiz);
+
+        function straisonQuiz() {
+            shuffledQuestions = [...questions];
+            shuffleArray(shuffledQuestions);
+            shuffledQuestions = shuffledQuestions.slice(0, TOTAL_QUESTIONS);
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById('quizStraison').classList.add('hidden');
+            document.getElementById('quizEnd').classList.add('hidden');
+            document.getElementById('quizQuestions').classList.remove('hidden');
+            displayNextQuestion();
+        }
+
+        function displayNextQuestion() {
+            const questionsContainer = document.getElementById('questionsContainer');
+            questionsContainer.innerHTML = '';
+            
+            if (currentQuestionIndex < TOTAL_QUESTIONS) {
+                const q = shuffledQuestions[currentQuestionIndex];
+                
+                // Mélanger les réponses  
+                const shuffledAnswers = [...q.answers];
+                shuffleArray(shuffledAnswers);
+
+                const questionElement = document.createElement('div');
+                
+                questionElement.innerHTML = `
+                    <fieldset>
+                        <legend><p>${q.question}</p></legend>
+                        <ul>${shuffledAnswers.map((answer, i) => `
+                            <li class='quiz-answer' data-index='${i}'>
+                                ${answer}
+                                <img src="src/false.svg" alt="false" class="answer-icon hidden">
+                            </li>`).join('')}
+                        </ul>
+                    </fieldset>
+                    <div class='quiz-explanation hidden'>
+                        <div class='quiz-explanation__label'>
+                            <span></span>
+                        </div>
+                        <p class='quiz-explanation__detail'>${q.explanation}</p>
+                    </div>
+                    <div class='next-button-container'></div>`;
+                
+                questionsContainer.appendChild(questionElement);
+
+                // Ajout des événements aux réponses  
+                questionElement.querySelectorAll('.quiz-answer').forEach((answerElement, index) => {
+                    answerElement.addEventListener('click', () => {
+                        if (!questionElement.querySelector('.quiz-answer.correct') && !questionElement.querySelector('.quiz-answer.incorrect')) {
+                            checkAnswer(answerElement, shuffledAnswers[index], q.answers[q.correct]);
+                        }
+                    });
+                });
+
+                document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+                updateProgressBar();
+                
+            } else {
+                endQuiz();
+            }
+        }
+
+        function checkAnswer(selectedAnswer, selectedAnswerText, correctAnswerText) {
+            const answers = selectedAnswer.parentNode.children;
+            const explanationLabel = selectedAnswer.closest('div').querySelector('.quiz-explanation__label span');
+            
+            if (selectedAnswerText === correctAnswerText) {
+                selectedAnswer.classList.add('correct');
+                selectedAnswer.querySelector('.answer-icon').src = 'src/true.svg';
+                selectedAnswer.querySelector('.answer-icon').classList.remove('hidden');
+                score++;
+                explanationLabel.innerHTML = '<img src="src/emoji-happy.gif" alt="emoji" class="emoji"> Bonne réponse !';
+                selectedAnswer.classList.add('shake-y');
+            } else {
+                selectedAnswer.classList.add('incorrect');
+                selectedAnswer.querySelector('.answer-icon').classList.remove('hidden');
+                explanationLabel.innerHTML = '<img src="src/emoji-sad.gif" alt="emoji" class="emoji"> Mauvaise réponse !';
+                selectedAnswer.classList.add('shake-x');
+
+                // Marquer la bonne réponse  
+                Array.from(answers).forEach(answer => {
+                    if (answer.textContent.trim() === correctAnswerText) {
+                        answer.classList.add('correct');
+                        answer.querySelector('.answer-icon').src = 'src/true.svg';
+                        answer.querySelector('.answer-icon').classList.remove('hidden');
+                    }
+                });
+            }
+
+           // Affiche l'explication  
+           const explanation = selectedAnswer.closest('div').querySelector('.quiz-explanation');
+           explanation.classList.remove('hidden');
+
+           // Crée un bouton pour passer à la question suivante  
+           const nextButton = document.createElement('button');
+           nextButton.textContent = 'Question suivante';
+           nextButton.classList.add('quiz-btn', 'quiz-btn--default', 'quiz-btn--fill');
+           nextButton.addEventListener('click', () => {
+               currentQuestionIndex++;
+               displayNextQuestion();
+           });
+
+           // Ajoute le bouton dans le conteneur dédié  
+           const nextButtonContainer = selectedAnswer.closest('div').querySelector('.next-button-container');
+           nextButtonContainer.innerHTML = '';
+           nextButtonContainer.appendChild(nextButton);
+        }
+
+        function endQuiz() {
+            document.getElementById('quizQuestions').classList.add('hidden');
+            document.getElementById('quizEnd').classList.remove('hidden');
+            
+            // Affiche le score final  
+            document.querySelector('.quiz-end__score').textContent = score;
+        }
+
+        function shuffleArray(array) {
+             for (let i = array.length - 1; i > 0; i--) {
+                 const j = Math.floor(Math.random() * (i + 1));
+                 [array[i], array[j]] = [array[j], array[i]];
+             }
+         }
+
+        function updateProgressBar() {
+            const progressBar = document.querySelector('.progress-bar__cursor--dynamic');
+            const progress = ((currentQuestionIndex + 1) / TOTAL_QUESTIONS) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+    </script>
+</body>
+</html>

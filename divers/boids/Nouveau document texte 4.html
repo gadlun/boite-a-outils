@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation de Boids - Oiseaux Neumorphiques</title>
+    <style>
+        /* Styles CSS précédents inchangés */
+    </style>
+</head>
+<body>
+    <canvas id="boidCanvas"></canvas>
+    <div id="controls">
+        <label><input type="checkbox" id="walls"> Murs</label>
+        <label><input type="checkbox" id="collisions"> Collisions</label>
+        <label><input type="checkbox" id="followCursor"> Suivre</label>
+        <label>Racisme <input type="range" id="racism" min="0" max="100" value="0"></label>
+        <label>Diversité <input type="range" id="diversity" min="1" max="10" value="5"></label>
+        <label>Vitesse <input type="range" id="speed" min="1" max="10" value="5"></label>
+        <label>Introversion <input type="range" id="introversion" min="0" max="100" value="50"></label>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('boidCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Contrôles
+        const wallsCheckbox = document.getElementById('walls');
+        const collisionsCheckbox = document.getElementById('collisions');
+        const followCursorCheckbox = document.getElementById('followCursor');
+        const racismSlider = document.getElementById('racism');
+        const diversitySlider = document.getElementById('diversity');
+        const speedSlider = document.getElementById('speed');
+        const introversionSlider = document.getElementById('introversion');
+
+        let mousePosition = { x: 0, y: 0 };
+
+        canvas.addEventListener('mousemove', (event) => {
+            mousePosition.x = event.clientX;
+            mousePosition.y = event.clientY;
+        });
+
+        class Boid {
+            constructor() {
+                this.position = {x: Math.random() * canvas.width, y: Math.random() * canvas.height};
+                this.velocity = {x: Math.random() * 2 - 1, y: Math.random() * 2 - 1};
+                this.color = this.getRandomColor();
+            }
+
+            getRandomColor() {
+                const hue = Math.floor(Math.random() * parseInt(diversitySlider.value)) * (360 / parseInt(diversitySlider.value));
+                return `hsl(${hue}, 70%, 50%)`;
+            }
+
+            update(boids) {
+                const speed = speedSlider.value / 5;
+                const introversion = introversionSlider.value / 100;
+                const racism = racismSlider.value / 100;
+
+                let separation = {x: 0, y: 0};
+                let alignment = {x: 0, y: 0};
+                let cohesion = {x: 0, y: 0};
+                let sameColorCount = 0;
+
+                boids.forEach(other => {
+                    if (other !== this) {
+                        const distance = this.distance(this.position, other.position);
+                        if (distance < 50) {
+                            // Séparation
+                            separation.x += (this.position.x - other.position.x) / distance;
+                            separation.y += (this.position.y - other.position.y) / distance;
+
+                            // Alignement
+                            alignment.x += other.velocity.x;
+                            alignment.y += other.velocity.y;
+
+                            // Cohésion
+                            cohesion.x += other.position.x;
+                            cohesion.y += other.position.y;
+
+                            if (this.color === other.color) {
+                                sameColorCount++;
+                            }
+                        }
+                    }
+                });
+
+                // Appliquer les règles
+                this.velocity.x += separation.x * 0.05 * introversion;
+                this.velocity.y += separation.y * 0.05 * introversion;
+
+                this.velocity.x += alignment.x * 0.01 * introversion;
+                this.velocity.y += alignment.y * 0.01 * introversion;
+
+                this.velocity.x += (cohesion.x / boids.length - this.position.x) * 0.01 * introversion;
+                this.velocity.y += (cohesion.y / boids.length - this.position.y) * 0.01 * introversion;
+
+                // Racisme
+                if (sameColorCount > 0) {
+                    this.velocity.x += (cohesion.x / sameColorCount - this.position.x) * 0.01 * racism;
+                    this.velocity.y += (cohesion.y / sameColorCount - this.position.y) * 0.01 * racism;
+                }
+
+                // Suivre le curseur
+                if (followCursorCheckbox.checked) {
+                    const dx = mousePosition.x - this.position.x;
+                    const dy = mousePosition.y - this.position.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    this.velocity.x += dx / distance * 0.5;
+                    this.velocity.y += dy / distance * 0.5;
+                }
+
+                // Normaliser et appliquer la vitesse
+                const normalizedVelocity = this.normalizeVector(this.velocity);
+                this.velocity.x = normalizedVelocity.x * speed;
+                this.velocity.y = normalizedVelocity.y * speed;
+
+                // Mettre à jour la position
+                this.position.x += this.velocity.x;
+                this.position.y += this.velocity.y;
+
+                // Gestion des bords
+                if (wallsCheckbox.checked) {
+                    if (this.position.x > canvas.width || this.position.x < 0) this.velocity.x *= -1;
+                    if (this.position.y > canvas.height || this.position.y < 0) this.velocity.y *= -1;
+                } else {
+                    if (this.position.x > canvas.width) this.position.x = 0;
+                    if (this.position.x < 0) this.position.x = canvas.width;
+                    if (this.position.y > canvas.height) this.position.y = 0;
+                    if (this.position.y < 0) this.position.y = canvas.height;
+                }
+            }
+
+            normalizeVector(vector) {
+                const length = Math.sqrt(vector.x * vector.x + vector.y * vector.y);
+                return {
+                    x: vector.x / length || 0,
+                    y: vector.y / length || 0
+                };
+            }
+
+            distance(pos1, pos2) {
+                return Math.sqrt((pos1.x - pos2.x) ** 2 + (pos1.y - pos2.y) ** 2);
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.position.x, this.position.y);
+                ctx.rotate(Math.atan2(this.velocity.y, this.velocity.x));
+                
+                // Dessiner un oiseau simple
+                ctx.beginPath();
+                ctx.moveTo(10, 0);
+                ctx.lineTo(-10, -5);
+                ctx.lineTo(-7, 0);
+                ctx.lineTo(-10, 5);
+                ctx.closePath();
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                
+                ctx.restore();
+            }
+        }
+
+        let boids = Array(50).fill().map(() => new Boid());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            boids.forEach(boid => {
+                boid.update(boids);
+                boid.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        // Gestion de la diversité
+        diversitySlider.addEventListener('input', () => {
+            boids = boids.map(boid => {
+                boid.color = boid.getRandomColor();
+                return boid;
+            });
+        });
+
+        animate();
+    </script>
+</body>
+</html>

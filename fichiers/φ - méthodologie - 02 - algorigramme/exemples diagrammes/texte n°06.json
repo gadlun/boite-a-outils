@@ -1,0 +1,25 @@
+{ "class": "go.GraphLinksModel",
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [ 
+{"text":"thèse : il ne faut pas s'en remettre à autrui pour chercher la vérité", "key":1, "loc":"176 -210.99999999999997", "category":"intitule"},
+{"text":"comparaison de l’usage de l’esprit et de l’usage des yeux", "key":3, "loc":"-67.00000000000003 -71.00000000000003", "category":"Etape1"},
+{"text":"supériorité de l’usage de l’esprit sur l’usage des yeux", "key":4, "loc":"424.33332824706974 -70.00000000000006", "category":"Etape1"},
+{"text":"[1] constat : on préfère utiliser l'esprit des autres plutôt que le sien", "key":5, "loc":"-235.0000000000001 103.33332824707028", "category":"Etape2"},
+{"text":"[5] seul l'esprit accède au vrai\n\nusage de l'esprit / usage des yeux = esprit / yeux", "key":6, "loc":"424.33332824707037 116", "category":"Etape2"},
+{"category":"Etape2", "text":"[2] justification : on préfère ne pas avoir le plaisir de comprendre par soi-même", "key":-2, "loc":"-235.00000000000017 269.66665649414074"},
+{"category":"Etape2", "text":"[3] justification :\nne pas utiliser ses propres yeux est de la folie", "key":-8, "loc":"96.00000000000003 103.33332824707028"},
+{"category":"Etape2", "text":"[4] justification :\nutiliser les yeux des autres, c'est ne rien voir", "key":-9, "loc":"96.00000000000001 270.66664123535156"},
+{"text":"Texte n°6", "key":-10, "loc":"-318.00000000000006 -240.00000000000009", "category":"intitule"},
+{"category":"Etape3", "text":"[6] on utilise ses yeux pour se guider, on utilise l'esprit des autres pour accéder à la vérité ", "key":-3, "loc":"424.33332824707037 334.9999999999999"}
+ ],
+  "linkDataArray": [ 
+{"from":4, "to":6, "fromPort":"B", "toPort":"T", "points":[424.33332824706986,-13.432500743865972,424.33332824706986,-3.4325007438659725,424.33332824706986,-1.0337496280670138,424.33332824707054,-1.0337496280670138,424.33332824707054,1.365001487731945,424.33332824707054,11.365001487731945]},
+{"from":3, "to":5, "fromPort":"B", "toPort":"T", "points":[-67,-14.432500743866001,-67,-4.432500743866001,-67,8.155414247512795,-235.0000000000001,8.155414247512795,-235.0000000000001,20.74332923889159,-235.0000000000001,30.74332923889159]},
+{"from":-8, "to":-9, "fromPort":"B", "toPort":"T", "points":[96,175.92332725524903,96,185.92332725524903,96,186.99998474121094,96,186.99998474121094,96,188.07664222717284,96,198.07664222717284]},
+{"from":1, "to":3, "fromPort":"B", "toPort":"R", "points":[176,-154.43250074386594,176,-144.43250074386594,176,-71.00000000000003,129.625,-71.00000000000003,83.25,-71.00000000000003,73.25,-71.00000000000003]},
+{"from":1, "to":4, "fromPort":"B", "toPort":"L", "points":[176,-154.43250074386594,176,-144.43250074386594,176,-70,220.90416717529274,-70,265.8083343505855,-70,275.8083343505855,-70]},
+{"from":6, "to":-3, "fromPort":"B", "toPort":"T", "points":[424.33332824707054,220.63499851226806,424.33332824707054,230.63499851226806,424.33332824707054,233.51124987602233,424.3333282470703,233.51124987602233,424.3333282470703,236.3875012397766,424.3333282470703,246.3875012397766]},
+{"from":3, "to":-8, "fromPort":"B", "toPort":"T", "points":[-67,-14.432500743866001,-67,-4.432500743866001,-67,8.155414247512802,96,8.155414247512802,96,20.743329238891604,96,30.743329238891604]},
+{"from":5, "to":-2, "fromPort":"B", "toPort":"T", "points":[-235.0000000000001,175.923327255249,-235.0000000000001,185.923327255249,-235.0000000000001,186.49999237060547,-235,186.49999237060547,-235,187.0766574859619,-235,197.0766574859619]}
+ ]}

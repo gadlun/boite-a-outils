@@ -1,0 +1,7 @@
+Trouves 50 problématiques de dissertation de philosophie niveau terminale. Il faudra les présenter dans une fenêtre.
+Cette série doit comporter le mot "ou" et après le mot "ou" il faut au moins 5 mots. Vérifier qu’il y a bien un point d’interrogation précédé d’un espace à la fin de chaque problématique trouvée.
+Faire une liste selon le modèle suivant : "{name: "X",definition :"Y."},"
+La variable X représentant la première problématique.
+La variable Y représentant une seconde problématique en lien étroit avec X. Les conditions formelles sont les mêmes que pour X.
+Ne pas sauter de ligne entre chaque problématique.
+Au terme de la liste, ne pas mettre de virgule à la fin. 

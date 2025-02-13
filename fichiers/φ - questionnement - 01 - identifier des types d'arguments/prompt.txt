@@ -1,0 +1,23 @@
+Prompt : "Crée un fichier HTML complet pour une application web qui permet d'associer des mots à l'aide de deux colonnes. Les utilisateurs peuvent cliquer sur les cellules des colonnes pour créer des associations. Dessinez des flèches orientées de gauche à droite entre les cellules associées, en veillant à ce que les flèches restent toujours orientées vers la droite, peu importe l'ordre de sélection des cellules. Les flèches doivent changer de couleur : vert pour les associations correctes et rouge pour les incorrectes. Incluez également un bouton avec un caractère de rechargement (🔄) qui s'abaisse d'un demi-millimètre lorsque l'utilisateur passe le curseur dessus ou clique dessus. Utilisez des styles CSS pour donner un effet neumorphique au bouton et aux cellules. Enfin, créez un fichier JavaScript reperes.js qui contient la logique nécessaire pour gérer les interactions, y compris la fonction loadReperes() qui charge les données à partir d'une source externe."
+
+Prompt : Développez une application web interactive permettant de faire des associations entre deux colonnes de mots. L'application doit inclure les fonctionnalités suivantes :
+
+1.	Interface Utilisateur : 
+o	Un titre en rouge "Faire lien".
+o	Deux colonnes : une pour les "Repères" et une pour les "Définitions", chacune affichant des mots dans des cellules de tableau.
+o	Un canevas (canvas) superposé pour dessiner des flèches entre les mots associés.
+2.	Interactions : 
+o	Lorsqu'un utilisateur clique sur une cellule dans la colonne de gauche (Repères), une flèche doit partir du bord droit de cette cellule.
+o	Si l'utilisateur clique sur une cellule dans la colonne de droite (Définitions), la flèche doit partir du bord gauche de cette cellule.
+o	Les flèches doivent toujours être orientées vers la droite, reliant les deux colonnes.
+3.	Dessin des Flèches : 
+o	Les flèches doivent rester visibles après que l'utilisateur relâche le bouton de la souris.
+o	Les flèches doivent être dessinées avec une tête de flèche pour indiquer la direction.
+4.	Bouton Vérifier : 
+o	Un bouton "Vérifier" qui, lorsqu'il est cliqué, exécute une action définie (par exemple, afficher un message d'alerte ou vérifier les associations).
+5.	Styles CSS : 
+o	Utiliser des styles modernes pour les boutons et les cellules, avec des effets au survol et au clic.
+o	Le canevas doit être positionné correctement pour superposer les colonnes.
+6.	JavaScript : 
+o	Gérer les événements de souris pour dessiner les flèches et gérer l'état des associations.
+o	Stocker les liens dessinés dans un tableau pour pouvoir redessiner ces liens si nécessaire.

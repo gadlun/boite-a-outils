@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="fr" >
+<head>
+  <meta charset="UTF-8">
+  <title>Mastermind</title>
+  <style>
+  body {
+  margin: 0px;
+  background-color: #000000;
+}
+.DivFondo {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.DivPagina {
+  border: medium dotted #000000;
+  width: 800px;
+  height: 600px;
+  background-color: #000000;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+}
+.DivResultados {
+  width: 180px;
+  height: 450px;
+  background-color: #000000;
+  position: relative;
+  margin: 0px;
+  left: 100px;
+  border: thick inset #ffcc00;
+  top: 40px;
+}
+.LigneResultat {
+  width: 180px;
+  height: 45px;
+  background-image: url("https://ticketprest.com/SG/fondofila.jpg");
+  position: relative;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  margin: 0px;
+}
+.DivTitulo {
+  position: absolute;
+  width: 180px;
+  height: 30px;
+  top: 45px;
+  left: 100px;
+  background-color: #000000;
+  border: thick inset #ffcc00;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-large;
+  text-align: center;
+  vertical-align: middle;
+}
+.DivTablaResultados {
+  width: 180px;
+  height: 450px;
+  top: 75px;
+  left: 285px;
+  position: absolute;
+  border: thick inset #ffcc00;
+}
+.DivResNum {
+  position: relative;
+  width: 180px;
+  height: 45px;
+  background-image: url("https://ticketprest.com/SG/fondoResultado.jpg");
+  top: 0px;
+  left: 0px;
+}
+.DivTitulCodSecret {
+  position: absolute;
+  width: 180px;
+  height: 30px;
+  top: 45px;
+  left: 500px;
+  background-color: #000000;
+  border: thick inset #ffcc00;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-large;
+  text-align: center;
+  vertical-align: middle;
+}
+.DivCodigo {
+  position: absolute;
+  width: 180px;
+  height: 45px;
+  top: 75px;
+  left: 500px;
+  border: thick inset #ffcc00;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-large;
+  text-align: center;
+  vertical-align: middle;
+  background-image: url("https://ticketprest.com/SG/fondofila.jpg");
+}
+.DivFormulario {
+  position: absolute;
+  width: 180px;
+  height: 375px;
+  top: 150px;
+  left: 500px;
+  border: thick inset #000000;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-large;
+  text-align: center;
+  vertical-align: middle;
+  background-image: url("https://ticketprest.com/SG/Fondoformulario.jpg");
+}
+.botonpeque {
+  width: 30px;
+  height: 30px;
+  background-color: Transparent;
+}
+.btComenzar {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  width: 80px;
+  height: 30px;
+}
+#tituloMain {
+  font-size: x-large;
+  color: #ffffff;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: oblique;
+  font-weight: bold;
+  padding-top: 5px;
+}
+ </style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html>
+
+<head>
+  <title>mastermind</title>
+
+  <link href="MasterMind.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    .style1 {
+      border: medium solid #000000;
+      width: 180px;
+    }
+
+    .style2 {
+      border-style: none;
+      width: 180px;
+    }
+  </style>
+
+</head>
+<SCRIPT language="javascript" src="mastermind.js">
+  <!--
+  //
+  -->
+</SCRIPT>
+
+<body onload="AlIniciar()" class="style2">
+
+  <div id="Fondo" class="DivFondo">
+    <div id="Pagina" class="DivPagina">
+      <div id="tituloMain">
+        mastermind </div>
+      <div id="titulo01" class="DivTitulo">
+        essai
+      </div>
+      <div id="Resultados" class="DivResultados">
+        <div id="Div01" class="LigneResultat">
+          <form name="for00">
+            <table style="width: 180px; height: 45px; border: 0px; border-spacing: 0px; margin: 0px; padding: 0px">
+              <tr>
+                <td><input id="Button00" type="button" disabled="disabled" class="botonpeque" /></td>
+                <td><input id="Button01" type="button" disabled="disabled" class="botonpeque" /></td>
+                <td><input id="Button02" type="button" disabled="disabled" class="botonpeque" /></td>
+                <td><input id="Button03" type="button" disabled="disabled" class="botonpeque" /></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div id="Div02" class="LigneResultat">
+          <form NAME="for01">
+            <table style="width: 180px; height: 45px; border: 0px; border-spacing: 0px; margin: 0px; padding: 0px">
+              <tr>
+                <td>
+                  <input id="Button10" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button11" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button12" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button13" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div id="Div03" class="LigneResultat">
+          <form NAME="for02">
+            <table style="width: 180px; height: 45px; border: 0px; border-spacing: 0px; margin: 0px; padding: 0px">
+              <tr>
+                <td>
+                  <input id="Button20" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button21" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button22" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Butto23" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div id="Div04" class="LigneResultat">
+          <form NAME="for03">
+            <table style="width: 180px; height: 45px; border: 0px; border-spacing: 0px; margin: 0px; padding: 0px">
+              <tr>
+                <td>
+                  <input id="Button30" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button31" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button32" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button33" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div id="Div05" class="LigneResultat">
+          <form NAME="for04">
+            <table style="width: 180px; height: 45px; border: 0px; border-spacing: 0px; margin: 0px; padding: 0px">
+              <tr>
+                <td>
+                  <input id="Button40" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button41" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button42" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button43" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div id="Div06" class="LigneResultat">
+          <form NAME="for05">
+            <table style="width: 180px; height: 45px; border: 0px; border-spacing: 0px; margin: 0px; padding: 0px">
+              <tr>
+                <td>
+                  <input id="Button50" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button51" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button52" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button53" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div id="Div07" class="LigneResultat">
+          <form NAME="for06">
+            <table style="width: 180px; height: 45px; border: 0px; border-spacing: 0px; margin: 0px; padding: 0px">
+              <tr>
+                <td>
+                  <input id="Button60" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button61" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button62" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button63" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div id="Div08" class="LigneResultat">
+          <form NAME="for07">
+            <table style="width: 180px; height: 45px; border: 0px; border-spacing: 0px; margin: 0px; padding: 0px">
+              <tr>
+                <td>
+                  <input id="Button70" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button71" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button72" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button73" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div id="Div09" class="LigneResultat">
+          <form NAME="for08">
+            <table style="width: 180px; height: 45px; border: 0px; border-spacing: 0px; margin: 0px; padding: 0px">
+              <tr>
+                <td>
+                  <input id="Button80" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button81" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button82" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button83" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div id="Div10" class="LigneResultat">
+          <form NAME="for09">
+            <table style="width: 180px; height: 45px; border: 0px; border-spacing: 0px; margin: 0px; padding: 0px">
+              <tr>
+                <td>
+                  <input id="Button90" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button91" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button92" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td>
+                  <input id="Button93" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
+      </div>
+      <div id="DivTablaResultados" class="DivTablaResultados">
+        <div id="Div11" class="DivResNum">
+
+          <form NAME="form10">
+            <img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" />
+          </form>
+        </div>
+        <div id="Div12" class="DivResNum">
+          <form NAME="form11">
+            <img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" />
+          </form>
+        </div>
+        <div id="Div13" class="DivResNum">
+          <form NAME="form12">
+            <img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" />
+          </form>
+        </div>
+        <div id="Div14" class="DivResNum">
+          <form NAME="form13">
+            <img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" />
+          </form>
+        </div>
+        <div id="Div15" class="DivResNum">
+          <form NAME="form14">
+            <img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" />
+          </form>
+        </div>
+        <div id="Div16" class="DivResNum">
+          <form NAME="form15">
+            <img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" />
+          </form>
+        </div>
+        <div id="Div17" class="DivResNum">
+          <form NAME="form16">
+            <img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" />
+          </form>
+        </div>
+        <div id="Div18" class="DivResNum">
+          <form NAME="form17">
+            <img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" />
+          </form>
+        </div>
+        <div id="Div19" class="DivResNum">
+          <form NAME="form18">
+            <img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" />
+          </form>
+        </div>
+        <div id="Div20" class="DivResNum">
+          <form NAME="form19">
+            <img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" /><img alt="" src="imagenes/puntotransparente.gif" style="width: 45px; height: 45px" />
+          </form>
+        </div>
+      </div>
+
+      <div id="DivTituloCodSecr" class="DivTitulCodSecret">
+        code secret
+      </div>
+      <div id="DiCodigo" class="DivCodigo">
+        <form NAME="ElCodigo">
+          <table style="width: 180px; height: 45px; border: 0px; border-spacing: 0px; margin: 0px; padding: 0px">
+            <tr id="Tr1">
+              <td id="Td1">
+                <input id="codigo01" type="button" disabled="disabled" class="botonpeque" />
+              </td>
+              <td id="Td2">
+                <input id="codigo02" type="button" disabled="disabled" class="botonpeque" />
+              </td>
+              <td id="Td3">
+                <input id="codigo03" type="button" disabled="disabled" class="botonpeque" />
+              </td>
+              <td id="Td4">
+                <input id="codigo04" type="button" disabled="disabled" class="botonpeque" />
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <div id="Divformulario" class="DivFormulario">
+        <form NAME="mandos">
+
+          <table id="TablaControles" border="1" cellpadding="0" cellspacing="0" class="style1">
+            <tr class="style1">
+              <td>
+                <input id="amarillo" onclick="meterdato(1)" style="border-style: inset; width: 40px; height: 40px; background-color: #FFFF00" type="button" disabled="Disabled" />
+              </td>
+              <td>
+                <input id="verde" onclick="meterdato(2)" style="border-style: inset; background-color: #00FF00; width: 40px; height: 40px" type="button" disabled="Disabled" />
+              </td>
+              <td>
+                <input id="azul" onclick="meterdato(3)" style="border-style: inset; width: 40px; height: 40px; background-color: #00FFFF" type="button" disabled="Disabled" />
+              </td>
+              <td>
+                <input id="rosa" onclick="meterdato(4)" style="border-style: inset; width: 40px; height: 40px; background-color: #FF00FF" type="button" disabled="Disabled" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input id="blanco" onclick="meterdato(5)" style="border-style: inset; width: 40px; height: 40px; background-color: #FFFFFF" type="button" disabled="Disabled" />
+              </td>
+              <td>
+                <input id="rojo" onclick="meterdato(6)" style="border-style: inset; width: 40px; height: 40px; background-color: #FF0000" type="button" disabled="Disabled" />
+              </td>
+              <td>
+                <input id="morado" onclick="meterdato(7)" style="border-style: inset; width: 40px; height: 40px; background-color: #800080" type="button" disabled="Disabled" />
+              </td>
+              <td>
+                <input id="gris" onclick="meterdato(8)" style="border-style: inset; width: 40px; height: 40px; background-color: #C0C0C0" type="button" disabled="Disabled" />
+              </td>
+            </tr>
+          </table>
+          <div id="DivIntentando" style="width: 180px; height: 45px; background-image: url('imagenes/fondofila.jpg')">
+            <table style="width: 180px; height: 45px; border: 0px; border-spacing: 0px; margin: 0px; padding: 0px">
+              <tr id="fila">
+                <td id="co1">
+                  <input id="bt1" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td id="co2">
+                  <input id="bt2" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td id="co3">
+                  <input id="bt3" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+                <td id="co4">
+                  <input id="bt4" type="button" disabled="disabled" class="botonpeque" />
+                </td>
+              </tr>
+            </table>
+          </div>
+          <table class="style2">
+            <tr>
+              <td>
+                <input id="btValidar" type="button" value="valider" onclick="comprobar()" style="width: 80px; font-weight: bold; background-color: #C0C0C0; height: 40px;" disabled="Disabled" />
+              </td>
+              <td>
+                <input id="btDeshacer" type="button" value="annuler" onclick="deshacer()" style="width: 80px; font-weight: bold; background-color: #C0C0C0; height: 40px;" disabled="Disabled" />
+              </td>
+            </tr>
+          </table>
+          <table style="width: 180px">
+            <tr>
+              <td colspan="2">
+                <div style="font-family: Arial, Helvetica, sans-serif; font-size: xx-small; color: #ffffff; text-align: center;">
+                 <br>
+				 <br>
+				 <br>
+				 <br>
+				 <strong>générer un code...</strong>
+				 <br>
+				 <br>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="font-family: Arial, Helvetica, sans-serif; font-size: x-small; color: #00FFFF; font-weight: bold;">
+ 
+                </div>
+                <input id="comenzarcon" type="button" value="avec répétitions" class="btComenzar" onclick="comenzar('con')" />
+              </td>
+              <td>
+                <div style="font-family: Arial, Helvetica, sans-serif; font-size: x-small; color: #00FFFF; font-weight: bold;">
+
+                </div>
+                <input id="comenzarsin" type="button" value="sans répétitions" class="btComenzar" onclick="comenzar('sin')" />
+              </td>
+            </tr>
+
+          </table>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+<!-- partial -->
+  <script>
+  
+  // Declaración de variables globales
+
+var contador = 1;
+var intentos = 9;
+var HoraInicio;
+var HoraFinal;
+var diferencia;
+
+// Declaración de array resultados, recoge el codigo que ira metiendo el usuario.
+var resultado = new Array(5);
+
+var ArrayIntentos = new Array(10);
+var cadena = new Array(10);
+for (x = 0; x <= 9; x++) {
+  ArrayIntentos[x] = new Array(4);
+  cadena[x] = new Array(4);
+}
+
+// Declaración del array de colores y su carga
+var colores = new Array(9);
+colores[0] = "Transparent";
+colores[1] = "#ffff00";
+colores[2] = "#00ff00";
+colores[3] = "#00ffff";
+colores[4] = "#ff00ff";
+colores[5] = "#ffffff";
+colores[6] = "#ff0000";
+colores[7] = "#800080";
+colores[8] = "#c0c0c0";
+
+var codigo = new Array(5);
+
+var rt = new Array(5);
+var ct = new Array(5);
+
+//Fin Declaración variables globales
+
+controles(true, "inset");
+
+function AlIniciar() {
+  contador = 1;
+  intentos = 9;
+
+  for (i = 0; i <= 4; i++) {
+    resultado[i] = 0;
+  }
+  for (i = 1; i <= 4; i++) {
+    codigo[i] = 0;
+  }
+  var z = 0;
+  for (i = 0; i <= 9; i++) {
+    for (x = 0; x <= 3; x++) {
+      ArrayIntentos[i][x] = 0;
+      document.forms[i].elements[x].style.backgroundColor = colores[0];
+      cadena[i][x] = "https://ticketprest.com/SG/puntotransparente.gif";
+      document.images[z].src =
+        "https://ticketprest.com/SG/puntotransparente.gif";
+      z++;
+    }
+  }
+  document.mandos.comenzarcon.disabled = false;
+  document.mandos.comenzarsin.disabled = false;
+  document.mandos.btDeshacer.disabled = true;
+  controles(true, "inset");
+  document.mandos.btValidar.disabled = true;
+
+  document.ElCodigo.codigo01.style.backgroundColor = colores[codigo[0]];
+  document.ElCodigo.codigo02.style.backgroundColor = colores[codigo[0]];
+  document.ElCodigo.codigo03.style.backgroundColor = colores[codigo[0]];
+  document.ElCodigo.codigo04.style.backgroundColor = colores[codigo[0]];
+}
+
+function IniciarCadena(nume) {
+  for (x = 0; x <= 3; x++) {
+    cadena[nume][x] = "https://ticketprest.com/SG/puntotransparente.gif";
+  }
+}
+
+function comenzar(consin) {
+  AlIniciar();
+  HoraInicio = new Date();
+  for (i = 0; i <= 4; i++) {
+    resultado[i] = 0;
+  }
+  contador = 1;
+  intentos = 9;
+
+  generar(consin);
+  controles(false, "outset");
+  document.mandos.comenzarsin.disabled = true;
+  document.mandos.comenzarcon.disabled = true;
+  document.mandos.comenzarsin.checked = true;
+  document.mandos.comenzarcon.checked = true;
+  document.mandos.btValidar.disabled = true;
+  document.mandos.btDeshacer.disabled = false;
+  document.mandos.btDeshacer.checked = false;
+}
+
+function vercodigo(r) {
+  document.ElCodigo.codigo01.style.backgroundColor = colores[codigo[1]];
+  document.ElCodigo.codigo02.style.backgroundColor = colores[codigo[2]];
+  document.ElCodigo.codigo03.style.backgroundColor = colores[codigo[3]];
+  document.ElCodigo.codigo04.style.backgroundColor = colores[codigo[4]];
+}
+
+function VerEntrada(nu) {
+  if (nu != 0) {
+    document.mandos.bt1.style.backgroundColor = colores[resultado[1]];
+    document.mandos.bt2.style.backgroundColor = colores[resultado[2]];
+    document.mandos.bt3.style.backgroundColor = colores[resultado[3]];
+    document.mandos.bt4.style.backgroundColor = colores[resultado[4]];
+  } else {
+    document.mandos.bt1.style.backgroundColor = colores[0];
+    document.mandos.bt2.style.backgroundColor = colores[0];
+    document.mandos.bt3.style.backgroundColor = colores[0];
+    document.mandos.bt4.style.backgroundColor = colores[0];
+  }
+}
+
+function controles(valor, valor2) {
+  document.mandos.amarillo.disabled = valor;
+  document.mandos.rosa.disabled = valor;
+  document.mandos.verde.disabled = valor;
+  document.mandos.azul.disabled = valor;
+  document.mandos.gris.disabled = valor;
+  document.mandos.blanco.disabled = valor;
+  document.mandos.rojo.disabled = valor;
+  document.mandos.morado.disabled = valor;
+
+  document.mandos.amarillo.style.borderStyle = valor2;
+  document.mandos.rosa.style.borderStyle = valor2;
+  document.mandos.verde.style.borderStyle = valor2;
+  document.mandos.azul.style.borderStyle = valor2;
+  document.mandos.gris.style.borderStyle = valor2;
+  document.mandos.blanco.style.borderStyle = valor2;
+  document.mandos.rojo.style.borderStyle = valor2;
+  document.mandos.morado.style.borderStyle = valor2;
+}
+
+function meterdato(a) {
+  if (contador < 5) {
+    var b = "bt" + contador;
+    resultado[contador] = a;
+    contador++;
+    VerEntrada();
+
+    if (contador == 5) {
+      controles(true, "inset");
+      document.mandos.btValidar.disabled = false;
+      document.mandos.btValidar.checked = false;
+    }
+  }
+}
+function deshacer() {
+  if (contador != 1) {
+    contador--;
+    resultado[contador] = 0;
+    VerEntrada();
+    controles(false, "outset");
+    document.mandos.btValidar.disabled = true;
+    document.mandos.btValidar.checked = true;
+  }
+}
+function generar(consin2) {
+  var i = 1;
+  var c = 0;
+  var co = 0;
+  var sw = 0;
+  var a = 0;
+  codigo[0] = 0;
+  for (i = 1; i <= 4; i++) {
+    codigo[i] = 0;
+  }
+  c = 1;
+  while (c <= 4) {
+    a = Math.random() * 8;
+    a = Math.round(a);
+    if (
+      a == 1 ||
+      a == 2 ||
+      a == 3 ||
+      a == 4 ||
+      a == 5 ||
+      a == 6 ||
+      a == 7 ||
+      (a == 8 && a != 0)
+    ) {
+      co = c;
+      sw = 0;
+      if (consin2 == "sin") {
+        if (co == 1) {
+          codigo[c] = a;
+          c++;
+        } else {
+          while (co != 0) {
+            if (a == codigo[co - 1]) {
+              sw = 1;
+            }
+            co--;
+          }
+          if (sw != 1) {
+            codigo[c] = a;
+            c++;
+          }
+        }
+      } else {
+        codigo[c] = a;
+        c++;
+      }
+    }
+  }
+}
+
+function comprobar() {
+  document.mandos.btValidar.disabled = true;
+  document.mandos.btValidar.checked = true;
+  if (intentos <= 9 && intentos >= 0) {
+    for (x = 0; x <= 3; x++) {
+      ArrayIntentos[intentos][x] = resultado[x + 1];
+      document.forms[intentos].elements[x].style.backgroundColor =
+        colores[ArrayIntentos[intentos][x]];
+    }
+
+    VerEntrada(0);
+
+    for (i = 0; i <= 4; i++) {
+      rt[i] = resultado[i];
+      ct[i] = codigo[i];
+    }
+
+    IniciarCadena(intentos);
+
+    var posi = 0;
+
+    if (rt[1] == ct[1] && rt[2] == ct[2] && rt[3] == ct[3] && rt[4] == ct[4]) {
+      vercodigo();
+      for (i = 0; i <= 3; i++) {
+        cadena[intentos][i] = "https://ticketprest.com/SG/puntoverde.gif";
+        document.images[intentos * 4].src = cadena[intentos][0];
+        document.images[intentos * 4 + 1].src = cadena[intentos][1];
+        document.images[intentos * 4 + 2].src = cadena[intentos][2];
+        document.images[intentos * 4 + 3].src = cadena[intentos][3];
+      }
+      document.mandos.btDeshacer.disabled = true;
+      document.mandos.comenzarcon.disabled = false;
+      document.mandos.comenzarsin.disabled = false;
+      HoraFinal = new Date();
+      diferencia =
+        HoraFinal.getHours() * 60 +
+        HoraFinal.getMinutes() * 60 +
+        HoraFinal.getSeconds() -
+        (HoraInicio.getHours() * 60 +
+          HoraInicio.getMinutes() * 60 +
+          HoraInicio.getSeconds());
+      alert(
+        "ENHORABUENA!!!, Has acertado y has tardado:  " +
+          parseInt(diferencia / 60) +
+          " minutos y " +
+          (diferencia % 60) +
+          " segundos. En  " +
+          "Intentos= " +
+          (10 - intentos)
+      );
+    } else {
+      for (i = 1; i <= 4; i++) {
+        if (rt[i] == ct[i]) {
+          rt[i] = 9;
+          ct[i] = 0;
+          cadena[intentos][posi] = "https://ticketprest.com/SG/puntoverde.gif";
+          posi++;
+        }
+      }
+      for (i = 1; i <= 4; i++) {
+        for (it = 1; it <= 4; it++) {
+          if (rt[i] == ct[it]) {
+            ct[it] = 0;
+            rt[i] = 9;
+            cadena[intentos][posi] = "https://ticketprest.com/SG/puntorojo.gif";
+            posi++;
+          }
+        }
+      }
+
+      document.images[intentos * 4].src = cadena[intentos][0];
+      document.images[intentos * 4 + 1].src = cadena[intentos][1];
+      document.images[intentos * 4 + 2].src = cadena[intentos][2];
+      document.images[intentos * 4 + 3].src = cadena[intentos][3];
+      contador = 1;
+      for (x = 0; x <= 4; x++) {
+        resultado[x] = 0;
+      }
+      intentos--;
+      controles(false, "outset");
+      if (intentos == -1) {
+        document.mandos.btDeshacer.disabled = true;
+        document.mandos.comenzarcon.disabled = false;
+        document.mandos.comenzarsin.disabled = false;
+        vercodigo();
+        controles(true, "inset");
+        alert("OHHHH, Ya no te quedan mas intentos, Intentalo de nuevo");
+      }
+    }
+  }
+}
+  
+  </script>
+
+</body>
+</html>

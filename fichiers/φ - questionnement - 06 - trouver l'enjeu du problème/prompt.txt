@@ -1,0 +1,7 @@
+Trouves 50 enjeux posés par des problématiques de dissertation de philosophie niveau terminale.
+Il faudra les présenter dans une fenêtre. Chaque problématique doit comporter le mot "ou" et après le mot "ou" il faut au moins 5 mots. Vérifier qu’il y a bien un point d’interrogation précédé d’un espace à la fin de chaque problématique trouvée.
+Faire une liste selon le modèle suivant : "{name: "X",definition :"Y."},"
+La variable X représentant une problématique.
+La variable Y représentant l'enjeu posé par X.
+Ne pas sauter de ligne entre chaque problématique.
+Au terme de la liste, ne pas mettre de virgule à la fin. 

@@ -1,0 +1,3 @@
+*,body,html{font-family:"OpenDyslexic",sans-serif!important;line-height:2em;word-spacing:1.5em;color:#000}
+#contenu:hover p,#contenu:hover ul,#contenu:hover dl,#contenu:hover div.important{opacity:.1;transition:opacity .20s ease-in-out}
+#contenu p:hover,#contenu ul:hover,#contenu dl:hover,#contenu div.important:hover{opacity:1!important;border:1px solid red;padding:5px}

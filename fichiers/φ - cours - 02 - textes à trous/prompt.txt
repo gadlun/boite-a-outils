@@ -1,0 +1,15 @@
+Créez une application web interactive de 'texte à trous' pour réviser des concepts philosophiques. 
+L'application doit présenter une série de textes avec des mots manquants, permettre aux utilisateurs de glisser-déposer les mots corrects dans les espaces vides, vérifier les réponses, montrer les corrections si nécessaire, et passer automatiquement au texte suivant. 
+L'interface doit être conviviale et responsive, avec un design moderne utilisant des effets d'ombre et des transitions fluides
+
+xxxxxxxxxxxxxxxxxxx
+
+Je veux un fichier index.html qui contient une application simple pour afficher des textes philosophiques à trous. Le fichier doit inclure les éléments suivants :
+
+    Un titre centré "Texte à trous".
+    Un conteneur pour afficher le texte avec des mots clés à compléter, entourés de crochets.
+    Un conteneur pour afficher les mots à glisser.
+    Un bouton "Vérifier" qui permet de vérifier les réponses.
+    Le style doit être simple et clair, sans espaces supplémentaires entre les textes.
+
+Je veux également un fichier textes.js contenant 40 textes philosophiques. Chaque texte doit comporter entre 5 et 8 phrases, avec au moins 6 mots clés entourés de crochets. Les textes doivent être formatés sans espace entre eux.

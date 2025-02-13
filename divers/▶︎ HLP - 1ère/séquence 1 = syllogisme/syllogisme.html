@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Syllogismes à la chaîne</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #e0e5ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #e0e5ec;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 20px 20px 30px #a3b1c6, 
+                        -20px -20px 30px #ffffff;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            background: #e0e5ec;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 5px 5px 10px #a3b1c6, 
+                        -5px -5px 10px #ffffff;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 5px 5px 15px #a3b1c6, 
+                        -5px -5px 15px #ffffff;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        
+        strong {
+            display: block; /* Pour que le texte fort soit sur sa propre ligne */
+            margin-bottom: 5px; /* Espacement entre le titre et le texte */
+            color: #555;
+        }
+        
+    </style>
+</head>
+<body>
+   <div class="container">
+      <h2>Syllogisme</h2>
+      <div id="syllogism">
+         <p><strong>Majeure :</strong> <span id="major"></span></p>
+         <p><strong>Mineure :</strong> <span id="minor"></span></p>
+         <p><strong>Conclusion :</strong> <span id="conclusion"></span></p>
+      </div>
+      <button onclick="generateSyllogism()">Nouveau syllogisme</button>
+   </div>
+
+   <script>
+       const syllogisms = [
+           {
+               major: "Tous les hommes sont mortels.",
+               minor: "Socrate est un homme.",
+               conclusion: "Donc, Socrate est mortel."
+           },
+           {
+               major: "Tous les oiseaux volent.",
+               minor: "Un pingouin est un oiseau.",
+               conclusion: "Donc, un pingouin vole."
+           },
+           // ... ajout d'autres syllogismes  
+       ];
+
+      function generateSyllogism() {
+         const randomIndex = Math.floor(Math.random() * syllogisms.length);
+         const syllogism = syllogisms[randomIndex];
+
+         document.getElementById("major").innerText = syllogism.major;
+         document.getElementById("minor").innerText = syllogism.minor;
+         document.getElementById("conclusion").innerText = syllogism.conclusion;
+      }
+
+      // Générer un syllogisme au chargement de la page  
+      generateSyllogism();
+   </script>
+</body>
+</html>

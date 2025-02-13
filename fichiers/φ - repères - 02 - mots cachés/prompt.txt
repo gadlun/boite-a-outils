@@ -1,0 +1,66 @@
+Contexte :
+Je souhaite créer un jeu de mots cachés en HTML, CSS et JavaScript. 
+Le jeu doit inclure une grille de lettres dans laquelle des mots sont cachés horizontalement, verticalement et en diagonale. 
+Les joueurs doivent sélectionner deux cellules pour identifier un mot caché. Lorsque tous les mots sont trouvés, une alerte de félicitations doit s'afficher.
+
+Exigences techniques :
+
+    Structure HTML :
+
+        Un titre principal : "Jeu de Mots Cachés".
+
+        Un sous-titre : "Trouvez les mots cachés dans la grille" (en rouge).
+
+        Un menu déroulant pour choisir la difficulté (Facile : 8x8, Moyen : 10x10, Difficile : 15x15).
+
+        Un bouton "Recharger" pour générer une nouvelle grille.
+
+        Une grille de lettres (dynamiquement générée en JavaScript).
+
+        Une liste des mots à trouver (dynamiquement mise à jour).
+
+    Styles CSS :
+
+        Utiliser un design "neumorphic" pour un look moderne.
+
+        La grille doit avoir des cellules carrées avec des ombres pour un effet 3D.
+
+        Les mots trouvés doivent être barrés dans la liste.
+
+        Le sous-titre doit être en rouge.
+
+    Fonctionnalités JavaScript :
+
+        Générer une grille de lettres avec des mots cachés.
+
+        Remplir les cellules vides avec des lettres aléatoires (pondérées pour les lettres courantes en français).
+
+        Permettre aux joueurs de sélectionner deux cellules pour identifier un mot.
+
+        Vérifier si les cellules sélectionnées correspondent à un mot caché.
+
+        Afficher une alerte de félicitations lorsque tous les mots sont trouvés.
+
+        Recharger la grille sans recharger la page.
+
+    Interactivité :
+
+        Le menu déroulant doit permettre de changer la taille de la grille.
+
+        Le bouton "Recharger" doit générer une nouvelle grille avec de nouveaux mots.
+
+        Les mots trouvés doivent être mis en évidence dans la grille et barrés dans la liste.
+
+    Données :
+
+        Les mots à cacher doivent être chargés depuis un fichier externe (reperes.js).
+
+        Les mots doivent être placés aléatoirement dans la grille, dans toutes les directions possibles.
+
+Instructions supplémentaires :
+
+    Le code doit être bien structuré et commenté pour une meilleure compréhension.
+
+    Utiliser des fonctions modulaires pour chaque tâche (génération de la grille, placement des mots, vérification des mots, etc.).
+
+    Assurer que le code est propre, lisible et facile à maintenir.

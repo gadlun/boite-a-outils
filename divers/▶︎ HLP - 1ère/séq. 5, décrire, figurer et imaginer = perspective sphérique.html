@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr" >
+<head>
+  <meta charset="UTF-8">
+  <title>S&Eacute;QUENCE 5</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  background: white;
+}
+
+body canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+body #c {
+  border-radius: 50%;
+  pointer-events: none;
+}
+body li, body .close-button {
+  font-family: helvetica, sans-serif;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+h1 {
+  text-align: center;
+  font-family: helvetica;
+  font-size: 32px;
+  color: black;
+  padding: 10px 0;
+}
+
+</style>
+
+
+</head>
+<body>
+
+<h1>S&Eacute;QUENCE 5 : D&eacute;crire, figurer, imaginer</h1>
+
+<input type="file" id="imageInput" accept="image/*">
+<!-- partial:index.partial.html -->
+<canvas id="bg"></canvas>
+<canvas id="c"></canvas>
+<!-- partial -->
+  <script>
+
+var bg = document.getElementById('bg'),
+    c = document.getElementById('c'),
+    ctx = c.getContext('2d'),
+    input = document.getElementById('imageInput');
+
+input.addEventListener('change', function(e){
+    if(e.target.files){
+        var file = e.target.files[0],
+            reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function(e) {
+            var img = new Image();
+            img.onload = function() {
+                console.log(this)
+                var w = this.width,
+                    h = this.height;
+
+                bg.width = w;
+                bg.height = h;
+                bg.style.marginLeft = -w/2 + 'px';
+                bg.style.marginTop = -h/2 + 'px';
+
+                bg.getContext('2d').drawImage(img, 0, 0, w, h);
+
+                window.addEventListener("mousemove", distortion);
+                window.addEventListener("touchmove", distortion);
+            }
+            img.src = e.target.result;
+        }
+    }
+})
+
+
+function distortion(e) {
+    var cx = (e.touches ? e.touches[0].clientX : e.clientX),
+        cy = (e.touches ? e.touches[0].clientY : e.clientY),
+        size = 250,
+        zoom = 1.25;
+
+    c.width = size;
+    c.height = size;
+    c.style.left = cx - size / 2 + 'px';
+    c.style.top = cy - size / 2 + 'px';
+
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, size, size);
+    ctx.drawImage(
+        bg,
+        cx - bg.offsetLeft - .5 * size / zoom,
+        cy - bg.offsetTop - .5 * size / zoom,
+        size / zoom,
+        size / zoom,
+        0,
+        0,
+        size,
+        size
+    );
+
+    var imgData = ctx.getImageData(0, 0, size, size);
+        pixels = imgData.data,
+        pixelsCopy = [], index = 0, h = size, w = size;
+
+    for (var i = 0; i <= pixels.length; i+=4) {
+        pixelsCopy[index] = [pixels[i], pixels[i+1], pixels[i+2], pixels[i+3]];
+        index++;
+    }
+
+    var result = fisheye(pixelsCopy, w, h);
+
+    for(var i = 0; i < result.length; i++) {
+        index = 4*i;
+        if (result[i] != undefined) {
+            pixels[index + 0] = result[i][0];
+            pixels[index + 1] = result[i][1];
+            pixels[index + 2] = result[i][2];
+            pixels[index + 3] = result[i][3];
+        }
+    }
+
+    ctx.putImageData(imgData, 0, 0);
+}
+
+function fisheye(srcpixels, w, h) {
+
+    var dstpixels = srcpixels.slice();
+
+    for (var y = 0; y < h; y++) {
+
+        var ny = ((2*y)/h)-1;
+        var ny2 = ny*ny;
+
+        for (var x = 0; x < w; x++) {
+
+            var nx = ((2*x)/w)-1;
+            var nx2 = nx*nx;
+            var r = Math.sqrt(nx2+ny2);
+
+            if (0.0 <= r && r <= 1.0) {
+                var nr = Math.sqrt(1.0-r*r);
+                nr = (r + (1.0-nr)) / 2.0;
+
+                if (nr <= 1.0) {
+
+                    var theta = Math.atan2(ny,nx);
+                    var nxn = nr*Math.cos(theta);
+                    var nyn = nr*Math.sin(theta);
+                    var x2 = parseInt(((nxn+1)*w)/2);
+                    var y2 = parseInt(((nyn+1)*h)/2);
+                    var srcpos = parseInt(y2*w+x2);
+                    if (srcpos >= 0 & srcpos < w*h) {
+                        dstpixels[parseInt(y*w+x)] = srcpixels[srcpos];
+                    }
+                }
+            }
+        }
+    }
+    return dstpixels;
+}
+
+  
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{ "class": "go.GraphLinksModel",
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [ 
+{"text":"Texte n°12", "key":1, "loc":"-599.9999999999998 -378", "category":"intitule"},
+{"text":"[1c] justification 1 :\nliberté = ignorance des\ncauses efficientes qui nous déterminent", "key":5, "loc":"-361.6666564941404 70.33332824707036", "category":"Etape2"},
+{"text":"[2] justification 2 :\nla volonté n'est que \nla cause finale de nos choix", "key":-8, "loc":"-44.999999999999886 54.33332824707031", "category":"Etape2"},
+{"category":"Etape2", "text":"[3] justification : \non ignore comment la volonté est cause efficiente du corps", "key":-2, "loc":"301.8999786376953 -46.66668701171878"},
+{"category":"Etape3", "text":"[4] exemple : \navoir l'impression de la que le soleil est proche \nn'implique pas qu'il est proche", "key":-3, "loc":"301.5666809082031 160"},
+{"category":"Etape3", "text":"[5] savoir quelle est\nla réelle distance du\nsoleil ne fait cesser l'impression qu'il \nest proche", "key":-10, "loc":"614.0000000000005 160.00000000000006"},
+{"category":"Comment", "text":"en fait, la cause efficiente est plus importante que la cause finale", "key":-5, "loc":"-609.6666717529295 174.99999999999972"},
+{"text":"[1a] thèse : la liberté est illusoire", "key":-12, "loc":"55.000000000000256 -366.00000000000045", "category":"intitule"},
+{"category":"Etape2", "text":"[1b] justification :\ncause finale (dans quel but une chose est faite) ≠ cause efficiente (ce qui produit la chose)", "key":-13, "loc":"-189.00000000000006 -164.66667175292966"},
+{"category":"Etape2", "text":"[3] justification : détermination ≠ contrainte ", "key":-14, "loc":"301.99999999999983 -213.99999999999997"}
+ ],
+  "linkDataArray": [ 
+{"from":-3, "to":-10, "fromPort":"R", "toPort":"L", "points":[444.49168395996105,160.00000000000006,454.49168395996105,160.00000000000006,459.10834503173845,160.00000000000006,459.10834503173845,160.00000000000006,463.72500610351585,160.00000000000006,473.72500610351585,160.00000000000006]},
+{"from":-13, "to":-8, "fromPort":"B", "toPort":"T", "points":[-189,-60.031673240661604,-189,-50.031673240661604,-189,-39.14417200088501,-44.99999999999986,-39.14417200088501,-44.99999999999986,-28.25667076110841,-44.99999999999986,-18.25667076110841]},
+{"from":-13, "to":5, "fromPort":"B", "toPort":"T", "points":[-189,-60.031673240661604,-189,-50.031673240661604,-189,-39.155421876907326,-361.6666564941405,-39.155421876907326,-361.6666564941405,-28.279170513153048,-361.6666564941405,-18.279170513153048]},
+{"from":-12, "to":-13, "fromPort":"B", "toPort":"T", "points":[55.000000000000256,-325.45500049591095,55.000000000000256,-315.45500049591095,55.000000000000256,-297.37833538055435,-189,-297.37833538055435,-189,-279.30167026519774,-189,-269.30167026519774]},
+{"from":-12, "to":-14, "fromPort":"B", "toPort":"T", "points":[55.000000000000256,-325.45500049591095,55.000000000000256,-315.45500049591095,55.000000000000256,-298.0112498760225,302,-298.0112498760225,302,-280.56749925613406,302,-270.56749925613406]},
+{"from":-14, "to":-2, "fromPort":"B", "toPort":"T", "points":[302,-157.432500743866,302,-147.432500743866,302,-138.34459338188174,301.8999786376953,-138.34459338188174,301.8999786376953,-129.25668601989747,301.8999786376953,-119.25668601989749]},
+{"from":-2, "to":-3, "fromPort":"B", "toPort":"T", "points":[301.8999786376953,25.92331199645993,301.8999786376953,35.92331199645993,301.8999786376953,40.644156742095966,301.56668090820324,40.644156742095966,301.56668090820324,45.365001487732,301.56668090820324,55.365001487732]}
+ ]}

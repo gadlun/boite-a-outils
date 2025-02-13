@@ -1,0 +1,373 @@
+ 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qui veut gagner des millions ?</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #000033;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alignement en haut */
+            padding: 20px; /* Espace autour des cadres */
+        }
+        #game-container {
+            width: 100%;
+            max-width: 800px;
+            height: 460px; /* Hauteur pour maintenir l'égalité des cadres */
+            min-height: 400px;
+            max-height: 90vh; /* Taille max du cadre */
+            background-image: radial-gradient(circle, #000066 0%, #000033 100%);
+            border: 2px solid #4444ff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #4444ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .frame {
+            width: 400px; /* Largeur fixée pour la colonne de gauche */
+            height: 460px; /* Hauteur pour maintenir l'égalité des cadres */
+            background-image: radial-gradient(circle, #000066 0%, #000033 100%);
+            border: 2px solid #4444ff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #4444ff;
+            margin-left: 5mm; /* Espace entre les deux cadres */
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between; /* Alignement des colonnes */
+        }
+        #logo {
+            display: block;
+            margin: 0 auto 10px;
+            max-width: 150px;
+            max-height: 75px;
+        }
+        h1 {
+            text-align: center;
+            color: #ff9900; /* Couleur orangée */
+            font-size: 20px;
+            text-shadow: 2px 2px 4px #000000;
+            margin-bottom: 15px;
+        }
+        #question-container {
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #000044;
+            border-radius: 10px;
+        }
+        #answers-container {
+            display: grid; /* Utilisation de grid pour la mise en page */
+            grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
+            gap: 10px;
+        }
+        .answer-btn {
+            background-color: #000088; 
+            color: #ffffff; 
+            border: none; 
+            padding: 15px; /* Augmenter l'espace à l'intérieur des boutons */
+            font-size: 14px; 
+            cursor: pointer; 
+            border-radius: 25px; 
+            transition: all 0.3s ease; 
+            white-space: nowrap; /* Contenu sur une seule ligne */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 180px; /* Largeur minimale des boutons */
+        }
+        .answer-btn:hover {
+           background-color:#ff9900; /* Couleur orangée au survol */
+        }
+        .correct-answer {
+           background-color:#28a745; /* Vert pour la bonne réponse */
+           color:#ffffff; /* Texte en blanc pour la bonne réponse */
+        }
+        .wrong-answer {
+           background-color:#ff9900; /* Orangée pour la mauvaise réponse */
+           color:#ffffff; /* Texte en blanc pour la mauvaise réponse */
+        }
+        .highlight {
+           background-color: #ff9900; /* Surlignage en orange */
+           color: #000000; /* Texte en noir pendant le surlignage */
+        }
+        #next-question-btn {
+           background-color:#ff9900; /* Couleur orangée du bouton suivant */
+           color:white; /* Texte blanc */
+           border:none; 
+           padding:10px; 
+           cursor:pointer; 
+           border-radius:5px; 
+           margin-top:15px; 
+       }
+       #next-question-btn:hover {
+          background-color:#e68a00; /* Couleur orangée plus foncée au survol */
+       }
+       #jokers-container {
+           display:flex; 
+           justify-content:center; 
+           margin-top:15px; 
+       }
+       .joker-btn {
+           background-color:#000088; 
+           color:#ff9900; /* Couleur orangée */
+           border:none; 
+           width:50px; 
+           height:50px; 
+           margin:0 15px; /* Espacement entre les boutons joker */
+           font-size:10px; 
+           cursor:pointer; 
+           border-radius:50%; 
+       }
+       .joker-btn:hover {
+          background-color:#0000cc; 
+       }
+       #score-container {
+          text-align:center; 
+          font-size:18px; 
+          color:#ff9900; /* Couleur orangée */
+          margin-top:15px; 
+      }
+      .paliers,
+      .scores {
+          display: flex;
+          flex-direction: column; /* Alignement vertical */
+          justify-content: flex-start; /* Positionner en haut */
+          flex: 1; /* Prendre tout l'espace disponible */
+      }
+      .paliers div,
+      .scores div {
+          text-align: right; /* Alignement à droite */
+          color: #ff9900; /* Couleur orangée par défaut */
+          white-space: nowrap; /* Contenu sur une seule ligne */
+      }
+      .paliers div.special,
+      .scores div.special {
+          color: white; /* Couleur blanche pour les valeurs spécifiques */
+      }
+   </style>
+</head>
+<body>
+    <div id="game-container">
+        <img id="logo" src="logo.png" alt="Logo Qui veut gagner des millions">
+        <h1>Qui veut gagner des millions ?</h1>
+        <div id="question-container"></div>
+        <div id="answers-container">
+             <!-- Les réponses seront ajoutées ici par JavaScript -->
+         </div>
+         <button id="next-question-btn" onclick="nextQuestion()" style="display:none;">Question Suivante</button> <!-- Bouton pour la question suivante -->
+         <div id="jokers-container">
+             <button class="joker-btn" onclick="useFiftyFifty()">50 : 50</button>
+             <button class="joker-btn" onclick="usePublicHelp()">appel</button> <!-- "appel" en minuscule -->
+             <button class="joker-btn" onclick="usePhoneAFriend()">public</button> <!-- "public" en minuscule -->
+         </div>
+     </div>
+     
+     <!-- Deuxième cadre -->
+     <div class="frame">
+         <div class="paliers">
+             <div>1</div>
+             <div>2</div>
+             <div>3</div>
+             <div>4</div>
+             <div class='special'>5</div>
+             <div>6</div>
+             <div>7</div>
+             <div>8</div>
+             <div>9</div>
+             <div class='special'>10</div>
+             <div>11</div>
+             <div>12</div>
+             <div>13</div>
+             <div>14</div>
+             <div class='special'>15</div>
+         </div>
+         <div class="scores">
+             <div>200 €</div>
+             <div>300 €</div>
+			 <div>500 €</div>
+             <div>800 €</div>
+             <div class='special'>1500 €</div>
+             <div>3000 €</div>
+             <div>6000 €</div>
+             <div>12000 €</div>
+             <div>24000 €</div>
+             <div class='special'>48000 €</div>
+             <div>72000 €</div>
+             <div>100000 €</div>
+             <div>150000 €</div>
+             <div>300000 €</div>			 
+             <div class='special'>1000000 €</div>
+         </div>
+     </div>
+
+     <script src="questions.js"></script> <!-- Lien vers le fichier questions.js -->
+     <script>
+     let currentQuestionIndex = 0;
+     let score = 0;
+     let correctAnswersCount = 0; // Compteur de bonnes réponses
+     const scoreValues = [0, 200, 300, 500, 800, 1500, 3000, 6000, 12000, 24000, 48000, 72000, 100000, 150000, 300000, 1000000]; // Nouvelles valeurs de score  
+     let randomQuestions = [];
+
+     function shuffleArray(array) {
+         for (let i = array.length - 1; i > 0; i--) {
+             const j = Math.floor(Math.random() * (i + 1));
+             [array[i], array[j]] = [array[j], array[i]];
+         }
+     }
+
+     function initializeGame() {
+         shuffleArray(questions);
+         randomQuestions = questions.slice(0, 15); // Sélectionne 15 questions aléatoires  
+         currentQuestionIndex = 0;
+         score = 0;
+         correctAnswersCount = 0; // Réinitialiser le compteur de bonnes réponses  
+         displayQuestion();
+     }
+
+     function displayQuestion() {
+         const question = randomQuestions[currentQuestionIndex];
+         document.getElementById('question-container').innerHTML = question.question;
+
+         // Réponses A et B sur la première ligne  
+         const answersHtml = `
+             <button class="answer-btn" onclick="checkAnswer(0)"><span>⬪</span> <span class="answer-letter">A :</span> ${question.answers[0]}</button>
+             <button class="answer-btn" onclick="checkAnswer(1)"><span>⬪</span> <span class="answer-letter">B :</span> ${question.answers[1]}</button>
+             <br style="display:none;"> <!-- Pour forcer un saut de ligne -->
+             <button class="answer-btn" onclick="checkAnswer(2)"><span>⬪</span> <span class="answer-letter">C :</span> ${question.answers[2]}</button>
+             <button class="answer-btn" onclick="checkAnswer(3)"><span>⬪</span> <span class="answer-letter">D :</span> ${question.answers[3]}</button>
+         `;
+         
+         document.getElementById('answers-container').innerHTML = answersHtml;
+         document.getElementById('next-question-btn').style.display = 'none'; // Masquer le bouton "Question Suivante"
+     }
+
+     function checkAnswer(answerIndex) {
+         const question = randomQuestions[currentQuestionIndex];
+         const buttons = document.getElementsByClassName('answer-btn');
+
+         // Réinitialiser les classes des boutons  
+         for (let i = 0; i < buttons.length; i++) {
+             buttons[i].classList.remove('correct-answer', 'wrong-answer', 'highlight');
+         }
+
+         if (answerIndex === question.correctAnswer) {
+             score = scoreValues[currentQuestionIndex];
+             correctAnswersCount++; // Incrémenter le compteur de bonnes réponses
+
+             // Mettre à jour le bouton de la bonne réponse  
+             buttons[question.correctAnswer].classList.add('correct-answer');
+
+             // Enlever le surlignement précédent  
+             const paliers = document.querySelectorAll('.paliers div');
+             const scores = document.querySelectorAll('.scores div');
+
+             for (let i = 0; i < paliers.length; i++) {
+                 paliers[i].classList.remove("highlight");
+             }
+             for (let i = 0; i < scores.length; i++) {
+                 scores[i].classList.remove("highlight");
+             }
+
+             // Calculer l'indice pour le surlignement  
+             let highlightIndex = correctAnswersCount -1;
+
+             // Surligner la valeur correspondante dans la colonne de gauche  
+             if (highlightIndex >= 0 && highlightIndex < paliers.length) {
+                 paliers[highlightIndex].classList.add("highlight");
+             }
+             
+             // Surligner la valeur correspondante dans la colonne de droite  
+             const scoreIndex = scoreValues.indexOf(score);
+             if (scoreIndex >= 0 && scoreIndex < scores.length) {
+                 scores[scoreIndex].classList.add("highlight");
+             }
+
+             // Afficher le bouton "Question Suivante"
+             document.getElementById('next-question-btn').style.display = 'block';
+             
+         } else {
+             // Mettre à jour le bouton choisi et le bouton correct  
+             buttons[answerIndex].classList.add('wrong-answer');
+             buttons[question.correctAnswer].classList.add('correct-answer');
+
+             alert(`Désolé, c'est incorrect. Vous repartez avec ${score} €.\nLa bonne réponse était : ${question.answers[question.correctAnswer]}`);
+
+             // Réinitialiser le compteur à la mauvaise réponse  
+             correctAnswersCount = 0;
+
+             // Enlever le surlignement précédent  
+             const paliers = document.querySelectorAll('.paliers div');
+             const scores = document.querySelectorAll('.scores div');
+
+             for (let i = 0; i < paliers.length; i++) {
+                 paliers[i].classList.remove("highlight");
+             }
+             for (let i = 0; i < scores.length; i++) {
+                 scores[i].classList.remove("highlight");
+             }
+
+             // Afficher le bouton "Question Suivante"
+             document.getElementById('next-question-btn').style.display = 'block';
+
+             // Remettre le score au palier inférieur  
+             if (score > 48000) {
+                 score = 48000;
+             } else if (score > 1500) {
+                 score = 1500;
+             } else if (score > 0) {
+                 score = 0;
+             }
+         }
+     }
+
+     function nextQuestion() {
+         currentQuestionIndex++;
+         if (currentQuestionIndex < randomQuestions.length) {
+             displayQuestion();
+         } else {
+             alert(`Félicitations ! Vous avez gagné ${score} € !`);
+             initializeGame();
+         }
+     }
+
+     function useFiftyFifty() {
+         const question = randomQuestions[currentQuestionIndex];
+         const correctAnswer = question.correctAnswer ;
+         let removedCount = 0 ;
+         const buttons = document.getElementsByClassName('answer-btn');
+         
+         for (let i = 0 ; i < buttons.length; i++) {
+             if (i !== correctAnswer && removedCount <2 ) {
+                 buttons[i].style.visibility ='hidden';
+                 removedCount++;
+             }
+         }
+     }
+
+     function usePublicHelp() {
+         alert("Le public pense que la réponse correcte est probablement A ou C.");
+     }
+
+     function usePhoneAFriend() {
+          alert("Votre ami pense que la réponse est B, mais il n'est pas sûr à100 %.");
+      }
+
+      // Initialise le jeu au chargement  
+      window.onload = initializeGame;
+
+      </script>
+</body>
+</html>

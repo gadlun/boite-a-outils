@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" href="../../src/favicon.ico">
+    <title>d'ac ou pas d'ac ?</title>	
+    <style>
+        /* Style général */
+        body {
+            font-family: 'Muli', sans-serif;
+            background-color: #e0e5ec;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Titres */
+        h1 {
+            text-align: center;
+            color: red; /* Titre en rouge */
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #555;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Conteneur principal */
+        .learner-matching-wrapper {
+            background-color: #e0e5ec;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Conteneur des deux colonnes */
+        .learner-matching-wrapper-inner {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+        }
+
+        /* Colonnes */
+        .learner-matching-column {
+            background-color: #e0e5ec;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: inset 6px 6px 10px rgba(163, 177, 198, 0.6), inset -6px -6px 10px rgba(255, 255, 255, 0.5);
+            flex: 1;
+            min-height: 400px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .learner-matching-column h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* Liste des propositions */
+        .connected-sortable {
+            list-style-type: none;
+            padding: 0;
+            min-height: 100px;
+        }
+
+        .connected-sortable li {
+            background-color: #e0e5ec;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 6px 6px 10px rgba(163, 177, 198, 0.6), -6px -6px 10px rgba(255, 255, 255, 0.5);
+            cursor: grab;
+            display: flex;
+            flex-direction: column; /* Pour afficher la justification sous l'étiquette */
+            align-items: flex-start;
+        }
+
+        .connected-sortable li.correct {
+            border: 2px solid green;
+        }
+
+        .connected-sortable li.incorrect {
+            border: 2px solid red;
+        }
+
+        .justification {
+            display: none;
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+            width: 100%; /* Prend toute la largeur */
+        }
+
+        .show-justification {
+            cursor: pointer;
+            margin-left: auto; /* Aligne à droite */
+            font-size: 18px;
+        }
+
+        /* Boutons */
+        .reset-sort-btn-wrapper {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .reset-sort-btn {
+            background-color: #e0e5ec;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 6px 6px 10px rgba(163, 177, 198, 0.6), -6px -6px 10px rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            margin: 5px;
+        }
+
+        .reset-sort-btn:hover {
+            box-shadow: inset 6px 6px 10px rgba(163, 177, 198, 0.6), inset -6px -6px 10px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="learner-matching-wrapper">
+        <h1>d'ac ou pas d'ac ?</h1>
+        <p style="text-align: center; color: #555; font-size: 20px; margin-bottom: 30px;">réviser les auteurs</p>
+        <p style="margin-bottom: 20px; text-align: center; color: #777;"><i>Classez les thèses suivantes, selon qu'elles sont justes ou erronées.</i></p>
+        <div class="learner-matching-wrapper-inner">
+            <!-- Colonne de gauche : Propositions à classer -->
+            <div class="learner-matching-column learner-matching-column-all">
+                <h2>Propositions à classer</h2>
+                <ul class="connected-sortable droppable-area1" id="item-bank">
+                    <!-- Les propositions seront injectées ici par JavaScript -->
+                </ul>
+            </div>
+
+            <!-- Colonne de droite : Options de classement -->
+            <div class="learner-matching-column learner-matching-column-options">
+                <div class="learner-matching-column-inner learner-matching-column-kids">
+                    <h2 id="daccord-title"><!-- Le titre sera injecté ici par JavaScript --></h2>
+                    <ul class="connected-sortable droppable-area droppable-area2" id="daccord-target">
+                        <!-- Les propositions "d'accord" seront injectées ici par JavaScript -->
+                    </ul>
+                </div>
+                <div class="learner-matching-column-inner learner-matching-column-adults">
+                    <h2 id="pasdaccord-title"><!-- Le titre sera injecté ici par JavaScript --></h2>
+                    <ul class="connected-sortable droppable-area droppable-area3" id="pasdaccord-target">
+                        <!-- Les propositions "pas d'accord" seront injectées ici par JavaScript -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="reset-sort-btn-wrapper">
+            <button class="reset-sort-btn">Recommencer</button>
+        </div>
+    </div>
+
+    <script src="src/jquery.min.js"></script>
+    <script src="src/jquery-ui.min.js"></script>
+    <script src="textes.js"></script>
+    <script>
+        $(document).ready(function() {
+            const philosophe = getRandomPhilosophe(); // Sélectionne un philosophe aléatoire
+            const randomPropositions = getRandomPropositions(philosophe, 6); // Choisissez le nombre de propositions à afficher
+
+            // Met à jour les titres avec le nom du philosophe
+            $("#daccord-title").text(`${philosophe.nom} pense que...`);
+            $("#pasdaccord-title").text(`${philosophe.nom} ne pense pas que...`);
+
+            // Ajoute les propositions à la liste (sans [?] dans la colonne de gauche)
+            randomPropositions.forEach(prop => {
+                const li = `
+                    <li class="ui-state-default draggable-item" id="${prop.type}-${philosophe.nom}" data-justification="${prop.justification}">
+                        ${prop.texte}
+                        <div class="justification">${prop.justification}</div>
+                    </li>`;
+                $("#item-bank").append(li);
+            });
+
+            // Initialisation du drag and drop
+            $(".connected-sortable").sortable({
+                connectWith: ".connected-sortable",
+                placeholder: "ui-state-highlight",
+                receive: function(event, ui) {
+                    const item = ui.item;
+                    const target = $(this).attr("id");
+                    const type = item.attr("id").split("-")[0];
+
+                    // Vérifie si la réponse est correcte
+                    if ((target === "daccord-target" && type === "daccord") || 
+                        (target === "pasdaccord-target" && type === "pasdaccord")) {
+                        item.addClass("correct").removeClass("incorrect");
+                    } else {
+                        item.addClass("incorrect").removeClass("correct");
+                    }
+
+                    // Ajoute le symbole ℹ️ uniquement dans la colonne de droite
+                    if (target === "daccord-target" || target === "pasdaccord-target") {
+                        item.append('<span class="show-justification">ℹ️</span>');
+                    }
+
+                    // Vérifie si toutes les étiquettes ont été déplacées
+                    if ($("#item-bank").children().length === 0) {
+                        $(".show-justification").show(); // Affiche tous les ℹ️ dans la colonne de droite
+                    }
+                },
+                start: function(event, ui) {
+                    // Supprime ℹ️ lors du déplacement d'un élément
+                    ui.item.find(".show-justification").remove();
+                }
+            }).disableSelection();
+
+            // Affiche la justification au clic sur l'icône ℹ️
+            $(document).on("click", ".show-justification", function() {
+                $(this).siblings(".justification").toggle();
+            });
+
+            // Réinitialise le tri
+            $(".reset-sort-btn").on("click", function() {
+                location.reload(); // Recharge la page pour recommencer
+            });
+        });
+    </script>
+</body>
+</html>

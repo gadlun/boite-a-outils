@@ -1,0 +1,2087 @@
+var AppClientAppData = {
+	"result": "SUCCESS",
+	"initparameters": "content1=text%7CLa%20philosophie%7C&content2=text%7Cd%C3%A9bute%20avec%7C&content3=text%7Cl%27%C3%A9tonnement.%7C&content4=text%7CEn%20effet%2C%20la%20d%C3%A9marche%7C&defined4=true&content5=text%7Ccommence%20d%C3%A8s%20le%20moment%20o%C3%B9%7C&content6=text%7Cl%27on%20se%20pose%20des%20questions%20sur%20le%20monde.%7C&content7=text%7CEnsuite%7C&defined7=true&content8=text%7Cfaire%20de%20la%20philosophie%2C%20c%27est%20utiliser%7C&content9=text%7Cle%20langage%20%7C&content10=text%7Cpour%20formuler%20puis%20exprimer%20ses%20id%C3%A9es%7C&content11=text%7CBref%2C%20pour%20construire%20sa%20pens%C3%A9e%7C&defined11=true&content12=text%7Cde%20fa%C3%A7on%20coh%C3%A9rent%20et%20rationnelle.%7C&content13=text%7CEnfin%2C%20c%27est%20confronter%20cette%20derni%C3%A8re%7C&defined13=true&content14=text%7C%C3%A0%20celle%20des%20autres%7C&content15=text%7Cpour%20la%20remettre%20en%20question%20et%20la%20faire%20%C3%A9voluer%7C&showhints=true&feedback=Ouf%20%21%20Tu%20y%20es%20parvenu%20%21",
+	"title": "Concept de philosophie - reconstruire une définition",
+	"tool": "119",
+	"helptext": "",
+	"tasktext": "Pour vous familiariser avec la logique du langage, recomposez une définition cohérente du concept de philosophie ",
+	"formlanguage": "FR",
+	"language": "FR",
+	"parameters": [
+		{
+			"t": "group",
+			"label": "%VonBis%",
+			"description": "%VonBisBeschreibung%",
+			"name": "",
+			"children": [
+				{
+					"t": "parameter",
+					"value": "",
+					"width": "",
+					"height": "",
+					"name": "textLeft",
+					"label": "%TextLeft%",
+					"type": "text",
+					"description": ""
+				},
+				{
+					"t": "parameter",
+					"value": "",
+					"width": "",
+					"height": "",
+					"name": "textRight",
+					"label": "%TextRight%",
+					"type": "text",
+					"description": ""
+				}
+			]
+		},
+		{
+			"t": "list",
+			"label": "%Elemente%",
+			"description": "%ElementeBeschreibung%",
+			"name": "list1",
+			"min": "1",
+			"max": 20,
+			"addtext": "ajouter un élément",
+			"children": [
+				{
+					"t": "parameter",
+					"value": "",
+					"width": "",
+					"height": "",
+					"name": "content#",
+					"label": "%Element%",
+					"type": "media",
+					"description": "",
+					"media": "image|video|audio|text|speech",
+					"usehint": "true"
+				},
+				{
+					"t": "parameter",
+					"value": "false",
+					"width": "",
+					"height": "",
+					"name": "defined#",
+					"label": "%Vorgabe%",
+					"type": "check",
+					"description": ""
+				}
+			]
+		},
+		{
+			"t": "parameter",
+			"value": "%FeedbackValue%",
+			"width": "",
+			"height": "",
+			"name": "feedback",
+			"label": "%Feedback%",
+			"type": "textarea",
+			"description": "%FeedbackBeschreibung%"
+		}
+	],
+	"translation": [
+		{
+			"id": "APP_TITLE",
+			"language": "DE",
+			"value": "Sequenz bzw. Ordnung"
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "EN",
+			"value": "Sequence and Order"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "DE",
+			"value": "Bei dieser Vorlage müssen Texte, Bilder, Audios oder Videos in eine richtige Reihenfolge gebracht werden."
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "EN",
+			"value": "With this template texts, images, audio clips and videos must be ordered correctly."
+		},
+		{
+			"id": "Elemente",
+			"language": "DE",
+			"value": "Elemente"
+		},
+		{
+			"id": "Elemente",
+			"language": "EN",
+			"value": "Elements"
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "DE",
+			"value": "Geben Sie hier jeweils einen Text ein oder wählen Sie ein Bild, Audio oder Video aus. Wichtig: Geben Sie die Elemente hier in der richtigen Lösungsreihenfolge an."
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "EN",
+			"value": "Provide the content of the App with texts, images, audios or videos. Important: Enter the elements in the correct solution sequence."
+		},
+		{
+			"id": "Element",
+			"language": "DE",
+			"value": "Element"
+		},
+		{
+			"id": "Element",
+			"language": "EN",
+			"value": "Element"
+		},
+		{
+			"id": "Feedback",
+			"language": "DE",
+			"value": "Feedback"
+		},
+		{
+			"id": "Feedback",
+			"language": "EN",
+			"value": "Feedback"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "DE",
+			"value": "Geben Sie einen Text ein, der eingeblendet wird, wenn die richtige Lösung gefunden wurde."
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "EN",
+			"value": "Provide a feedback text which is displayed when the solution is found."
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "DE",
+			"value": "Prima, du hast die richtige Lösung gefunden."
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "EN",
+			"value": "Great, you found the right solution."
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "DE",
+			"value": "Leider noch nicht richtig."
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "EN",
+			"value": "This is not the right solution yet."
+		},
+		{
+			"id": "Prüfen",
+			"language": "DE",
+			"value": "Lösung überprüfen"
+		},
+		{
+			"id": "Prüfen",
+			"language": "EN",
+			"value": "Check solution"
+		},
+		{
+			"id": "VonBis",
+			"language": "DE",
+			"value": "Ordnen von A nach Z"
+		},
+		{
+			"id": "VonBis",
+			"language": "EN",
+			"value": "Order from A to Z"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "DE",
+			"value": "Geben Sie hier optional an, in welche Richtung eine Sequenz oder Ordnung gebildet werden soll. Diese Textangaben werden im Kopf bzw. Ende der Schlange eingeblendet."
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "EN",
+			"value": "Provide direction labels to order from A to Z (optional). This text elements will be displayed in the head/tail of the snake."
+		},
+		{
+			"id": "TextLeft",
+			"language": "DE",
+			"value": "von"
+		},
+		{
+			"id": "TextLeft",
+			"language": "EN",
+			"value": "from"
+		},
+		{
+			"id": "TextRight",
+			"language": "DE",
+			"value": "nach"
+		},
+		{
+			"id": "TextRight",
+			"language": "EN",
+			"value": "to"
+		},
+		{
+			"id": "Vorgabe",
+			"language": "DE",
+			"value": "Element wird bereits vorgegeben (etwa um Anhaltspunkte für die Lösung zu geben)"
+		},
+		{
+			"id": "Vorgabe",
+			"language": "EN",
+			"value": "predefined element"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "FR",
+			"value": "Dans ce modèle, des textes, des images, des sons ou des vidéos doivent être classés dans le bon ordre."
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "IT",
+			"value": "Con questa app testi, immagini e audio vanno messi nell'ordine corretto"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "RU",
+			"value": "С помощью этого шаблона вы можете расположить в правильном порядке тексты,  видео, картинки и аудио. "
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "FR",
+			"value": "Séquence / Ordre"
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "IT",
+			"value": "Sequenza e ordine"
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "RU",
+			"value": "Расставить по порядку"
+		},
+		{
+			"id": "automatisch",
+			"language": "FR",
+			"value": "Masquer"
+		},
+		{
+			"id": "automatisch",
+			"language": "IT",
+			"value": "Nascondere"
+		},
+		{
+			"id": "breit",
+			"language": "FR",
+			"value": "Masquer"
+		},
+		{
+			"id": "breit",
+			"language": "IT",
+			"value": "Nascondere"
+		},
+		{
+			"id": "Element",
+			"language": "FR",
+			"value": "Elément"
+		},
+		{
+			"id": "Element",
+			"language": "IT",
+			"value": "Elemento"
+		},
+		{
+			"id": "Element",
+			"language": "RU",
+			"value": "Элемент "
+		},
+		{
+			"id": "Elemente",
+			"language": "FR",
+			"value": "Eléments"
+		},
+		{
+			"id": "Elemente",
+			"language": "IT",
+			"value": "Elementi"
+		},
+		{
+			"id": "Elemente",
+			"language": "RU",
+			"value": "Элементы "
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "FR",
+			"value": "Saisissez un texte ou sélectionnez une image, un son ou une vidéo. Si, par exemple, vous ne voulez utiliser que 3 éléments, n'indiquez rien dans les champs restants. Important: saisissez les éléments dans le bon ordre."
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "IT",
+			"value": "Inserisci per ciascuno un testo oppure seleziona un'immagine, audio o video. Puoi indicare fino a otto elementi. Lascia i campi rimanenti vuoti se per esempio vuoi utilizzare solo tre elementi.&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;Importante: inserisci qui gli elementi nella sequenza risolutiva corretta (da uno a otto)."
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "RU",
+			"value": "Введите здесь текст, или выберите картинку аудио или видео. Задайте последовательность элементов или порядок, так чтобы они соответсвовали правильному решению.  "
+		},
+		{
+			"id": "Feedback",
+			"language": "FR",
+			"value": "Feedback"
+		},
+		{
+			"id": "Feedback",
+			"language": "IT",
+			"value": "Feedback"
+		},
+		{
+			"id": "Feedback",
+			"language": "RU",
+			"value": "Обратная связь"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "FR",
+			"value": "Saisissez le texte qui s'affichera lorsque la bonne solution aura été trouvée."
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "IT",
+			"value": "Inserisci un testo che verrà inserito quando verrà trovata la soluzione corretta."
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "RU",
+			"value": "Введите здесь текст, который будет появляться. если найдено верное решение!"
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "FR",
+			"value": "Ce n'est toujours pas la bonne réponse."
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "IT",
+			"value": "Riprova. Hai fatto alcuni errori."
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "RU",
+			"value": "К сожалению, все еще неверно!"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "FR",
+			"value": "Super, tu as trouvé la bonne solution!"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "IT",
+			"value": "Perfetto. La soluzione è corretta!"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "RU",
+			"value": "Здорово, ты верно выполнил задание."
+		},
+		{
+			"id": "grossquadratisch",
+			"language": "FR",
+			"value": "Masquer"
+		},
+		{
+			"id": "grossquadratisch",
+			"language": "IT",
+			"value": "Nascondere"
+		},
+		{
+			"id": "kleinquadratisch",
+			"language": "FR",
+			"value": "Masquer"
+		},
+		{
+			"id": "kleinquadratisch",
+			"language": "IT",
+			"value": "Nascondere"
+		},
+		{
+			"id": "lang",
+			"language": "FR",
+			"value": "Masquer"
+		},
+		{
+			"id": "lang",
+			"language": "IT",
+			"value": "Nascondere"
+		},
+		{
+			"id": "Prüfen",
+			"language": "FR",
+			"value": "Vérifier la réponse !"
+		},
+		{
+			"id": "Prüfen",
+			"language": "IT",
+			"value": "Controlla la soluzione."
+		},
+		{
+			"id": "Prüfen",
+			"language": "RU",
+			"value": "Перепроверить решение"
+		},
+		{
+			"id": "Size",
+			"language": "FR",
+			"value": "Masquer"
+		},
+		{
+			"id": "Size",
+			"language": "IT",
+			"value": "Nascondere"
+		},
+		{
+			"id": "SizeBeschreibung",
+			"language": "FR",
+			"value": "Masquer"
+		},
+		{
+			"id": "SizeBeschreibung",
+			"language": "IT",
+			"value": "Nascondere"
+		},
+		{
+			"id": "TextLeft",
+			"language": "FR",
+			"value": "de"
+		},
+		{
+			"id": "TextLeft",
+			"language": "IT",
+			"value": "da"
+		},
+		{
+			"id": "TextLeft",
+			"language": "RU",
+			"value": "от"
+		},
+		{
+			"id": "TextRight",
+			"language": "FR",
+			"value": "à"
+		},
+		{
+			"id": "TextRight",
+			"language": "IT",
+			"value": "A"
+		},
+		{
+			"id": "TextRight",
+			"language": "RU",
+			"value": "после "
+		},
+		{
+			"id": "VonBis",
+			"language": "FR",
+			"value": "Classer de A à Z"
+		},
+		{
+			"id": "VonBis",
+			"language": "IT",
+			"value": "Mettere in ordine dalla A alla Z"
+		},
+		{
+			"id": "VonBis",
+			"language": "RU",
+			"value": "Сортировать по алфавиту "
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "RM",
+			"value": "Endatescha cheu mintgamai in text ni elegi in maletg, in portatun ni in video. Impurtont: Endatescha gia cheu ils elements en la dretga successiun."
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "RM",
+			"value": "Cun quei model ston ins metter texts, maletgs, portatuns ni videos en la dretga successiun."
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "RM",
+			"value": "Sequenza ni uorden"
+		},
+		{
+			"id": "Prüfen",
+			"language": "RM",
+			"value": "Controllar la sligiaziun."
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "RM",
+			"value": "Aunc buca diltut correct."
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "RM",
+			"value": "Bravo, ti has anflau la sigliaziun correcta."
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "RM",
+			"value": "Endatescha in text che vegn mussaus sche la sligiaziun ei correcta."
+		},
+		{
+			"id": "VonBis",
+			"language": "RM",
+			"value": "Ordinar alfabeticamein (a - z)"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "RM",
+			"value": "Indichescha opziunalmein en tgei direcziun ch'ina sequenza ni in uorden duei vegnir formaus. Quellas indicaziuns vegnan mussadas all'entschatta rsp. alla fin dalla siarp."
+		},
+		{
+			"id": "TextLeft",
+			"language": "RM",
+			"value": "naven da"
+		},
+		{
+			"id": "TextRight",
+			"language": "RM",
+			"value": "entochen"
+		},
+		{
+			"id": "Vorgabe",
+			"language": "RM",
+			"value": "In element vegn daus avon (per dar entgins indezis per la sligiaziun)"
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "RO",
+			"value": "Secvență/Ordonare"
+		},
+		{
+			"id": "VonBis",
+			"language": "RO",
+			"value": "Ordonează de la A la Z"
+		},
+		{
+			"id": "Element",
+			"language": "RO",
+			"value": "Element"
+		},
+		{
+			"id": "Feedback",
+			"language": "RO",
+			"value": "Feedback"
+		},
+		{
+			"id": "TextLeft",
+			"language": "RO",
+			"value": "de"
+		},
+		{
+			"id": "TextRight",
+			"language": "RO",
+			"value": "după"
+		},
+		{
+			"id": "automatisch",
+			"language": "EN",
+			"value": "Here you receive some hints!"
+		},
+		{
+			"id": "automatisch",
+			"language": "RM",
+			"value": "Ti has retschiert entgins indezis!"
+		},
+		{
+			"id": "breit",
+			"language": "EN",
+			"value": "Here you receive some hints!"
+		},
+		{
+			"id": "breit",
+			"language": "RM",
+			"value": "Ti has retschiert entgins indezis!"
+		},
+		{
+			"id": "Elemente",
+			"language": "RO",
+			"value": "Elemente"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "RO",
+			"value": "Introduceți un text care este vizibil atunci când soluția este corectă. "
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "RO",
+			"value": "Din păcate incorect."
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "RO",
+			"value": "Super, ai găsit soluția corectă! "
+		},
+		{
+			"id": "grossquadratisch",
+			"language": "EN",
+			"value": "Here you receive some hints!"
+		},
+		{
+			"id": "grossquadratisch",
+			"language": "RM",
+			"value": "Ti has retschiert entgins indezis!"
+		},
+		{
+			"id": "kleinquadratisch",
+			"language": "EN",
+			"value": "Here you receive some hints!"
+		},
+		{
+			"id": "kleinquadratisch",
+			"language": "RM",
+			"value": "Ti has retschiert entgins indezis!"
+		},
+		{
+			"id": "lang",
+			"language": "EN",
+			"value": "Here you receive some hints!"
+		},
+		{
+			"id": "lang",
+			"language": "RM",
+			"value": "Ti has retschiert entgins indezis!"
+		},
+		{
+			"id": "Prüfen",
+			"language": "RO",
+			"value": "Verifică soluția "
+		},
+		{
+			"id": "Size",
+			"language": "EN",
+			"value": "Here you receive some hints!"
+		},
+		{
+			"id": "Size",
+			"language": "RM",
+			"value": "Ti has retschiert entgins indezis!"
+		},
+		{
+			"id": "SizeBeschreibung",
+			"language": "EN",
+			"value": "Here you receive some hints!"
+		},
+		{
+			"id": "SizeBeschreibung",
+			"language": "RM",
+			"value": "Ti has retschiert entgins indezis!"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "RO",
+			"value": "Cu acest model texte, imagini, audio sau video trebuie aduse în ordine corectă."
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "RO",
+			"value": "Indicați opțional aici în ce direcție trebuie formată o secvență sau o ordonare. Aceste indicații de text sunt vizibile la începutul respectiv la sfârșitul rândului."
+		},
+		{
+			"id": "Vorgabe",
+			"language": "RO",
+			"value": "Elementul este deja specificat(pentru a da indicii pentru soluție)"
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "RO",
+			"value": "Introduceți aici câte un test sau alegeți o imagine, un audio sau video. Important: Indicați aici elementele în ordinea corecta a rezolvării."
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "PL",
+			"value": "Sekwencje i ciągi"
+		},
+		{
+			"id": "Elemente",
+			"language": "GL",
+			"value": "Elementos"
+		},
+		{
+			"id": "Element",
+			"language": "GL",
+			"value": "Elemento"
+		},
+		{
+			"id": "Feedback",
+			"language": "PL",
+			"value": "Informacja zwrotna."
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "GL",
+			"value": "Moi ben, atopáchelas todas!"
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "GL",
+			"value": "Non é a solución correcta."
+		},
+		{
+			"id": "Prüfen",
+			"language": "ES",
+			"value": "Ver solución"
+		},
+		{
+			"id": "Prüfen",
+			"language": "GL",
+			"value": "Comprobar a solución"
+		},
+		{
+			"id": "Prüfen",
+			"language": "PL",
+			"value": "Sprawdź rozwiązanie."
+		},
+		{
+			"id": "TextLeft",
+			"language": "PL",
+			"value": "od "
+		},
+		{
+			"id": "automatisch",
+			"language": "RO",
+			"value": "Aici poți găsi câteva indicații!!"
+		},
+		{
+			"id": "breit",
+			"language": "RO",
+			"value": "Aici poți găsi câteva indicații!!"
+		},
+		{
+			"id": "grossquadratisch",
+			"language": "RO",
+			"value": "Aici poți găsi câteva indicații!!"
+		},
+		{
+			"id": "kleinquadratisch",
+			"language": "RO",
+			"value": "Aici poți găsi câteva indicații!!"
+		},
+		{
+			"id": "lang",
+			"language": "RO",
+			"value": "Aici poți găsi câteva indicații!!"
+		},
+		{
+			"id": "Size",
+			"language": "RO",
+			"value": "Aici poți găsi câteva indicații!!"
+		},
+		{
+			"id": "SizeBeschreibung",
+			"language": "RO",
+			"value": "Aici poți găsi câteva indicații!!"
+		},
+		{
+			"id": "Elemente",
+			"language": "RM",
+			"value": "Elements"
+		},
+		{
+			"id": "Element",
+			"language": "RM",
+			"value": "Element"
+		},
+		{
+			"id": "Feedback",
+			"language": "RM",
+			"value": "Resun"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "PL",
+			"value": "W tym szablonie, teksty, obrazy, audio lub wideo muszą być umieszczone w odpowiedniej kolejności."
+		},
+		{
+			"id": "Elemente",
+			"language": "PL",
+			"value": "Elementy "
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "PL",
+			"value": "Wprowadź teksty, wybrane zdjęcia, audio lub wideo. Ważne: Wpisz tutaj elementy w odpowiedniej kolejności zgodnej z rozwiązaniem."
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "PL",
+			"value": "Podaj tekst, który będzie wyświetlany, gdy zostanie znalezione rozwiązanie."
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "PL",
+			"value": "Świetnie, znalazłeś właściwe rozwiązanie."
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "PL",
+			"value": "To nie jest jeszcze dobre rozwiązanie. "
+		},
+		{
+			"id": "VonBis",
+			"language": "PL",
+			"value": "Kolejność od A do Z"
+		},
+		{
+			"id": "TextRight",
+			"language": "PL",
+			"value": "do"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "PL",
+			"value": "Opcjonalnie można wprowadzić etykiety wskazujące kierunek sekwencji. Ta informacja tekstowa jest wyświetlana na początku i na końcu sekwencji."
+		},
+		{
+			"id": "Vorgabe",
+			"language": "PL",
+			"value": "Element od razu ustawiony (aby dać jakieś wskazówki do rozwiązania)"
+		},
+		{
+			"id": "automatisch",
+			"language": "PL",
+			"value": "Tutaj otrzymasz kilka wskazówek! "
+		},
+		{
+			"id": "breit",
+			"language": "PL",
+			"value": "Tutaj otrzymasz kilka wskazówek! "
+		},
+		{
+			"id": "grossquadratisch",
+			"language": "PL",
+			"value": "Tutaj otrzymasz kilka wskazówek! "
+		},
+		{
+			"id": "kleinquadratisch",
+			"language": "PL",
+			"value": "Tutaj otrzymasz kilka wskazówek! "
+		},
+		{
+			"id": "lang",
+			"language": "PL",
+			"value": "Tutaj otrzymasz kilka wskazówek! "
+		},
+		{
+			"id": "Size",
+			"language": "PL",
+			"value": "Tutaj otrzymasz kilka wskazówek! "
+		},
+		{
+			"id": "SizeBeschreibung",
+			"language": "PL",
+			"value": "Tutaj otrzymasz kilka wskazówek! "
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "ET",
+			"value": "Järjestamine"
+		},
+		{
+			"id": "Feedback",
+			"language": "ET",
+			"value": "Tagasiside"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "ET",
+			"value": "Tubli! Lahendasid õigesti."
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "ET",
+			"value": "See ei ole veel õige lahendus."
+		},
+		{
+			"id": "Prüfen",
+			"language": "ET",
+			"value": "Vaata lahendust"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "ET",
+			"value": "Tagasiside, mis antakse, kui ülesanne on õigesti lahendatud."
+		},
+		{
+			"id": "TextLeft",
+			"language": "ET",
+			"value": "algus"
+		},
+		{
+			"id": "TextRight",
+			"language": "ET",
+			"value": "lõpp"
+		},
+		{
+			"id": "VonBis",
+			"language": "ET",
+			"value": "Järjekord"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "ET",
+			"value": "Selle malliga saab järjestada teksti, pilte, audio või video saab järjestada õigesti"
+		},
+		{
+			"id": "Elemente",
+			"language": "ET",
+			"value": "elementi"
+		},
+		{
+			"id": "Element",
+			"language": "PL",
+			"value": "Element"
+		},
+		{
+			"id": "Element",
+			"language": "ET",
+			"value": "element"
+		},
+		{
+			"id": "SizeBeschreibung",
+			"language": "BG",
+			"value": "Тук ще получите няколко съвета!"
+		},
+		{
+			"id": "Size",
+			"language": "BG",
+			"value": "Тук ще получите няколко съвета!"
+		},
+		{
+			"id": "lang",
+			"language": "BG",
+			"value": "Тук ще получите няколко съвета!"
+		},
+		{
+			"id": "kleinquadratisch",
+			"language": "BG",
+			"value": "Тук ще получите няколко съвета!"
+		},
+		{
+			"id": "breit",
+			"language": "BG",
+			"value": "Тук ще получите няколко съвета!"
+		},
+		{
+			"id": "grossquadratisch",
+			"language": "BG",
+			"value": "Тук ще получите няколко съвета!"
+		},
+		{
+			"id": "automatisch",
+			"language": "BG",
+			"value": "Тук ще получите няколко съвета!"
+		},
+		{
+			"id": "Vorgabe",
+			"language": "BG",
+			"value": "предварително определен елемент"
+		},
+		{
+			"id": "TextLeft",
+			"language": "BG",
+			"value": "от"
+		},
+		{
+			"id": "TextRight",
+			"language": "BG",
+			"value": "до"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "BG",
+			"value": "Въведете надписите в последователността, в която трябва да бъдат подредени елементите при правилно решение. Тези елементи ще бъдат разположени от началото до края на &quot;змията&quot;. "
+		},
+		{
+			"id": "VonBis",
+			"language": "BG",
+			"value": "Подреждане от началото до края"
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "BG",
+			"value": "Това все още не е вярното решение. "
+		},
+		{
+			"id": "Prüfen",
+			"language": "BG",
+			"value": "Провери решението"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "BG",
+			"value": "Браво! Ти намери вярното решение!"
+		},
+		{
+			"id": "Feedback",
+			"language": "BG",
+			"value": "Обратна връзка"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "BG",
+			"value": "Осигурете текстова обратна връзка, която се показва, когато се намери решение."
+		},
+		{
+			"id": "Element",
+			"language": "BG",
+			"value": "Елемент"
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "BG",
+			"value": "Зареждане на съдържанието на приложението с текстове, изображения, аудиофайлове или видеоклипове. Важно: Въведете елементите в правилната последователност."
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "BG",
+			"value": "С помощта на този шаблон текстове, изображения, аудио файлове и видео клипове трябва да бъдат подредени правилно."
+		},
+		{
+			"id": "Elemente",
+			"language": "BG",
+			"value": "Елементи"
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "BG",
+			"value": "Последователност и подредба"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "UK",
+			"value": "За допомогою цього шаблону можна розставити у правильному порядку тексти, зображення, аудіо- та відео-ролики."
+		},
+		{
+			"id": "Elemente",
+			"language": "UK",
+			"value": "Елементи"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "UK",
+			"value": "Напишіть текст зворотнього зв'язку, який з'явиться, коли правильне рішення буде знайдено."
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "UK",
+			"value": "Розставити за порядком"
+		},
+		{
+			"id": "Element",
+			"language": "UK",
+			"value": "Елемент"
+		},
+		{
+			"id": "Feedback",
+			"language": "UK",
+			"value": "Зворотній зв'язок"
+		},
+		{
+			"id": "Prüfen",
+			"language": "UK",
+			"value": "Перевірити рішення"
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "UK",
+			"value": "На жаль, неправильно."
+		},
+		{
+			"id": "TextLeft",
+			"language": "UK",
+			"value": "від"
+		},
+		{
+			"id": "TextRight",
+			"language": "UK",
+			"value": "до"
+		},
+		{
+			"id": "VonBis",
+			"language": "UK",
+			"value": "Сортувати за алфавітом"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "UK",
+			"value": "Чудово, правильне рішення знайдено!"
+		},
+		{
+			"id": "Vorgabe",
+			"language": "UK",
+			"value": "Закріплені елементи (дати деякі підказки до рішення)"
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "UK",
+			"value": "Введіть вміст вправи у вигляді тексту, зображення, аудіо або відео. Важливо: Вказуйте елементи у правильному порядку."
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "UK",
+			"value": "Введіть додаткові скеровуючі написи алфавітного порядку (не обов'язково). Ці написи будуть показані на початку або в кінці послідовності."
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "TR",
+			"value": "Doğru sıralama"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "TR",
+			"value": "Bu taslak ile metinler, resimler, ses veya film dosyaları doğru sıralanmalıdır."
+		},
+		{
+			"id": "Elemente",
+			"language": "TR",
+			"value": "Ögeler"
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "TR",
+			"value": "Burada bir metin yazın, resim, ses veya film dosyası belirleyin. Ögeleri doğru sıra halinde belirlemeyi ihmal etmeyin. Bu önem arz ediyor."
+		},
+		{
+			"id": "Element",
+			"language": "TR",
+			"value": "Öge"
+		},
+		{
+			"id": "Feedback",
+			"language": "TR",
+			"value": "Geri dönüşüm"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "TR",
+			"value": "Doğru çözüm bulunduğunda gösterilmesini istediğiniz bir metin girin."
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "TR",
+			"value": "Maşaallah! Doğru çözümü buldunuz."
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "TR",
+			"value": "Malesef, henüz doğru değil."
+		},
+		{
+			"id": "Prüfen",
+			"language": "TR",
+			"value": "Çözümü kontrol et!"
+		},
+		{
+			"id": "VonBis",
+			"language": "TR",
+			"value": "Alfabetik sırala"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "TR",
+			"value": "İsterseniz buraya sıralamanın hangi yöne doğru yapılacağını belirten bir metin girebilirsiniz. Bu metin başta veya sonda gösterilecektir."
+		},
+		{
+			"id": "TextLeft",
+			"language": "TR",
+			"value": "...'den itibaren"
+		},
+		{
+			"id": "TextRight",
+			"language": "TR",
+			"value": "...'e kadar"
+		},
+		{
+			"id": "Vorgabe",
+			"language": "TR",
+			"value": "Öge önceden gösterilmektedir (Çözüm için ipucu olarak)"
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "GE",
+			"value": "რიგითობა"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "GE",
+			"value": "ამ შაბლონში ტექსტი, გამოსახულება, აუდიო ან ვიდეო უნდა განლაგდეს გარკვეული თანმიმდევრობით."
+		},
+		{
+			"id": "Elemente",
+			"language": "GE",
+			"value": "ელემენტები"
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "GE",
+			"value": "შეიყვანეთ ყოველი არჩეული ტექსტი, გამოსახულება, აუდიო ან ვიდეო. მნიშვნელოვანია: ელემენტები შეიყვანოთ სწორი თანმიმდევრობით."
+		},
+		{
+			"id": "Element",
+			"language": "GE",
+			"value": "ელემენტი"
+		},
+		{
+			"id": "Feedback",
+			"language": "GE",
+			"value": "უკუკავშირი"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "GE",
+			"value": "შეიყვანეთ ტექსტი, რომელიც ეკრანზე აისახება სწორი პასუხის შემთხვევაში."
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "GE",
+			"value": "კარგია, თქვენ ყველა ელემენტი სწორად განალაგეთ!"
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "GE",
+			"value": "სამწუხაროდ არც თუ ისე სწორია."
+		},
+		{
+			"id": "Prüfen",
+			"language": "GE",
+			"value": "პასუხის შემოწმება"
+		},
+		{
+			"id": "VonBis",
+			"language": "GE",
+			"value": "განალაგეთ ა - დან ჰ -მდე"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "GE",
+			"value": "შეიყვანეთ განლაგების დამატებითი მინიშნება ამოცანის სწორად გასაგებად. ეს ინფორმაცია აისახება თანმიმდევრობის თავში ან ბოლოს."
+		},
+		{
+			"id": "TextLeft",
+			"language": "GE",
+			"value": "დან"
+		},
+		{
+			"id": "TextRight",
+			"language": "GE",
+			"value": "მდე"
+		},
+		{
+			"id": "Vorgabe",
+			"language": "GE",
+			"value": "ელემენტი განსაზღვრულია (ამოხსნისათვის გარკვეული მინიშნების გაკეთება)"
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "ES",
+			"value": "Esa no es la respuesta correcta"
+		},
+		{
+			"id": "automatisch",
+			"language": "ET",
+			"value": "Siia tulevad mõned vihjed!"
+		},
+		{
+			"id": "breit",
+			"language": "ET",
+			"value": "Siia tulevad mõned vihjed!"
+		},
+		{
+			"id": "grossquadratisch",
+			"language": "ET",
+			"value": "Siia tulevad mõned vihjed!"
+		},
+		{
+			"id": "kleinquadratisch",
+			"language": "ET",
+			"value": "Siia tulevad mõned vihjed!"
+		},
+		{
+			"id": "lang",
+			"language": "ET",
+			"value": "Siia tulevad mõned vihjed!"
+		},
+		{
+			"id": "Size",
+			"language": "ET",
+			"value": "Siia tulevad mõned vihjed!"
+		},
+		{
+			"id": "SizeBeschreibung",
+			"language": "ET",
+			"value": "Siia tulevad mõned vihjed!"
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "BS",
+			"value": "Redoslijed"
+		},
+		{
+			"id": "Feedback",
+			"language": "BS",
+			"value": "Povratna informacija"
+		},
+		{
+			"id": "Elemente",
+			"language": "BS",
+			"value": "Elementi"
+		},
+		{
+			"id": "Element",
+			"language": "BS",
+			"value": "Element"
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "BS",
+			"value": "Nažalost, još uvijek nije točno."
+		},
+		{
+			"id": "VonBis",
+			"language": "BS",
+			"value": "Poredajte od A do Ž"
+		},
+		{
+			"id": "TextRight",
+			"language": "BS",
+			"value": "do"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "BS",
+			"value": "Ovdje unesite u kojem smjeru redoslijed treba biti složen. Ovaj tekst će se pojaviti u zaglavlju zadatka. (opcionalno)"
+		},
+		{
+			"id": "Prüfen",
+			"language": "BS",
+			"value": "Provjerite rješenje"
+		},
+		{
+			"id": "TextLeft",
+			"language": "BS",
+			"value": "od"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "BS",
+			"value": "Odlično, zadatak je točno riješen."
+		},
+		{
+			"id": "Vorgabe",
+			"language": "BS",
+			"value": "Unaprijed određen element"
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "BS",
+			"value": "Unesite sadržaj vježbe, tekst, slike, audio ili video. \nVažno: Redoslijed unošenja elemenata mora odgovarati točnom rješenju."
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "BS",
+			"value": "Unesite povratnu informaciju koja će biti prikazana kad se  pronađe tačno rješenje."
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "BS",
+			"value": "U ovom predlošku treba tekst, sliku, audio ili video složiti točnim redoslijedom."
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "IT",
+			"value": "Se vuoi, indica in quale direzione la sequenza deve essere fatta. Queste indicazione saranno mostrate all'inizio o alla fine della catena sequenziale."
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "NL",
+			"value": "Voer een tekst in die wordt weergegeven wanneer de juiste oplossing is gevonden."
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "NL",
+			"value": "Volgorde of rangschikking"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "NL",
+			"value": "Bij deze oefening moeten woorden, afbeeldingen, geluiden of video's in de juiste volgorde gezet worden."
+		},
+		{
+			"id": "Elemente",
+			"language": "NL",
+			"value": "Onderdelen"
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "NL",
+			"value": "Geef hier de te rangschikken inhouden (tekst, beeld, geluid of video) bij deze oefening op. Het is belangrijk om de onderdelen in de juiste volgorde te zetten."
+		},
+		{
+			"id": "VonBis",
+			"language": "NL",
+			"value": "Rangschik alfabetisch"
+		},
+		{
+			"id": "Prüfen",
+			"language": "NL",
+			"value": "Oplossing controleren"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "NL",
+			"value": "Prima, u hebt de juiste oplossing gevonden."
+		},
+		{
+			"id": "Feedback",
+			"language": "NL",
+			"value": "Feedback"
+		},
+		{
+			"id": "Element",
+			"language": "NL",
+			"value": "Onderdeel"
+		},
+		{
+			"id": "TextLeft",
+			"language": "NL",
+			"value": "Van"
+		},
+		{
+			"id": "TextRight",
+			"language": "NL",
+			"value": "Naar"
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "NL",
+			"value": "Helaas, niet juist."
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "NL",
+			"value": "Voorzie richtlijnen bij het rangschikken. Deze tekst zal getoond worden bij de kop en de staart van de reeks."
+		},
+		{
+			"id": "Vorgabe",
+			"language": "NL",
+			"value": "Onderdeel is reeds geplaatst (om een hint te geven naar de oplossing)"
+		},
+		{
+			"id": "Elemente",
+			"language": "GR",
+			"value": "Στοιχεία"
+		},
+		{
+			"id": "Element",
+			"language": "GR",
+			"value": "Στοιχείο"
+		},
+		{
+			"id": "Feedback",
+			"language": "GR",
+			"value": "Μήνυμα επιβράβευσης"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "SV",
+			"value": "Skriv den text som visas när spelet är slut"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "GR",
+			"value": "Δώστε ένα κείμενο που θα εμφανίζεται όταν βρεθεί η λύση."
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "SV",
+			"value": "Grattis, du har klarat av spelet!"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "GR",
+			"value": "Ωραία, βρήκες τη σωστή λύση"
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "GR",
+			"value": "Δεν είναι η σωστή απάντηση"
+		},
+		{
+			"id": "Prüfen",
+			"language": "GR",
+			"value": "Δείτε τη λύση"
+		},
+		{
+			"id": "automatisch",
+			"language": "BS",
+			"value": "Ovdje dobijate male savjete"
+		},
+		{
+			"id": "breit",
+			"language": "BS",
+			"value": "Ovdje dobijate male savjete"
+		},
+		{
+			"id": "grossquadratisch",
+			"language": "BS",
+			"value": "Ovdje dobijate male savjete"
+		},
+		{
+			"id": "kleinquadratisch",
+			"language": "BS",
+			"value": "Ovdje dobijate male savjete"
+		},
+		{
+			"id": "lang",
+			"language": "BS",
+			"value": "Ovdje dobijate male savjete"
+		},
+		{
+			"id": "Size",
+			"language": "BS",
+			"value": "Ovdje dobijate male savjete"
+		},
+		{
+			"id": "SizeBeschreibung",
+			"language": "BS",
+			"value": "Ovdje dobijate male savjete"
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "HU",
+			"value": "Sorrend ill. rendezés"
+		},
+		{
+			"id": "Elemente",
+			"language": "HU",
+			"value": "Elemek"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "HU",
+			"value": "Ebben az alkalmazásban szövegeket, képeket, hang- vagy videóanyagokat kell helyes sorrendbe rakni."
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "HU",
+			"value": "Adjon meg szöveget, képet, hang- vagy videóanyagot. Fontos hogy a helyes megoldás sorrendjében adja meg az elemeket!"
+		},
+		{
+			"id": "Element",
+			"language": "HU",
+			"value": "Elem"
+		},
+		{
+			"id": "Feedback",
+			"language": "HU",
+			"value": "Visszajelzés"
+		},
+		{
+			"id": "Elemente",
+			"language": "PT",
+			"value": "Elementos"
+		},
+		{
+			"id": "Element",
+			"language": "PT",
+			"value": "elemento"
+		},
+		{
+			"id": "Feedback",
+			"language": "BY",
+			"value": "Зваротная сувязь"
+		},
+		{
+			"id": "Feedback",
+			"language": "PT",
+			"value": "Feedback"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "BY",
+			"value": "Увядзіце тэкст, які будзе паказвацца пры правільным адказе."
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "HU",
+			"value": "Adjon meg egy üzenetet, amely a helyes megoldás után megjelenik!"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "PT",
+			"value": "Fornecer  texto de feedback que é exibido quando a solução for encontrada"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "BY",
+			"value": "Малайчына! Практыкаванне выканана"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "HU",
+			"value": "Remek, megtaláltad a helyes megoldást!"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "PT",
+			"value": "Óptimo, encontrou a solução correcta"
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "HU",
+			"value": "Sajnos ez még nem helyes!"
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "PT",
+			"value": "Esta ainda não é a solução correcta"
+		},
+		{
+			"id": "Prüfen",
+			"language": "BY",
+			"value": "Праверыць рашэнне"
+		},
+		{
+			"id": "Prüfen",
+			"language": "HU",
+			"value": "Megoldás ellenőrzése "
+		},
+		{
+			"id": "Prüfen",
+			"language": "PT",
+			"value": "verificar solução"
+		},
+		{
+			"id": "TextLeft",
+			"language": "HU",
+			"value": "ettől:"
+		},
+		{
+			"id": "VonBis",
+			"language": "HU",
+			"value": "ábécé sorrendbe rendezés"
+		},
+		{
+			"id": "TextRight",
+			"language": "HU",
+			"value": "eddig:"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "HU",
+			"value": "Itt megadhatja, hogy mi legyen a sorrend vagy a sorba rendezés iránya. Ezek a szövegelemek a sor elején ill. végén lesznek láthatók."
+		},
+		{
+			"id": "Vorgabe",
+			"language": "HU",
+			"value": "Az elemet máris megadják (mintegy segítségül a megoldáshoz)"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "FR",
+			"value": "Indiquez l'ordre à suivre (facultatif). Ces éléments seront affichés au début et à la fin de la séquence."
+		},
+		{
+			"id": "Vorgabe",
+			"language": "FR",
+			"value": "Elément défini (sera affiché correctement au lancement)"
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "BY",
+			"value": "Упарадкаваць"
+		},
+		{
+			"id": "Elemente",
+			"language": "BY",
+			"value": "Элементы"
+		},
+		{
+			"id": "Element",
+			"language": "BY",
+			"value": "Элемент"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "BY",
+			"value": "З дапамогай гэтага шаблону можна расставіць у належным парадку тэксты, малюнкі, аудыё- ці відэа-ролікі."
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "BY",
+			"value": "Паказаць рашэнне"
+		},
+		{
+			"id": "automatisch",
+			"language": "NL",
+			"value": "Gebruik GEEN speciale tekens of cijfers in het trefwoord. Het Duitse umlaut is toegestaan. Het trefwoord wordt anders geweigerd. Voer maximaal 10 tips toe. De tips worden weergegeven wanneer u een verkeerde letter (die geen deel uitmaakt van de trefwoord) opgeeft en zullen de speler ondersteunen bij de zoektocht. Scheid de tips door puntkomma - vb. één; twee; drie; etc."
+		},
+		{
+			"id": "breit",
+			"language": "NL",
+			"value": "Gebruik GEEN speciale tekens of cijfers in het trefwoord. Het Duitse umlaut is toegestaan. Het trefwoord wordt anders geweigerd. Voer maximaal 10 tips toe. De tips worden weergegeven wanneer u een verkeerde letter (die geen deel uitmaakt van de trefwoord) opgeeft en zullen de speler ondersteunen bij de zoektocht. Scheid de tips door puntkomma - vb. één; twee; drie; etc."
+		},
+		{
+			"id": "grossquadratisch",
+			"language": "NL",
+			"value": "Gebruik GEEN speciale tekens of cijfers in het trefwoord. Het Duitse umlaut is toegestaan. Het trefwoord wordt anders geweigerd. Voer maximaal 10 tips toe. De tips worden weergegeven wanneer u een verkeerde letter (die geen deel uitmaakt van de trefwoord) opgeeft en zullen de speler ondersteunen bij de zoektocht. Scheid de tips door puntkomma - vb. één; twee; drie; etc."
+		},
+		{
+			"id": "kleinquadratisch",
+			"language": "NL",
+			"value": "Gebruik GEEN speciale tekens of cijfers in het trefwoord. Het Duitse umlaut is toegestaan. Het trefwoord wordt anders geweigerd. Voer maximaal 10 tips toe. De tips worden weergegeven wanneer u een verkeerde letter (die geen deel uitmaakt van de trefwoord) opgeeft en zullen de speler ondersteunen bij de zoektocht. Scheid de tips door puntkomma - vb. één; twee; drie; etc."
+		},
+		{
+			"id": "lang",
+			"language": "NL",
+			"value": "Gebruik GEEN speciale tekens of cijfers in het trefwoord. Het Duitse umlaut is toegestaan. Het trefwoord wordt anders geweigerd. Voer maximaal 10 tips toe. De tips worden weergegeven wanneer u een verkeerde letter (die geen deel uitmaakt van de trefwoord) opgeeft en zullen de speler ondersteunen bij de zoektocht. Scheid de tips door puntkomma - vb. één; twee; drie; etc."
+		},
+		{
+			"id": "Size",
+			"language": "NL",
+			"value": "Gebruik GEEN speciale tekens of cijfers in het trefwoord. Het Duitse umlaut is toegestaan. Het trefwoord wordt anders geweigerd. Voer maximaal 10 tips toe. De tips worden weergegeven wanneer u een verkeerde letter (die geen deel uitmaakt van de trefwoord) opgeeft en zullen de speler ondersteunen bij de zoektocht. Scheid de tips door puntkomma - vb. één; twee; drie; etc."
+		},
+		{
+			"id": "SizeBeschreibung",
+			"language": "NL",
+			"value": "Gebruik GEEN speciale tekens of cijfers in het trefwoord. Het Duitse umlaut is toegestaan. Het trefwoord wordt anders geweigerd. Voer maximaal 10 tips toe. De tips worden weergegeven wanneer u een verkeerde letter (die geen deel uitmaakt van de trefwoord) opgeeft en zullen de speler ondersteunen bij de zoektocht. Scheid de tips door puntkomma - vb. één; twee; drie; etc."
+		},
+		{
+			"id": "Feedback",
+			"language": "ES",
+			"value": "Retroalimentación"
+		},
+		{
+			"id": "Element",
+			"language": "ES",
+			"value": "Elemento"
+		},
+		{
+			"id": "Elemente",
+			"language": "ES",
+			"value": "Elementos"
+		},
+		{
+			"id": "VonBis",
+			"language": "ES",
+			"value": "Ordenar alfabéticamente"
+		},
+		{
+			"id": "Vorgabe",
+			"language": "IT",
+			"value": "Elemento già impostato  (che porteranno all'incirca indizi per la soluzione)"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "ES",
+			"value": "¡Enhorabuena! Lograste dar con la(s) respuesta(s) correcta(s)."
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "CZ",
+			"value": "Sled, resp. pořadí"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "CZ",
+			"value": "U této předlohy musejí být texty, obrázky, audiosoubory nebo videosoubory seřazeny do správného pořadí."
+		},
+		{
+			"id": "Elemente",
+			"language": "CZ",
+			"value": "Prvky"
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "CZ",
+			"value": "Zde zadejte text nebo vyberte obrázek, audiosoubor či videosoubor. Důležité: zadejte zde prvky ve správném pořadí."
+		},
+		{
+			"id": "Element",
+			"language": "CZ",
+			"value": "Prvek"
+		},
+		{
+			"id": "Feedback",
+			"language": "CZ",
+			"value": "Odezva"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "CZ",
+			"value": "Zadejte text, který se zobrazí, když je nalezeno správné řešení."
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "CZ",
+			"value": "Výborně, našel jsi správné řešení."
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "CZ",
+			"value": "Řešení bohužel není správné."
+		},
+		{
+			"id": "Prüfen",
+			"language": "CZ",
+			"value": "Zkontrolovat řešení "
+		},
+		{
+			"id": "VonBis",
+			"language": "CZ",
+			"value": "Řazení od A do Z"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "CZ",
+			"value": "Zde můžete zadat, v jakém směru mají být sled nebo pořadí vytvořeny. Tyto údaje se zobrazí na začátku, resp. na konci řady."
+		},
+		{
+			"id": "TextLeft",
+			"language": "CZ",
+			"value": "od"
+		},
+		{
+			"id": "TextRight",
+			"language": "CZ",
+			"value": "do"
+		},
+		{
+			"id": "Vorgabe",
+			"language": "CZ",
+			"value": "Prvek je již zadán (jako záchytný bod pro řešení)"
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "BY",
+			"value": "Увядзіце тэкст або абярыце малюнак, аўдыё або відэа. Важна: Калі ласка, увядзіце элементы ў правільным парадку для выканання.."
+		},
+		{
+			"id": "VonBis",
+			"language": "BY",
+			"value": "Паказаць ад А да Я"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "BY",
+			"value": "Дадаткова ўкажыце, як павінна быць сфарміравана паслядоўнасць адказаў. Гэты тэкст будзе паказаны ў пачатку або ў канцы."
+		},
+		{
+			"id": "TextLeft",
+			"language": "BY",
+			"value": "ад"
+		},
+		{
+			"id": "TextRight",
+			"language": "BY",
+			"value": "да"
+		},
+		{
+			"id": "Vorgabe",
+			"language": "BY",
+			"value": "Гэты элемент задання ўжо будзе ўсталяваны (напрыклад, каб спрасціць выкананне задання)"
+		},
+		{
+			"id": "TextLeft",
+			"language": "ES",
+			"value": "de"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "ES",
+			"value": "Debería especificar en qué dirección se debe formar una secuencia u orden. Estos detalles de texto se muestran en la cabecera o al final de la cola."
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "ES",
+			"value": "Ordenar"
+		},
+		{
+			"id": "Vorgabe",
+			"language": "ES",
+			"value": "Este elemento aparece ya en la posición correcta como ayuda para solucionar la actividad."
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "ES",
+			"value": "La actividad consiste en ordenar textos, imágenes, documentos sonoros o vídeos."
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "ES",
+			"value": "Añade aquí un texto, una imagen o un elemento audivisual. Ten en cuenta que debes añadir los elementos en el orden correcto. "
+		},
+		{
+			"id": "TextRight",
+			"language": "ES",
+			"value": "a"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "ES",
+			"value": "Añade un texto que se mostrará cuando la tarea se resuelva correctamente."
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "RU",
+			"value": "При желании вы можете указать направление, в котором должна формироваться последовательность или порядок. Эта текстовая информация отображается в начале или конце очереди."
+		},
+		{
+			"id": "Vorgabe",
+			"language": "RU",
+			"value": "Элемент уже указан (например, чтобы дать ключ к разгадке решения)"
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "LT",
+			"value": "Sudėlioti korteles iš eilės"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "LT",
+			"value": "Pagal šį šabloną tekstai, vaizdai, garso ir vaizdo įrašai turi būti teisingai išdėlioti tam tikra seka."
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "LT",
+			"value": "Pateikite programėlės turinį - tekstus, vaizdus, garso ir vaizdo įrašus. Svarbu: pateikite elementus teisinga seka."
+		},
+		{
+			"id": "Feedback",
+			"language": "LT",
+			"value": "Grįžtamasis ryšys"
+		},
+		{
+			"id": "Element",
+			"language": "LT",
+			"value": "Elementas"
+		},
+		{
+			"id": "FeedbackBeschreibung",
+			"language": "LT",
+			"value": "Pateikite grįžtamojo ryšio tekstą, kuomet išsprendžiama teisingai."
+		},
+		{
+			"id": "feedbackFalse",
+			"language": "LT",
+			"value": "Tai dar nėra teisingas sprendimas."
+		},
+		{
+			"id": "VonBis",
+			"language": "LT",
+			"value": "Išrikiuoti nuo A iki Z"
+		},
+		{
+			"id": "FeedbackValue",
+			"language": "LT",
+			"value": "Puiku, radai teisingą sprendimą!"
+		},
+		{
+			"id": "Prüfen",
+			"language": "LT",
+			"value": "Patikrinti"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "LT",
+			"value": "Pateikite nurodančius užrašus išrikiuoti nuo A iki Z (pasirinktinai). Šie teksto elementai bus rodomi virš pirmojo ir po paskutiniuoju sekos elementais."
+		},
+		{
+			"id": "TextLeft",
+			"language": "LT",
+			"value": "nuo"
+		},
+		{
+			"id": "TextRight",
+			"language": "LT",
+			"value": "iki"
+		},
+		{
+			"id": "Vorgabe",
+			"language": "LT",
+			"value": "Elementas jau pateiktas"
+		},
+		{
+			"id": "Elemente",
+			"language": "LT",
+			"value": "Elementai"
+		},
+		{
+			"id": "VonBis",
+			"language": "GR",
+			"value": "Αλφαβητική ταξινόμηση"
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "GR",
+			"value": "Ακολουθία ή σειρά"
+		},
+		{
+			"id": "VonBisBeschreibung",
+			"language": "GR",
+			"value": "Μπορείτε προαιρετικά να καθορίσετε την κατεύθυνση προς την οποία πρέπει να σχηματιστεί μια ακολουθία ή σειρά. Αυτές οι πληροφορίες θα εμφανίζονται στην αρχή ή στο τέλος."
+		},
+		{
+			"id": "TextLeft",
+			"language": "GR",
+			"value": "από"
+		},
+		{
+			"id": "TextRight",
+			"language": "GR",
+			"value": "προς"
+		},
+		{
+			"id": "ElementeBeschreibung",
+			"language": "GR",
+			"value": "Εισαγάγετε κείμενο εδώ ή επιλέξτε μια εικόνα, ήχο ή βίντεο. Σημαντικό: Εισαγάγετε τα στοιχεία εδώ με τη σωστή σειρά επίλυσης."
+		},
+		{
+			"id": "Vorgabe",
+			"language": "GR",
+			"value": "Το στοιχείο είναι ήδη δεδομένο (π.χ. για να δοθούν ενδείξεις για τη λύση)"
+		},
+		{
+			"id": "APP_DESCRIPTION",
+			"language": "GR",
+			"value": "Με αυτό το πρότυπο, τα κείμενα, οι εικόνες, οι ήχοι ή τα βίντεο πρέπει να τοποθετηθούν στη σωστή σειρά"
+		},
+		{
+			"id": "APP_TITLE",
+			"language": "PT",
+			"value": "Sequência"
+		},
+		{
+			"id": "VonBis",
+			"language": "PT",
+			"value": "Ordenar de A a Z"
+		},
+		{
+			"id": "TextLeft",
+			"language": "PT",
+			"value": "de"
+		},
+		{
+			"id": "TextRight",
+			"language": "PT",
+			"value": "a"
+		}
+	],
+	"path": "https://learningapps.org/tools/119/13/",
+	"version": "13"
+};

@@ -1,0 +1,60 @@
+Faire un fichier html de style neumorphic qui intègrera directement le css et le js.
+Dans la fenêtre de l'écran apparaîtra deux colonnes de 6 cellules chacune. 
+Elles seront distantes l'une de l'autre. Leur hauteur sera celle du contenu de la colonne de gauche.
+On pourra déplacer les  cellules d'une colonne dans l'autre colonne (par "drag and drop").
+Le contenu de la colonne de gauche sera extrait d'un fichier externe à ce premier fichier en html.
+La colonne de droite sera organisé en quatre zones intitulées (de haut en bas) : "sujet", "problème", "racine du problème", "enjeu".
+La zone "problème" et la zone "racine du problème" pourront contenir jusqu'à 2 étiquettes chacune.
+Le nom de ce fichier écrit en js sera le suivant : questions.js. 
+
+Il contiendra pour une série de 50 sujets de dissertation de philosophie niveau terminale qui respecte les conditions suivantes :
+1) Cette série doit comporter l'intitulé du sujet de la dissertation
+2) Cette série doit comporter la problématique posée par le sujet. Pour l'identifier, la problématique doit comporter le mot "ou" et après le mot "ou" il faut au moins 5 mots. Vérifier qu’il y a bien un point d’interrogation précédé d’un espace à la fin de chaque problématique trouvée.
+3) Cette série présente la question qui est à la racine de la problématique et dont dépendent ses hypothèses. Elle-même doit comporter le mot "ou" et après le mot "ou", il faut au moins 5 mots. Vérifier qu’il y a bien un point d’interrogation précédé d’un espace à la fin de chaque problématique trouvée.
+4) Cette série doit comporter les enjeux posés par chaque problématique.
+
+Il faudra présenter la série complète et selon le modèle suivant :
+"{intitule: "A", piste1: "B", piste2: "C",  racine1:"D", racine2:"E", enjeu:"F".},"
+La variable A représentant l'intitulé du sujet.
+La variable B représentant la première partie de la phrase avant le mot "ou" de la problématique posée par A. Terminer cette phrase par un point d'interrogation précéder d'un espace insécable.
+La variable C représentant le reste de la phrase de la problématique posée par A. S'assurer que l'espace qui précède le point d'interrogion est insécable.
+La variable D représentant la première partie de la phrase avant le mot "ou" de la racine de la problématique posée par A. Terminer cette phrase par un point d'interrogation précéder d'un espace insécable.
+La variable E représentant le reste de la phrase de la racine de la problématique posée par A. S'assurer que l'espace qui précède le point d'interrogion est insécable.
+La variable F représentant l'enjeu posé par A.
+
+Ne pas sauter de ligne entre chaque problématique.
+Au terme de la liste, ne pas mettre de virgule à la fin.
+
+Par tirage au sort, le fichier html tirera quel groupe du fichier questions.js alimentera la colonne de gauche du fichier html.
+Il répartira aléatoirement dans cette première colonne le contenu du groupe désigné.
+Le titre, à mettre en rouge, sera : organiser et construire un questionnement.
+Il faudra prévoir un bouton en dessous des deux colonnes qui aura plusieurs fonctions : vérifier, corriger, le caractère "reload".
+
+Pour la phase "vérifier" il faut vérifier si le contenu disposé par l'utilisateur dans la colonne de droite correspond bien à ce qui devait être selon le fichier "arguments.js".
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+EPISODE 2 : 
+quelques rectifications plus tard : 
+Ma question : quel prompt faudrait-il vous communiquer pour que vous fassiez ces deux fichiers html et js ?
+Sa réponse : 
+Pour obtenir le résultat final comprenant les deux fichiers HTML et questions.js, vous devriez envoyer un prompt similaire à celui-ci :
+
+"Pouvez-vous créer deux fichiers pour une application web de questionnement philosophique :
+
+1. Un fichier HTML contenant :
+   - Une structure de base HTML5
+   - Un en-tête avec un titre rouge aligné à droite et un compteur de sujets aligné à gauche
+   - Deux colonnes : une pour les étiquettes à glisser-déposer et une pour les zones de dépôt
+   - Un bouton centré en bas
+   - Le style CSS intégré dans une balise <style>
+   - Le code JavaScript intégré dans une balise <script>
+   - La logique pour le glisser-déposer, la vérification de l'ordre, et le chargement aléatoire des questions
+   - Un espacement augmenté de 2mm entre les étiquettes dans la colonne de gauche uniquement
+
+2. Un fichier questions.js contenant :
+   - Un tableau de 22 objets, chacun représentant une question philosophique
+   - Chaque objet doit avoir les propriétés : intitule, piste1, piste2, racine1, racine2, et enjeu
+   - Les questions doivent couvrir divers sujets philosophiques
+
+Assurez-vous que le code HTML fait référence correctement au fichier questions.js et que l'interface utilisateur est responsive et esthétique."
+
+Ce prompt devrait vous permettre d'obtenir les deux fichiers nécessaires pour l'application web de questionnement philosophique, avec toutes les fonctionnalités et le style que vous avez demandés.

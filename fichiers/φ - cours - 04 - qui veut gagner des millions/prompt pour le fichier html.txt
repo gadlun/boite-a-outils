@@ -1,0 +1,151 @@
+Générez un fichier HTML complet pour un jeu 'Qui veut gagner des millions ?' adapté à un cours de philosophie de niveau 
+terminale. Le jeu doit inclure :
+
+   	Un design neumorphique avec des couleurs rappelant l'émission de télévision (fond bleu foncé, texte blanc, accents dorés).
+   	Un conteneur de jeu avec un titre, une zone de question, des boutons de réponse, des jokers 
+	(50:50, appel à un ami, avis du public) et un affichage du score.
+   	
+	Un script JavaScript intégré qui :
+        Charge les questions depuis un fichier externe 'questions.js'
+        Sélectionne aléatoirement 15 questions parmi toutes les questions disponibles
+        Gère la logique du jeu, y compris la vérification des réponses et la mise à jour du score
+        Affiche la bonne réponse en cas de mauvaise réponse du joueur
+	Le style CSS intégré dans la balise <style> du fichier HTML
+	Assurez-vous que le code soit complet et fonctionnel, prêt à être utilisé avec un fichier 'questions.js' 
+	séparé contenant les questions de philosophie.
+xxxxxxxxxxxxxxxxxxxxx
+"Créez une page web interactive pour le jeu 'Qui veut gagner des millions ?' en français. La page doit inclure :
+
+    Un design inspiré de l'émission avec un fond bleu foncé et des bordures brillantes.
+    Un logo du jeu en haut de la page.
+    Une zone pour afficher les questions et quatre boutons de réponse (A, B, C, D).
+    Trois boutons pour les jokers : '50:50', 'appel', et 'public'.
+    Un bouton 'Question Suivante' qui apparaît après avoir répondu.
+    Une colonne à droite affichant les paliers de gains jusqu'à 1 million d'euros.
+    Un système de score qui met en évidence le niveau actuel du joueur.
+    Des fonctions JavaScript pour :
+        Mélanger et afficher aléatoirement 15 questions.
+        Vérifier les réponses et mettre à jour le score.
+        Implémenter les fonctionnalités des jokers.
+        Gérer la progression du jeu et l'affichage des résultats.
+
+Assurez-vous que le design est responsive et que le jeu fonctionne correctement sur différents appareils."
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Créez un fichier HTML pour un jeu de quiz intitulé "Qui veut gagner des millions ?". Le fichier doit inclure les éléments suivants :
+
+    Un conteneur principal qui affiche le logo du jeu, le titre, la question actuelle et les réponses possibles.
+    Quatre boutons pour les réponses, alignés en bas de l'écran.
+    Un bouton "question suivante" qui change le texte en "retentez votre chance ?" si la réponse est incorrecte.
+    Un système de paliers qui affiche les paliers et les montants correspondants.
+    Un bouton pour afficher le nom du fichier de questions utilisé, ainsi que le score et le palier actuel.
+    La logique doit changer le fichier de questions utilisé lorsque le score atteint 200 (utiliser "questionsfaciles.js").
+    Les styles doivent inclure des couleurs appropriées pour les boutons, avec des effets de survol.
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+"Créer un jeu de quiz en ligne inspiré de l'émission 'Qui veut gagner des millions ?', avec des questions 
+à choix multiples, des jokers, et une interface utilisateur attrayante. Le jeu doit inclure des éléments audio 
+pour les réponses correctes et incorrectes, ainsi qu'un système de score basé sur les paliers de gains. 
+Le design doit être centré sur une mise en page responsive et conviviale."
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+ Prompt : "Peux-tu me fournir le code HTML complet pour un jeu intitulé 'Qui veut gagner des millions ?' avec les spécifications suivantes :
+
+    La structure doit inclure un conteneur principal pour le jeu, un logo, un titre, une zone pour afficher la question, et un conteneur pour les réponses.
+    Les boutons de réponse doivent être initialement vides et leur contenu doit apparaître successivement toutes les 4 secondes.
+    Il doit y avoir des jokers (50:50, appel à un ami, aide du public) avec des boutons correspondants.
+    Un bloc de droite doit afficher les paliers de gains et les scores, sans séparation entre les surlignements.
+    Lors d'un changement de palier ou de score, le surlignement précédent doit être enlevé et la couleur de police doit revenir à la normale.
+    Utilise des styles CSS pour une présentation attrayante, incluant des couleurs spécifiques pour le fond, le texte et les boutons.
+
+Voici un exemple de ce que je veux :
+
+xml
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qui veut gagner des millions ?</title>
+    <style>
+        /* Styles ici */
+    </style>
+</head>
+<body>
+    <audio id="audioPlayer" preload="auto">
+        <source src="audio/generique.mp3" type="audio/mpeg">
+    </audio>
+    <button onclick="playAudio()">Générique</button>
+
+    <div id="game-container">
+        <img id="logo" src="logo.png" alt="Logo Qui veut gagner des millions">
+        <h1>Qui veut gagner des millions ?</h1>
+        
+        <div id="question-container"></div>
+        
+        <div id="answers-container"></div>
+
+        <button id="next-question-btn" onclick="nextQuestion()" style="display:none;">Question suivante</button>
+
+        <div id="jokers-container">
+            <button class="joker-btn" onclick="useFiftyFifty()">50 : 50</button>
+            <button class="joker-btn" onclick="usePhoneAFriend()">Appel</button>
+            <button class="joker-btn" onclick="usePublicHelp()">Public</button>
+        </div>
+    </div>
+
+    <div class="frame">
+        <div class="paliers"> <!-- Paliers ici --> </div>
+        <div class="scores"> <!-- Scores ici --> </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script>
+        // Logique JavaScript ici
+    </script>
+
+</body>
+</html>
+
+Assure-toi d'inclure tous les détails nécessaires dans le code."
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+"Écris un fichier HTML complet pour un jeu interactif basé sur le format de l'émission 'Qui veut gagner des millions ?'. Le fichier doit respecter exactement la charte graphique de l'émission, incluant :
+
+    Style CSS : Un arrière-plan sombre (nuance de bleu foncé), texte en blanc et éléments graphiques en or et bleu. Utilise des polices similaires à celles de l'émission.
+
+    Structure : Un conteneur principal avec une zone pour afficher le logo de l'émission, le titre, une question et des réponses. Ajoute un conteneur à droite affichant une liste de paliers de gains gradués en couleur.
+
+    Questions : Les questions doivent être exclusivement philosophiques et adaptées au programme d'une classe de terminale. Elles doivent être divisées par niveaux de difficulté (facile, moyen, difficile) et respectées dans la gradation des paliers.
+
+    Jokers : Inclus des fonctionnalités de jokers : 50/50, appel à un ami, aide du public. Chaque joker doit avoir le son associé et respecter la charte sonore de l'émission. Les jokers doivent disparaître après leur utilisation.
+
+    Gestion de l'audio : Intègre les sons emblématiques de l'émission pour les bonnes réponses, les mauvaises réponses, ainsi que pour le générique d'introduction et les questions.
+
+    Commentaire : Fournis des commentaires dans le code pour expliquer brièvement chaque fonction.
+
+Fournis le code HTML en entier, complet, bien organisé et conforme à ces exigences."
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Écris un fichier HTML complet pour un jeu interactif basé sur le format de l'émission 'Qui veut gagner des millions ?' avec les exigences suivantes :
+
+    Style CSS : Un arrière-plan sombre (nuance de bleu foncé), texte en blanc et éléments graphiques en or et bleu. Utilise des polices similaires à celles de l'émission.
+
+    Structure : Un conteneur principal pour afficher le logo de l'émission, le titre, une question et des réponses. Ajoute également un conteneur à droite affichant une liste de paliers de gains et leurs valeurs correspondantes, avec une fonctionnalité de surlignage en orange des paliers et des valeurs correspondantes lorsqu'ils sont atteints. II faut retirer le surlignage de la liste précédente. La couleur de la police est orange sauf pour les valeurs spéciales 5, 10, 15 et les scores correspondants. Les fichiers de questions sont un dossier "questions", les fichiers mp3 sont dans un dossier "audio".
+
+    Niveaux de difficulté : Implémente trois niveaux de difficulté :
+        Facile : de 1 à 4 (questionsfaciles.js et questionsfaciles.mp3)
+        Moyen : de 5 à 9 (questionsmoyennes.js et questionsmoyennes.mp3)
+        Difficile : de 10 à 15 (questionsdifficiles.js et questionsdifficiles.mp3)
+
+    Chargement des questions : Les questions doivent être tirées aléatoirement des fichiers correspondants au niveau de difficulté dans le dossier 'questions', en évitant les répétitions lors des parties suivantes.
+
+    Gestion de l'audio : Implémente une audio pour chaque bon ou mauvais réponse. Les fichiers audio doivent être présents dans le dossier 'audio'.
+
+    Jokers : Inclus des fonctionnalités de jokers : 50/50, appel à un ami, aide du public. Les jokers doivent avoir les sons associés, disparaitre après utilisation et doivent correspondre à la charte sonore de l'émission.
+
+    Messages et alertes : Assure-toi que le fond des boutons réponses soit vert lorsque le joueur fournit une réponse correcte. Si l'utilisateur s'est trompé, le bouton qui contient la bonne réponse passe au vert.
+
+    Commentaires dans le code : Fournis des commentaires dans le code pour expliquer brièvement chaque fonction.
+
+Fournis le code HTML en entier, complet et bien organisé, conforme aux exigences ci-dessus."

@@ -1,0 +1,3 @@
+Créez une application web interactive de 'texte à trous' pour réviser des concepts philosophiques. 
+L'application doit présenter une série de textes avec des mots manquants, permettre aux utilisateurs de glisser-déposer les mots corrects dans les espaces vides, vérifier les réponses, montrer les corrections si nécessaire, et passer automatiquement au texte suivant. 
+L'interface doit être conviviale et responsive, avec un design moderne utilisant des effets d'ombre et des transitions fluides

@@ -1,0 +1,5 @@
+Crée un fichier HTML complet qui génère aléatoirement des poèmes en utilisant des vers prédéfinis. 
+Le fichier doit inclure une structure de sonnet avec deux quatrains et deux tercets. 
+Ajoute des boutons pour générer un nouveau poème et pour lire le poème à voix haute avec une voix de synthèse en français. 
+Utilise l'API Web Speech pour la lecture. Les boutons doivent être alignés à gauche du poème, et il doit y avoir un 
+espacement horizontal entre les boutons et le poème. Utilise un style neumorphique pour l'interface.

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" href="../../src/favicon.ico" />
+    <title>appariement de mots</title>
+    <p style="margin: 15px; line-height: 48px; text-align: center; color:red; font-size:40px; font-weight: bold; font-family: 'Muli', sans-serif">appariement de mots</p>
+    <p style="margin: 0px; line-height: 1px; text-align: center; color:black; font-size:20px">réviser les repères</p>
+    <br>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            position: relative;
+            margin-top: 20px;
+        }
+        .column {
+            margin: 0 50px;
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 10px 10px;
+        }
+        td {
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #e0e0e0;
+            box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        h1 {
+            color: red;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: black;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 120px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+        }
+        button:hover {
+            background-color: #d1d1d1;
+            box-shadow: inset 3px 3px 5px #bebebe, inset -3px -3px 5px #ffffff;
+        }
+        button:active {
+            background-color: #c0c0c0;
+            box-shadow: inset 3px 3px 5px #bebebe, inset -3px -3px 5px #ffffff;
+        }
+        .reload-icon {
+            font-size: 40px;
+            color: red;
+            line-height: normal;
+            transform: translateY(-0.5mm);
+            transition: all 0.3s ease;
+        }
+        button:hover .reload-icon,
+        button:active .reload-icon {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="column">
+            <table id="repereTable"></table>
+        </div>
+        <div class="column">
+            <table id="definitionTable"></table>
+        </div>
+        <canvas id="lineCanvas"></canvas>
+    </div>
+    <button id="actionButton" onclick="performAction()">Vérifier</button>
+    <script src="../../src/reperes.js"></script>
+    <script>
+        let startX, startY, drawing = false;
+        const canvas = document.getElementById('lineCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            const container = document.querySelector('.container');
+            canvas.width = container.offsetWidth;
+            canvas.height = container.offsetHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('load', resizeCanvas);
+
+        const usedCells = new Set();
+        let currentAction = "check";
+        let currentRepere = null;
+        let currentDefinition = null;
+        let links = [];
+        let selectedReperes = [];
+
+        // Fonction pour sélectionner aléatoirement 5 mots
+        function getRandomElements(array, count) {
+            const shuffled = array.sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // Fonction pour charger les réperes et définitions
+        function loadReperes() {
+            const repTable = document.getElementById('repereTable');
+            const defTable = document.getElementById('definitionTable');
+
+            // Réinitialiser les tables
+            repTable.innerHTML = '';
+            defTable.innerHTML = '';
+
+            // Extraire tous les name et definition
+            const allParts = [];
+            reperes.forEach(repere => {
+                repere.parts.forEach(part => {
+                    allParts.push(part);
+                });
+            });
+
+            // Sélectionner 5 éléments aléatoires
+            const randomParts = getRandomElements(allParts, 5);
+
+            // Mélanger les mots et les définitions indépendamment
+            const shuffledNames = randomParts.map(part => part.name).sort(() => 0.5 - Math.random());
+            const shuffledDefinitions = randomParts.map(part => part.definition).sort(() => 0.5 - Math.random());
+
+            // Ajouter les mots mélangés dans la colonne de gauche
+            shuffledNames.forEach(name => {
+                const repRow = document.createElement('tr');
+                const repCell = document.createElement('td');
+                repCell.textContent = name;
+                repRow.appendChild(repCell);
+                repTable.appendChild(repRow);
+            });
+
+            // Ajouter les définitions mélangées dans la colonne de droite
+            shuffledDefinitions.forEach(definition => {
+                const defRow = document.createElement('tr');
+                const defCell = document.createElement('td');
+                defCell.textContent = definition;
+                defRow.appendChild(defCell);
+                defTable.appendChild(defRow);
+            });
+
+            return randomParts;
+        }
+
+        // Gestion des clics sur les cellules
+        function selectCell(event, type, info) {
+            const cell = event.target;
+            if (usedCells.has(cell)) return;
+
+            const rect = cell.getBoundingClientRect();
+            const canvasRect = canvas.getBoundingClientRect();
+
+            if (type === 'repere') {
+                if (drawing && currentDefinition) {
+                    const startX = rect.right - canvasRect.left;
+                    const startY = rect.top + rect.height / 2 - canvasRect.top;
+                    const endX = currentDefinition.startX;
+                    const endY = currentDefinition.startY;
+                    drawLink(startX, startY, endX, endY);
+                    links.push({
+                        repere: info,
+                        definition: currentDefinition.text,
+                        lineId: {startX, startY, endX, endY}
+                    });
+                    usedCells.add(cell);
+                    usedCells.add(currentDefinition.cell);
+                    resetDrawing();
+                } else if (!drawing) {
+                    startX = rect.right - canvasRect.left;
+                    startY = rect.top + rect.height / 2 - canvasRect.top;
+                    drawing = true;
+                    currentRepere = {info, startX, startY, cell};
+                }
+            } else if (type === 'definition') {
+                if (drawing && currentRepere) {
+                    const startX = currentRepere.startX;
+                    const startY = currentRepere.startY;
+                    const endX = rect.left - canvasRect.left;
+                    const endY = rect.top + rect.height / 2 - canvasRect.top;
+                    drawLink(startX, startY, endX, endY);
+                    links.push({
+                        repere: currentRepere.info,
+                        definition: cell.textContent,
+                        lineId: {startX, startY, endX, endY}
+                    });
+                    usedCells.add(cell);
+                    usedCells.add(currentRepere.cell);
+                    resetDrawing();
+                } else if (!drawing) {
+                    startX = rect.left - canvasRect.left;
+                    startY = rect.top + rect.height / 2 - canvasRect.top;
+                    drawing = true;
+                    currentDefinition = {text: cell.textContent, startX, startY, cell};
+                }
+            }
+        }
+
+        // Dessiner une flèche
+        function drawLink(startX, startY, endX, endY, color = 'black') {
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(endX, endY);
+
+            // Dessiner la tête de la flèche
+            const headlen = 10;
+            const angle = Math.atan2(endY - startY, endX - startX);
+
+            ctx.lineTo(endX - headlen * Math.cos(angle - Math.PI / 6), endY - headlen * Math.sin(angle - Math.PI / 6));
+            ctx.moveTo(endX, endY);
+            ctx.lineTo(endX - headlen * Math.cos(angle + Math.PI / 6), endY - headlen * Math.sin(angle + Math.PI / 6));
+
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        // Réinitialiser le dessin
+        function resetDrawing() {
+            drawing = false;
+            currentRepere = null;
+            currentDefinition = null;
+            currentAction = "check";
+            document.getElementById("actionButton").innerHTML = "Vérifier";
+        }
+
+        // Gestion des actions du bouton
+        function performAction() {
+            switch (currentAction) {
+                case "check":
+                    checkLinks();
+                    break;
+                case "correct":
+                    correctLinks();
+                    break;
+                case "reload":
+                    reload();
+                    break;
+            }
+        }
+
+        // Vérifier les liens
+        function checkLinks() {
+            links.forEach(link => {
+                const isCorrect = link.repere.definition === link.definition;
+                const color = isCorrect ? 'green' : 'red';
+                drawLink(link.lineId.startX, link.lineId.startY, link.lineId.endX, link.lineId.endY, color);
+                link.isCorrect = isCorrect;
+            });
+
+            currentAction = "correct";
+            document.getElementById("actionButton").innerHTML = "Corriger";
+        }
+
+        // Corriger les liens
+        function correctLinks() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const repereTable = document.getElementById('repereTable');
+            const definitionTable = document.getElementById('definitionTable');
+            const canvasRect = canvas.getBoundingClientRect();
+
+            selectedReperes.forEach((repere) => {
+                const repereCell = Array.from(repereTable.rows).find(row => row.cells[0].textContent === repere.name).cells[0];
+                const definitionCell = Array.from(definitionTable.rows).find(row => row.cells[0].textContent === repere.definition).cells[0];
+
+                if (repereCell && definitionCell) {
+                    const startX = repereCell.getBoundingClientRect().right - canvasRect.left;
+                    const startY = repereCell.getBoundingClientRect().top + repereCell.getBoundingClientRect().height / 2 - canvasRect.top;
+                    const endX = definitionCell.getBoundingClientRect().left - canvasRect.left;
+                    const endY = definitionCell.getBoundingClientRect().top + definitionCell.getBoundingClientRect().height / 2 - canvasRect.top;
+
+                    drawLink(startX, startY, endX, endY, 'green');
+                }
+            });
+
+            currentAction = "reload";
+            document.getElementById("actionButton").innerHTML = '<span class="reload-icon">&#8635;</span>';
+        }
+
+        // Recharger la page
+        function reload() {
+            links.length = 0;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            usedCells.clear();
+
+            document.getElementById('repereTable').innerHTML = '';
+            document.getElementById('definitionTable').innerHTML = '';
+
+            selectedReperes = loadReperes();
+            resetDrawing();
+        }
+
+        // Ajouter les écouteurs d'événements
+        function addEventListeners() {
+            const repCells = document.getElementById('repereTable').getElementsByTagName('td');
+            const defCells = document.getElementById('definitionTable').getElementsByTagName('td');
+
+            Array.from(repCells).forEach(cell => {
+                cell.addEventListener('click', (event) => selectCell(event, 'repere', cell.textContent));
+            });
+
+            Array.from(defCells).forEach(cell => {
+                cell.addEventListener('click', (event) => selectCell(event, 'definition', cell.textContent));
+            });
+        }
+
+        window.onload = function() {
+            selectedReperes = loadReperes();
+            resizeCanvas();
+            addEventListeners();
+        };
+    </script>
+</body>
+</html>

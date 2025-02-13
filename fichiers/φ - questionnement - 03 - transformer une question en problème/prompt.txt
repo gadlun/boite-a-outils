@@ -1,0 +1,3 @@
+Trouves 50 problématiques de dissertation de philosophie niveau terminale. Cette série doit comporter le mot "ou" et après le mot "ou" il faut au moins 5 mots. Il faudra que cette liste se présente dans une fenêtre comme suit : "{name: "X",definition :"Y."},"
+La variable X représentant la première partie de la phrase avant le mot « ou » et la variable Y représentant le reste de la phrase. Mettre un point d’interrogation précédé d’un espace dans X. Il faudra s’assurer que dans Y il y a bien un espace avant le point d’interrogation.
+Ne pas sautez de ligne entre chaque problématique. La dernière problématique de la liste ne comportera pas de virgule à la fin.

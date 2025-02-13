@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>texte à trous</title>
+    <link rel="icon" href="../../src/favicon.ico"> <!-- Ajout de la balise favicon -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e5ec;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centre verticalement */
+            align-items: center; /* Centre horizontalement */
+            min-height: 100vh; /* Hauteur minimale de la fenêtre */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .title {
+            color: red;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: black;
+            margin-bottom: 20px;
+        }
+        .container {
+            background-color: #e0e5ec;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 
+                8px 8px 15px #a3b1c6,
+                -8px -8px 15px #ffffff;
+            max-width: 600px; /* Largeur maximale */
+            width: 100%; /* Largeur adaptable */
+        }
+        .text-container {
+            margin-bottom: 20px; /* Espacement en bas */
+            line-height: 2.4; /* Augmentation de l'interligne */
+        }
+        .hole {
+            display: inline-flex; /* Utiliser inline-flex pour centrer le texte */
+            justify-content: center; /* Centre horizontalement le texte à l'intérieur du trou */
+            align-items: center; /* Centre verticalement le texte à l'intérieur du trou */
+            min-width: 50px; /* Largeur minimale */
+            height: 30px; /* Hauteur du trou */
+            line-height: 30px; /* Aligner verticalement le texte dans le trou */
+            border-radius: 15px; /* Coins arrondis */
+            background-color: #e0e5ec; /* Couleur de fond par défaut */
+            box-shadow:
+                inset 5px 5px 10px #a3b1c6,
+                inset -5px -5px 10px #ffffff; /* Ombre interne */
+            margin: 2mm 5px 0; /* Ajouter une marge supérieure de 2 mm et espacement horizontal */
+        }
+        .hole.correct {
+            background-color: #a8e6cf; /* Couleur verte pour correct */
+        }
+        .hole.incorrect {
+            background-color: #ffaaa5; /* Couleur rouge pour incorrect */
+        }
+        .word-bank {
+            display: flex; /* Affichage flexible pour la banque de mots */
+            flex-wrap: wrap; /* Permet aux mots de passer à la ligne suivante */
+            gap: 10px; /* Espacement entre les mots */
+            margin-bottom: 20px; /* Espacement en bas */
+        }
+        .word {
+            padding: 5px 10px; /* Espacement interne des mots */
+            background-color: #e0e5ec; /* Couleur des mots */
+            border-radius: 10px; /* Coins arrondis pour les mots */
+            box-shadow:
+                5px 5px 10px #a3b1c6,
+                -5px -5px 10px #ffffff; /* Ombre des mots */
+            cursor: move; /* Curseur de déplacement pour les mots */
+            user-select: none; /* Désactiver la sélection de texte pour les mots */
+        }
+        button {
+            padding: 10px 20px; /* Espacement interne du bouton */
+            background-color: #e0e5ec; /* Couleur du bouton */
+            border: none; /* Pas de bordure pour le bouton */
+            border-radius: 10px; /* Coins arrondis pour le bouton */
+            box-shadow:
+                5px 5px 10px #a3b1c6,
+                -5px -5px 10px #ffffff; /* Ombre du bouton */
+            cursor: pointer; /* Curseur en main pour le bouton */
+            font-size: 16px; /* Taille de police du bouton */
+            text-transform: lowercase; /* Convertir le texte en minuscules dans le bouton */
+            margin-top: 20px; /* Espace au-dessus du bouton pour le distancer du cadre */
+        }
+        button:hover {
+            box-shadow:
+                3px 3px 6px #a3b1c6,
+                -3px -3px 6px #ffffff; /* Ombre au survol du bouton */
+        }
+        button:active {
+            box-shadow:
+                inset 3px 3px 6px #a3b1c6,
+                inset -3px -3px 6px #ffffff; /* Ombre active du bouton */
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">repères philosophiques à trous</h1>
+    <h2 class="subtitle">réviser les repères</h2>
+    <div class="container">
+        <div class="text-container" id="textContainer"></div>
+        <div class="word-bank" id="wordBank"></div>
+    </div>
+    <button id="actionButton">vérifier</button> <!-- Texte en minuscules -->
+
+    <script src="../../src/reperes.js"></script> <!-- Chemin mis à jour -->
+    <script>
+        let currentRepere = null;
+        let missingWords = [];
+
+        function cleanWord(word) {
+           return word.replace(/[.,;!?]/g, '').toLowerCase(); // Retire les signes de ponctuation et convertit en minuscule
+        }
+
+       function initializeExercise() {
+           currentRepere = reperes[Math.floor(Math.random() * reperes.length)].parts[Math.floor(Math.random() * reperes[0].parts.length)];
+           const words = currentRepere.definition.split(' ');
+           
+           // Réinitialiser la liste des mots manquants
+           missingWords = [];
+
+           // Fonction pour vérifier si un mot est un nom commun ou un verbe
+           function isNounOrVerb(word) {
+               const cleanedWord = cleanWord(word);
+               return cleanedWord.length > 3 && !['le', 'la', 'les', 'un', 'une', 'des', 'de', 'du', 'et', 'ou', 'à', 'au'].includes(cleanedWord);
+           }
+
+           // Ajouter uniquement les noms communs et verbes à la liste des mots manquants
+           words.forEach(word => {
+               if (isNounOrVerb(word)) { 
+                   missingWords.push(cleanWord(word)); // Convertir en minuscule
+               }
+           });
+
+           // Créer le texte avec des trous sans point final
+           let textWithHoles = `${currentRepere.name} : ${currentRepere.definition.charAt(0).toLowerCase() + currentRepere.definition.slice(1).replace(/\.$/, '')}`;
+
+           // Déterminer la longueur maximale des mots dans la banque
+           const maxLength = Math.max(...missingWords.map(word => word.length)) * 10;
+
+           // Générer les trous en fonction du nombre d'étiquettes
+           missingWords.forEach(word => { 
+               const regex = new RegExp(`\\b${word}\\b`, 'i');
+               textWithHoles = textWithHoles.replace(regex, `<span class="hole" data-word="${word}" style="width:${maxLength}px;"></span>`);
+           });
+
+           document.getElementById('textContainer').innerHTML = textWithHoles;
+
+           const wordBank = document.getElementById('wordBank');
+           wordBank.innerHTML = '';
+           
+           // Créer les éléments de la banque de mots sans doublons et correspondant aux trous
+           const uniqueWords = missingWords.filter(word => textWithHoles.includes(word)); // Filtrer uniquement ceux qui sont dans le texte
+
+           uniqueWords.sort(() => Math.random() - 0.5).forEach(word => { 
+               const wordElement = document.createElement('div');
+               wordElement.className = 'word';
+               wordElement.textContent = word;
+               wordElement.draggable = true;
+
+               // Événements pour le drag and drop
+               wordElement.addEventListener('dragstart', drag);
+               wordBank.appendChild(wordElement);
+           });
+
+           // Événements pour les trous
+           document.querySelectorAll('.hole').forEach(hole => {
+               hole.addEventListener('dragover', allowDrop);
+               hole.addEventListener('drop', drop);
+           });
+       }
+
+       function drag(event) {
+           event.dataTransfer.setData("text", event.target.textContent);
+       }
+
+       function allowDrop(event) {
+           event.preventDefault();
+       }
+
+       function drop(event) {
+           event.preventDefault();
+           const data = event.dataTransfer.getData("text");
+           
+           if (event.target.classList.contains('hole')) {
+               // Si le trou est déjà occupé, récupérer l'étiquette existante
+               if (event.target.textContent) { 
+                   const existingTagText = event.target.textContent;
+
+                   // Remettre l'étiquette existante dans la banque de mots
+                   const wordInBank = document.createElement('div');
+                   wordInBank.className = 'word';
+                   wordInBank.textContent = existingTagText;
+                   wordInBank.draggable = true;
+
+                   // Réactiver les événements drag-and-drop sur l'étiquette expulsée
+                   wordInBank.addEventListener('dragstart', drag);
+                   document.getElementById('wordBank').appendChild(wordInBank);
+               }
+
+               // Remplir le trou avec le nouveau tag
+               event.target.textContent = data;
+
+               // Supprimer le mot de la banque de mots
+               const wordInBankElement = Array.from(document.querySelectorAll('.word')).find(wordEl => wordEl.textContent === data);
+               if (wordInBankElement) wordInBankElement.remove();
+               
+               // Réactiver le drag sur ce mot si c'est dans un trou incorrect
+               event.target.addEventListener('dragover', allowDrop);
+               event.target.addEventListener('drop', drop);
+           }
+       }
+
+       function verifyAnswers() {
+           let allCorrect = true;
+
+           document.querySelectorAll('.hole').forEach(hole => {
+               if (hole.textContent === hole.dataset.word) {
+                   hole.classList.add('correct');
+                   hole.classList.remove('incorrect'); // Retirer incorrect si c'était là
+               } else if (hole.textContent) {
+                   hole.classList.add('incorrect');
+                   allCorrect = false;
+
+                   // Réactiver le drag sur ce mot si c'est incorrect
+                   hole.setAttribute("draggable", true);
+                   hole.addEventListener('dragover', allowDrop);
+                   hole.addEventListener('drop', drop);
+               }
+           });
+           
+           return allCorrect;
+       }
+
+       function correctAnswers() {
+           document.querySelectorAll('.hole').forEach(hole => {
+               hole.textContent = hole.dataset.word;
+               hole.classList.remove('incorrect');
+               hole.classList.add('correct');
+           });
+       }
+
+       document.getElementById('actionButton').addEventListener('click', function() {
+           if (this.textContent === 'Vérifier') {
+               verifyAnswers(); // Vérifie sans alerte si tous les trous sont remplis
+               this.textContent = 'Corriger'; // Changez simplement à corriger après vérification
+           } else if (this.textContent === 'Corriger') {
+               correctAnswers();
+               this.textContent = 'Recommencer';
+           } else { // Recommencer l'exercice
+               initializeExercise();
+               this.textContent = 'Vérifier';
+           }
+       });
+
+       initializeExercise(); // Initialiser l'exercice au chargement de la page
+    </script>
+</body>
+</html>

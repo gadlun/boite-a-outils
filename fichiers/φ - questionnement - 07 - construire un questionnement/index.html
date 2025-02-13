@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnement Philosophique</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e5ec;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 20px;
+            margin: 0;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .title {
+            color: #ff0000;
+            margin: 0;
+        }
+        #subjectCount {
+            margin: 0;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .column {
+            width: 48%;
+            background-color: #e0e5ec;
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 8px 8px 15px #a3b1c6, -8px -8px 15px #ffffff;
+        }
+        .column#column1 .cell {
+            background-color: #e0e5ec;
+            border-radius: 10px;
+            padding: 10px; /* Réduit le padding des cellules */
+            margin-bottom: 12px; /* Augmenté pour ajouter environ 2 mm d'espace supplémentaire */
+            cursor: move;
+            box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+            transition: all 0.3s ease;
+        }
+        .cell:hover {
+            box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
+        }
+        .zone {
+            background-color: #e0e5ec;
+            border-radius: 10px;
+            padding: 10px; 
+            margin-bottom: 10px; 
+            box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
+            min-height: 50px; 
+        }
+        .zone-title {
+            font-weight: bold;
+            margin-bottom: 5px; 
+        }
+        .button-container {
+            display: flex;
+            justify-content: center; 
+            margin-top: 20px; 
+        }
+        button {
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 10px; 
+            background-color: #e0e5ec; 
+            box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+        }
+        button:hover { 
+            box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff; 
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <p id="subjectCount"></p>
+        <h1 class="title">Organiser et construire un questionnement</h1>
+    </div>
+    <div class="container">
+        <div id="column1" class="column"></div>
+        <div id="column2" class="column">
+            <div id="sujet" class="zone"><div class="zone-title">Sujet :</div></div>
+            <div id="probleme" class="zone"><div class="zone-title">Problème :</div></div>
+            <div id="racine" class="zone"><div class="zone-title">Racine du problème :</div></div>
+            <div id="enjeu" class="zone"><div class="zone-title">Enjeu :</div></div>
+        </div>
+    </div>
+    <div class="button-container">
+        <button id="actionButton">Vérifier</button>
+    </div>
+
+    <script src="questions.js"></script>
+    <script>
+        let currentState = 'verify';
+        const column1 = document.getElementById('column1');
+        const column2 = document.getElementById('column2');
+        const actionButton = document.getElementById('actionButton');
+        let currentGroup;
+        let usedQuestions = [];
+
+        function loadRandomGroup() {
+             if (usedQuestions.length === questions.length) {
+                usedQuestions = [];
+             }
+
+             let availableQuestions = questions.filter(q => !usedQuestions.includes(q));
+             const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+             currentGroup = availableQuestions[randomIndex];
+             usedQuestions.push(currentGroup);
+             
+             const cells = [
+                { content: currentGroup.intitule, type: 'intitule' },
+                { content: currentGroup.piste1, type: 'piste1' },
+                { content: currentGroup.piste2, type: 'piste2' },
+                { content: currentGroup.racine1, type: 'racine1' },
+                { content: currentGroup.racine2, type: 'racine2' },
+                { content: currentGroup.enjeu, type: 'enjeu' }
+             ];
+
+             // Mélanger les cellules
+             for (let i = cells.length - 1; i > 0; i--) {
+                 const j = Math.floor(Math.random() * (i + 1));
+                 [cells[i], cells[j]] = [cells[j], cells[i]];
+             }
+
+             // Ajouter les cellules à la première colonne
+             column1.innerHTML = '';
+             cells.forEach(cell => {
+                 const div = document.createElement('div');
+                 div.className = 'cell';
+                 div.textContent = cell.content; 
+                 div.draggable = true; 
+                 div.dataset.type = cell.type; 
+                 column1.appendChild(div);
+             });
+         }
+
+         function verifyOrder() {
+             const sujet = document.querySelector('#sujet .cell');
+             const probleme = document.querySelectorAll('#probleme .cell');
+             const racine = document.querySelectorAll('#racine .cell');
+             const enjeu = document.querySelector('#enjeu .cell');
+
+             return sujet && 
+                    probleme.length === 2 && 
+                    racine.length === 2 && 
+                    enjeu &&
+                    sujet.dataset.type === 'intitule' &&
+                    probleme[0].dataset.type === 'piste1' &&
+                    probleme[1].dataset.type === 'piste2' &&
+                    racine[0].dataset.type === 'racine1' &&
+                    racine[1].dataset.type === 'racine2' &&
+                    enjeu.dataset.type === 'enjeu';
+         }
+
+         function initDragAndDrop() {
+             document.querySelectorAll('.cell').forEach(cell => {
+                 cell.addEventListener('dragstart', dragStart);
+                 cell.addEventListener('dragend', dragEnd);
+             });
+
+             document.querySelectorAll('.zone, #column1').forEach(dropZone => {
+                 dropZone.addEventListener('dragover', dragOver);
+                 dropZone.addEventListener('dragenter', dragEnter);
+                 dropZone.addEventListener('dragleave', dragLeave);
+                 dropZone.addEventListener('drop', drop);
+             });
+
+             document.getElementById('subjectCount').textContent = `Nombre total de sujets : ${questions.length}`;
+         }
+
+         function dragStart() {
+             this.style.opacity = '0.4';
+         }
+
+         function dragEnd() {
+             this.style.opacity = '1';
+         }
+
+         function dragOver(e) {
+             e.preventDefault();
+         }
+
+         function dragEnter(e) {
+             e.preventDefault();
+             this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+         }
+
+         function dragLeave() {
+             this.style.backgroundColor = '';
+         }
+
+         function drop(e) {
+             e.preventDefault();
+             const cell = document.querySelector('.cell[style*="opacity: 0.4"]');
+             const targetZone = this.closest('.zone') || this;
+
+             if (targetZone.id === 'probleme' || targetZone.id === 'racine') {
+                 if (targetZone.querySelectorAll('.cell').length < 2) {
+                     targetZone.appendChild(cell);
+                 } else {
+                     const existingCells = Array.from(targetZone.querySelectorAll('.cell'));
+                     const insertIndex = existingCells.findIndex(c => c !== cell && this.compareDocumentPosition(c) & Node.DOCUMENT_POSITION_FOLLOWING);
+                     if (insertIndex !== -1) {
+                         targetZone.insertBefore(cell, existingCells[insertIndex]);
+                     } else {
+                         targetZone.appendChild(cell);
+                     }
+                     if (targetZone.querySelectorAll('.cell').length > 2) {
+                         column1.appendChild(targetZone.querySelector('.cell'));
+                     }
+                 }
+              } else if (targetZone.id === 'sujet' || targetZone.id === 'enjeu') {
+                  if (!targetZone.querySelector('.cell')) {
+                      targetZone.appendChild(cell);
+                  } else {
+                      const existingCell = targetZone.querySelector('.cell');
+                      if (existingCell !== cell) {
+                          column1.appendChild(existingCell);
+                          targetZone.appendChild(cell);
+                      }
+                  }
+              } else {
+                  targetZone.appendChild(cell);
+              }
+              this.style.backgroundColor = '';
+          }
+
+          function correctOrder() {
+              const zones = ['sujet', 'probleme', 'racine', 'enjeu'];
+              const types = [
+                  ['intitule'],
+                  ['piste1', 'piste2'],
+                  ['racine1', 'racine2'],
+                  ['enjeu']
+              ];
+
+              // Déplacer toutes les cellules dans la colonne de gauche
+              document.querySelectorAll('.cell').forEach(cell => {
+                  column1.appendChild(cell);
+              });
+
+              // Placer les cellules dans les bonnes zones
+              zones.forEach((zoneId, index) => {
+                  const zone = document.getElementById(zoneId);
+                  types[index].forEach(type => {
+                      const cell = document.querySelector(`.cell[data-type="${type}"]`);
+                      if (cell) {
+                          zone.appendChild(cell);
+                      }
+                  });
+              });
+          }
+
+          actionButton.addEventListener('click', () => {
+              if (currentState === 'verify') {
+                  if (verifyOrder()) {
+                      alert('Bravo ! L\'ordre est correct.');
+                      actionButton.textContent = 'Recharger';
+                      currentState = 'reload';
+                  } else {
+                      alert('L\'ordre n\'est pas correct. Essayez encore !');
+                      actionButton.textContent = 'Corriger';
+                      currentState = 'correct';
+                  }
+              } else if (currentState === 'correct') {
+                  correctOrder();
+                  actionButton.textContent = 'Recharger';
+                  currentState = 'reload';
+              } else {
+                  column1.innerHTML = '';
+                  document.querySelectorAll('.zone').forEach(zone => {
+                      const title = zone.querySelector('.zone-title');
+                      zone.innerHTML = '';
+                      zone.appendChild(title);
+                  });
+                  loadRandomGroup();
+                  initDragAndDrop();
+                  actionButton.textContent = 'Vérifier';
+                  currentState = 'verify';
+              }
+          });
+
+          loadRandomGroup();
+          initDragAndDrop();
+      </script>
+</body>
+</html>
